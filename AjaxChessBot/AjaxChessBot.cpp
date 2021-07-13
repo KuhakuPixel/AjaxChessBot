@@ -30,13 +30,14 @@ int main()
 	//lets test on how to send a left click???
 	while (runProgram) {
 		
+		
 		if (GetKeyState(VK_LBUTTON) < 0) {
 			
 			leftClicking = true;
 		}
 		if (leftClicking) {
 			
-			Clicker::SendLeftClick(352,515);
+			Clicker::SendLeftClick(355, 440);
 		}
 
 		if (GetKeyState(VK_RBUTTON) < 0) {
