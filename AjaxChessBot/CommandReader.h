@@ -3,5 +3,5 @@
 class CommandReader {
 
 public:
-	void ParseCommand(std::string commmand);
+	void ProcessCommand(std::string commmand);
 };

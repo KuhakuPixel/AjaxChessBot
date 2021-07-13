@@ -9,20 +9,42 @@
 std::vector<std::string> allLeftClick = {};
 POINT point;
 bool leftClicking = false;
+bool runProgram = false;
+
+
+void DisplayCurrentMouseCoordinates() {
+	point = Clicker::GetCurrentMouseCoordinates();
+	std::string printedCoordinates = "{ " + std::to_string(point.x) + " , " + std::to_string(point.y) + " }";
+	std::cout << printedCoordinates<<std::endl;
+}
 //Program main entry
+
 int main()
 {
+	std::string command = "";
+	std::cout << "Command :";
+	std::cin >> command;
+	if (command == "start") {
+		runProgram = true;
+	}
 	//lets test on how to send a left click???
-	while (true) {
+	while (runProgram) {
+		
 		if (GetKeyState(VK_LBUTTON) < 0) {
-			point = Clicker::GetCurrentMouseCoordinates();
-			allLeftClick.push_back("{ " + std::to_string(point.x) + " , " + std::to_string(point.y) + " }");
+			
 			leftClicking = true;
 		}
 		if (leftClicking) {
-			Clicker::SendLeftClick(point.x,point.y);
+			
+			Clicker::SendLeftClick(352,515);
 		}
 
+		if (GetKeyState(VK_RBUTTON) < 0) {
+			runProgram = false;
+		}
+		
+
+		//DisplayCurrentMouseCoordinates();
 	}
 
 

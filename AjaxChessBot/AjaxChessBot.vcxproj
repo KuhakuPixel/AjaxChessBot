@@ -141,9 +141,11 @@
   <ItemGroup>
     <ClCompile Include="AjaxChessBot.cpp" />
     <ClCompile Include="Clicker.cpp" />
+    <ClCompile Include="ReadCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clicker.h" />
+    <ClInclude Include="CommandReader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

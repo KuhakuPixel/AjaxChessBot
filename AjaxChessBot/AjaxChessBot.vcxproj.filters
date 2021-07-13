@@ -21,9 +21,15 @@
     <ClCompile Include="Clicker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ReadCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clicker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
