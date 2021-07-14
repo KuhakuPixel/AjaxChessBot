@@ -7,13 +7,13 @@
 
 
 std::vector<std::string> allLeftClick = {};
-POINT point;
+
 
 
 bool runProgram = true;
-
+POINT registeredCoordinate;
 void DisplayCurrentMouseCoordinates() {
-	point = Clicker::GetCurrentMouseCoordinates();
+	POINT point = Clicker::GetCurrentMouseCoordinates();
 	std::string printedCoordinates = "{ " + std::to_string(point.x) + " , " + std::to_string(point.y) + " }";
 	std::cout << printedCoordinates << std::endl;
 }
@@ -25,26 +25,42 @@ int main()
 	
 	//lets test on how to send a left click???
 	while (runProgram) {
-		bool runClicker = false;
+		
 		std::string command = "";
 		std::cout << "Command :";
 		std::cin >> command;
 		if (command == "start") {
-			runClicker = true;
-		}
-		while (runClicker) {
-
-
-			Clicker::SendLeftClick(355, 440);
-
-
-			if (GetKeyState(VK_RBUTTON) < 0) {
-				runClicker = false;
+			if (registeredCoordinate.x ==NULL&& registeredCoordinate.y == NULL) {
+				std::cout << "no coordinate has been register , Use \"registerPos\" To register coordinates  " << std::endl;
 			}
+			else {
+				bool runClicker = true;
+				while (runClicker) {
 
 
-			//DisplayCurrentMouseCoordinates();
+					Clicker::SendLeftClick(707, 367);
+
+
+					if (GetKeyState(VK_RBUTTON) < 0) {
+						runClicker = false;
+					}
+
+
+					//DisplayCurrentMouseCoordinates();
+				}
+			}
+			
 		}
+
+		else if (command == "registerPos") {
+			std::cout << "click left to register" << std::endl;
+			if (GetKeyState(VK_LBUTTON) < 0) {
+				registeredCoordinate = Clicker::GetCurrentMouseCoordinates();
+				std::cout << "coordinate sucsessfully registered at : "<<registeredCoordinate.x<<","<<registeredCoordinate.y << std::endl;
+
+			}
+		}
+		
 	}
 	
 
