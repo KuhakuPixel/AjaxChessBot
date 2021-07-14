@@ -38,7 +38,7 @@ int main()
 				while (runClicker) {
 
 
-					Clicker::SendLeftClick(707, 367);
+					Clicker::SendLeftClick(registeredCoordinate.x, registeredCoordinate.y);
 
 
 					if (GetKeyState(VK_RBUTTON) < 0) {
@@ -54,11 +54,16 @@ int main()
 
 		else if (command == "registerPos") {
 			std::cout << "click left to register" << std::endl;
-			if (GetKeyState(VK_LBUTTON) < 0) {
-				registeredCoordinate = Clicker::GetCurrentMouseCoordinates();
-				std::cout << "coordinate sucsessfully registered at : "<<registeredCoordinate.x<<","<<registeredCoordinate.y << std::endl;
-
+			//listener 
+			while (true) {
+				if (GetKeyState(VK_LBUTTON) < 0) {
+					registeredCoordinate = Clicker::GetCurrentMouseCoordinates();
+					std::cout << "coordinate sucsessfully registered at : " << registeredCoordinate.x << "," << registeredCoordinate.y << std::endl;
+					break;
+				}
+				
 			}
+			
 		}
 		
 	}

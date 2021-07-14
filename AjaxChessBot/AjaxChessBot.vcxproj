@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AjaxChessBot.cpp" />
+    <ClCompile Include="AjaxHelper.cpp" />
     <ClCompile Include="Clicker.cpp" />
     <ClCompile Include="ReadCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AjaxHelper.h" />
     <ClInclude Include="Clicker.h" />
     <ClInclude Include="CommandReader.h" />
   </ItemGroup>
