@@ -8,45 +8,45 @@
 
 std::vector<std::string> allLeftClick = {};
 POINT point;
-bool leftClicking = false;
-bool runProgram = false;
 
+
+bool runProgram = true;
 
 void DisplayCurrentMouseCoordinates() {
 	point = Clicker::GetCurrentMouseCoordinates();
 	std::string printedCoordinates = "{ " + std::to_string(point.x) + " , " + std::to_string(point.y) + " }";
-	std::cout << printedCoordinates<<std::endl;
+	std::cout << printedCoordinates << std::endl;
 }
 //Program main entry
 
 int main()
 {
-	std::string command = "";
-	std::cout << "Command :";
-	std::cin >> command;
-	if (command == "start") {
-		runProgram = true;
-	}
+	std::cout << "Run this program as administrator or else it will not work" << std::endl;
+	
 	//lets test on how to send a left click???
 	while (runProgram) {
-		
-		
-		if (GetKeyState(VK_LBUTTON) < 0) {
-			
-			leftClicking = true;
+		bool runClicker = false;
+		std::string command = "";
+		std::cout << "Command :";
+		std::cin >> command;
+		if (command == "start") {
+			runClicker = true;
 		}
-		if (leftClicking) {
-			
+		while (runClicker) {
+
+
 			Clicker::SendLeftClick(355, 440);
-		}
 
-		if (GetKeyState(VK_RBUTTON) < 0) {
-			runProgram = false;
-		}
-		
 
-		//DisplayCurrentMouseCoordinates();
+			if (GetKeyState(VK_RBUTTON) < 0) {
+				runClicker = false;
+			}
+
+
+			//DisplayCurrentMouseCoordinates();
+		}
 	}
+	
 
 
 
