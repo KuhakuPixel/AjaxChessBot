@@ -23,5 +23,14 @@ namespace AjaxChessBotUnitTest
             Assert.AreEqual("My Room Is Full of Bs", contentBetweenChar);
 
         }
+
+        [TestMethod]
+        public void GetStringBetweenTwoCharTest2()
+        {
+            string contentBetweenChar = AjaxStringHelper.GetStringBetweenTwoChar("Owh no My Queen , hashTag EricROsen,",
+                 ',', ',', false);
+            Assert.AreEqual(" hashTag EricROsen", contentBetweenChar);
+
+        }
     }
 }
