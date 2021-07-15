@@ -42,19 +42,23 @@ namespace AjaxDynamicHtmlReader
                             {
                                 int startIndex = -1;
                                 int endIndex = -1;
-                                for (int k = j + 1; k < jsScript.Length; k++)
+                                if (j < jsScript.Length - 1)
                                 {
+                                    for (int k = j + 1; k < jsScript.Length; k++)
+                                    {
 
-                                    if (jsScript[k] == '"' && startIndex < 0)
-                                    {
-                                        startIndex = k;
+                                        if (jsScript[k] == '"' && startIndex < 0)
+                                        {
+                                            startIndex = k;
+                                        }
+                                        else if (jsScript[k] == '"')
+                                        {
+                                            endIndex = k;
+                                        }
+                                        string uciMove = jsScript.Substring(startIndex, endIndex - startIndex);
+                                        uciMoves.Add(uciMove);
                                     }
-                                    else if (jsScript[k] == '"')
-                                    {
-                                        endIndex = k;
-                                    }
-                                    string uciMove = jsScript.Substring(startIndex, endIndex - startIndex);
-                                    uciMoves.Add(uciMove);
+
                                 }
 
                             }
