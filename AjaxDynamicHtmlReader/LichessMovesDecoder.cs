@@ -23,31 +23,46 @@ namespace AjaxDynamicHtmlReader
         {
 
             string jsScript = GetJavaScriptFromHtmlCode(htmlCodes);
+            List<string> uciMoves = new List<string>();
             //starts scanning for UCI(Universal chess interface ) and san
             for (int i = 0; i < jsScript.Length; i++)
             {
-                //found uci ,scan for move
-                if (jsScript[i] == 'u' && jsScript[i + 1] == 'c' && jsScript[i + 2] == 'i')
+                
+                if (i < jsScript.Length - 3)
                 {
-                    //Example: "uci":"e2e4"
-                    for (int j = i + 3; j < jsScript.Length; j++)
+                    //found uci ,scan for move
+                    if (jsScript[i] == 'u' && jsScript[i + 1] == 'c' && jsScript[i + 2] == 'i')
                     {
-                        // find data in the string after semi colon
-                        if (jsScript[j] == ':')
+                        //extracting uci move
+                        //Example: "uci":"e2e4"
+                        for (int j = i + 3; j < jsScript.Length; j++)
                         {
-                            int numOfQuote = 0;
-                            for (int k = j + 1; k < jsScript.Length; k++)
+                            // find data in the string after semi colon
+                            if (jsScript[j] == ':')
                             {
-                                
-                                if (jsScript[k] == '"')
+                                int startIndex = -1;
+                                int endIndex = -1;
+                                for (int k = j + 1; k < jsScript.Length; k++)
                                 {
-                                    numOfQuote++;
-                                }
-                            }
-                        }
 
+                                    if (jsScript[k] == '"' && startIndex < 0)
+                                    {
+                                        startIndex = k;
+                                    }
+                                    else if (jsScript[k] == '"')
+                                    {
+                                        endIndex = k;
+                                    }
+                                    string uciMove = jsScript.Substring(startIndex, endIndex - startIndex);
+                                    uciMoves.Add(uciMove);
+                                }
+
+                            }
+
+                        }
                     }
                 }
+               
             }
 
         }
