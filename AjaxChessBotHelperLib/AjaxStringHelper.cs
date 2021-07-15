@@ -13,7 +13,7 @@ namespace AjaxChessBotHelperLib
         /// <param name="toChar"></param>
         /// <param name="isInclusive">if true include the two char when returning that are the separator</param>
         /// <returns></returns>
-        public string GetStringBetweenTwoChar(string str,char fromChar,char toChar,bool isInclusive)
+        public static  string GetStringBetweenTwoChar(string str,char fromChar,char toChar,bool isInclusive)
         {
             //bad args
             if (!str.Contains(toChar)||!str.Contains(fromChar))
@@ -28,6 +28,7 @@ namespace AjaxChessBotHelperLib
                 {
                     for(int j = i; j < str.Length; j++)
                     {
+                    
                         //end
                         if (str[j] == toChar)
                         {

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxDynamicHtmlReader", "Aj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxChessBotHelperLib", "AjaxChessBotHelperLib\AjaxChessBotHelperLib.csproj", "{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxChessBotUnitTest", "AjaxChessBotUnitTest\AjaxChessBotUnitTest.csproj", "{D3D5102F-08E9-4F6A-BB00-E040176360BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,18 @@ Global
 		{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}.Release|x64.Build.0 = Release|Any CPU
 		{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}.Release|x86.ActiveCfg = Release|Any CPU
 		{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}.Release|x86.Build.0 = Release|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|x64.Build.0 = Debug|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|x86.Build.0 = Debug|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|x64.ActiveCfg = Release|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|x64.Build.0 = Release|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|x86.ActiveCfg = Release|Any CPU
+		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
