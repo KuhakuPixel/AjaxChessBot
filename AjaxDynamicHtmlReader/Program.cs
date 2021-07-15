@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-
+using System.Collections.Generic;
 namespace AjaxDynamicHtmlReader
 {
     class Program
@@ -16,7 +16,13 @@ namespace AjaxDynamicHtmlReader
             // Console.WriteLine(GetHtml("https://www.chess.com/game/live/20004058603"));
             //Console.WriteLine(GetHtml2("https://www.chess.com/game/live/20004058603"));
             //Console.WriteLine(GetHtml3("https://lichess.org/LVCOwlWd"));
-            OutputHtmlToText("https://lichess.org/LVCOwlWd", @"C:\Users\Nicho\Desktop\Projects\AjaxChessBot\htmlCode.txt");
+
+
+
+            //OutputHtmlToText("https://lichess.org/LVCOwlWd", @"C:\Users\Nicho\Desktop\Projects\AjaxChessBot\htmlCode.txt");
+            //split string by <> to a data structure
+            List<string> splittedHtml=HtmlConverter.SplitHtmlByBrackets("<Hi from the other> <Side Of The world>");
+
             Console.ReadLine();
         }
         static string GetHtml(string url)
@@ -67,7 +73,7 @@ namespace AjaxDynamicHtmlReader
         }
         static void OutputHtmlToText(string url,string pathToWriteTo)
         {
-            string htmlCode = GetHtml3(url);
+            string htmlCode = GetHtml2(url);
             File.WriteAllText(pathToWriteTo, htmlCode);
             Console.WriteLine("Output Html code sucsessfull");
         }
