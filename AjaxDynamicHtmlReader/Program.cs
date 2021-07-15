@@ -10,18 +10,20 @@ namespace AjaxDynamicHtmlReader
     {
         static void Main(string[] args)
         {
-
-            //Console.WriteLine(GetHtml("https://lichess.org/oTcd3aEnOMW3"));
-            //Console.WriteLine(GetHtml("https://lichess.org/DKMH31T8yZW0"));
-            // Console.WriteLine(GetHtml("https://www.chess.com/game/live/20004058603"));
-            //Console.WriteLine(GetHtml2("https://www.chess.com/game/live/20004058603"));
-            //Console.WriteLine(GetHtml3("https://lichess.org/LVCOwlWd"));
-
-
-
-            //OutputHtmlToText("https://lichess.org/LVCOwlWd", @"C:\Users\Nicho\Desktop\Projects\AjaxChessBot\htmlCode.txt");
-           
+            ReadProcessesedHtml("https://lichess.org/mhogedz2", @"C:\Users\Nicho\Desktop\Projects\AjaxChessBot\htmlCodeLichessFightChessBotInProgress.txt");
             Console.ReadLine();
+        }
+        static void ReadProcessesedHtml(string url,string outputPath)
+        {
+            string htmlCode= GetHtml2(url);
+            List<string> splittedHtml = HtmlConverter.SplitHtmlByBrackets(htmlCode, true);
+
+            using (TextWriter textWriter = new StreamWriter(outputPath))
+            {
+                foreach (String s in splittedHtml)
+                    textWriter.WriteLine(s);
+            }
+            Console.WriteLine("Html sucessfuly read and is written to :" +outputPath);
         }
         static void OutputConvertedHtmlToTextFileTest0(string path)
         {
@@ -30,7 +32,7 @@ namespace AjaxDynamicHtmlReader
             string lichessGameHtml = File.ReadAllText(@"C:\Users\Nicho\Desktop\Projects\AjaxChessBot\htmlCode.txt");
             List<string> splittedHtml = HtmlConverter.SplitHtmlByBrackets(lichessGameHtml, true);
 
-            using (TextWriter textWriter = new StreamWriter("SavedList.txt"))
+            using (TextWriter textWriter = new StreamWriter(path))
             {
                 foreach (String s in splittedHtml)
                     textWriter.WriteLine(s);
