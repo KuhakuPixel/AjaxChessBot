@@ -20,10 +20,21 @@ namespace AjaxDynamicHtmlReader
 
 
             //OutputHtmlToText("https://lichess.org/LVCOwlWd", @"C:\Users\Nicho\Desktop\Projects\AjaxChessBot\htmlCode.txt");
-            //split string by <> to a data structure
-            List<string> splittedHtml=HtmlConverter.SplitHtmlByBrackets("<Hi from the other> <Side Of The world>");
-
+           
             Console.ReadLine();
+        }
+        static void OutputConvertedHtmlToTextFileTest0(string path)
+        {
+            //split string by <> to a data structure
+            // Open the file to read from.
+            string lichessGameHtml = File.ReadAllText(@"C:\Users\Nicho\Desktop\Projects\AjaxChessBot\htmlCode.txt");
+            List<string> splittedHtml = HtmlConverter.SplitHtmlByBrackets(lichessGameHtml, true);
+
+            using (TextWriter textWriter = new StreamWriter("SavedList.txt"))
+            {
+                foreach (String s in splittedHtml)
+                    textWriter.WriteLine(s);
+            }
         }
         static string GetHtml(string url)
         {
