@@ -22,8 +22,12 @@ namespace AjaxDynamicHtmlReader
                     for (int j = i; j < htmlCode.Length; j++)
                     {
                         
-                        if (htmlCode[j] == '<')
+                        if (htmlCode[j] == '<'||j==htmlCode.Length-1)
                         {
+                            if (htmlCode[j] != '<')
+                            {
+                                contentBetweenTag += htmlCode[j];
+                            }
                             i = j;
                            break;
                         }
