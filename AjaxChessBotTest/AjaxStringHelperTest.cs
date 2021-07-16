@@ -3,7 +3,7 @@ using Xunit;
 using AjaxChessBotHelperLib;
 namespace AjaxChessBotTest
 {
-    public class UnitTest1
+    public class AjaxStringHelperTest
     {
         [Theory]
         [InlineData("nononono <My Room Is Full of Bs> bla bla bla",'<', '>', false, "My Room Is Full of Bs")]

@@ -19,7 +19,7 @@ namespace AjaxDynamicHtmlReader
             throw new ArgumentException("No JavaScript found in the html codes");
 
         }
-        void DecodeChessMove(List<string> htmlCodes)
+        List<string> DecodeLichessMove(List<string> htmlCodes)
         {
 
             string jsScript = GetJavaScriptFromHtmlCode(htmlCodes);
@@ -55,6 +55,7 @@ namespace AjaxDynamicHtmlReader
                 }
 
             }
+            return uciMoves;
 
         }
 
