@@ -13,7 +13,7 @@ namespace AjaxChessBotTest
         [Fact]
         public void SplitHtmlByBracketsTest0()
         {
-            List<string> splittedHtml = HtmlConverter.SplitHtmlByBrackets(
+            List<string> splittedHtml = AjaxHtmlReader.SplitHtmlByBrackets(
                "<h1>My Bad header</h1>",
 
 
@@ -28,7 +28,7 @@ namespace AjaxChessBotTest
         [Fact]
         public void SplitHtmlByBracketsTest1()
         {
-            List<string> splittedHtml = HtmlConverter.SplitHtmlByBrackets(
+            List<string> splittedHtml = AjaxHtmlReader.SplitHtmlByBrackets(
                "<h1>My Bad header</h1><li>content0</li>",
 
 
@@ -43,7 +43,7 @@ namespace AjaxChessBotTest
         [Fact]
         public void SplitHtmlByBracketsTest2()
         {
-            List<string> splittedHtml = HtmlConverter.SplitHtmlByBrackets(
+            List<string> splittedHtml = AjaxHtmlReader.SplitHtmlByBrackets(
                "syntaxError<h1>My Bad header</h1><li>content0</li>syntaxError",
 
 

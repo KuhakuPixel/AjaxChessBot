@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.IO;
+using System.Net;
 namespace AjaxDynamicHtmlReader
 {
 
-    public class HtmlConverter
+    public class AjaxHtmlReader
     {
        
         public static List<string> SplitHtmlByBrackets(string htmlCode, bool includeContentInsideTag = false)
@@ -74,6 +75,35 @@ namespace AjaxDynamicHtmlReader
             }
             
             return splittedHtml;
+        }
+        
+
+        public static List<string> ReadAndProcessHtmlSource(string url,bool includeContentInsideTag)
+        {
+            string htmlCode = GetHtml(url);
+            List<string> processedHtml = AjaxHtmlReader.SplitHtmlByBrackets(htmlCode, includeContentInsideTag);
+            return processedHtml;
+        }
+
+        public static string GetHtml(string url)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string data = "";
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                Stream receiveStream = response.GetResponseStream();
+                StreamReader readStream = null;
+                if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                    readStream = new StreamReader(receiveStream);
+                else
+                    readStream = new StreamReader(receiveStream,
+                        Encoding.GetEncoding(response.CharacterSet));
+                data = readStream.ReadToEnd();
+                response.Close();
+                readStream.Close();
+            }
+            return data;
         }
     }
 }

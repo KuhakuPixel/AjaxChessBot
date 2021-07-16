@@ -6,9 +6,9 @@ namespace AjaxDynamicHtmlReader
 {
     class LichessMovesDecoder
     {
-        string GetJavaScriptFromHtmlCode(List<string> htmlCodes)
+        public static string GetJavaScriptFromHtmlCode(List<string> htmlCodes)
         {
-            for (int i = 0; i < htmlCodes.Count; i++)
+            for (int i = htmlCodes.Count-1; i>=0; i--)
             {
                 //found js
                 if (htmlCodes[i].Contains("lichess.load.then"))
@@ -19,9 +19,9 @@ namespace AjaxDynamicHtmlReader
             throw new ArgumentException("No JavaScript found in the html codes");
 
         }
-        List<string> DecodeLichessMove(List<string> htmlCodes)
+        public static List<string> DecodeLichessMove(string lichessGameUrl)
         {
-
+            List<string> htmlCodes = AjaxHtmlReader.ReadAndProcessHtmlSource(lichessGameUrl, includeContentInsideTag: false);
             string jsScript = GetJavaScriptFromHtmlCode(htmlCodes);
             List<string> uciMoves = new List<string>();
             //starts scanning for UCI(Universal chess interface )
@@ -48,6 +48,7 @@ namespace AjaxDynamicHtmlReader
                                     isInclusive: false
                                     );
                                 uciMoves.Add(uciMove);
+                                break;
                             }
 
                         }
