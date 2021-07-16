@@ -10,10 +10,26 @@ namespace AjaxDynamicHtmlReader
     {
         static void Main(string[] args)
         {
-            List<string> moves=LichessMovesDecoder.DecodeLichessMove("https://lichess.org/Dr9oJXcrsbHy");
-            Console.ReadLine();
+            Console.WriteLine("Enter lichess link:");
+            string lichessGameLink = Console.ReadLine();
+            int lastMoveCount = 0;
+            while (true)
+            {
+                List<string> currentMoves = LichessMovesDecoder.DecodeLichessMove(lichessGameLink);
+                if (currentMoves.Count > lastMoveCount)
+                {
+                    Console.Write("Current Move");
+                    foreach (string move in currentMoves)
+                    {
+                        Console.WriteLine(move);
+                    }
+
+                    lastMoveCount = currentMoves.Count;
+                }
+
+            }
         }
-       
-     
+
+
     }
 }
