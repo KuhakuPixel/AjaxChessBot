@@ -7,9 +7,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AjaxChessBot", "AjaxChessBo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxDynamicHtmlReader", "AjaxDynamicHtmlReader\AjaxDynamicHtmlReader.csproj", "{39B18C54-3886-4199-84FC-C840E9EAF5A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxChessBotHelperLib", "AjaxChessBotHelperLib\AjaxChessBotHelperLib.csproj", "{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxChessBotHelperLib", "AjaxChessBotHelperLib\AjaxChessBotHelperLib.csproj", "{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxChessBotUnitTest", "AjaxChessBotUnitTest\AjaxChessBotUnitTest.csproj", "{D3D5102F-08E9-4F6A-BB00-E040176360BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxChessBotTest", "AjaxChessBotTest\AjaxChessBotTest.csproj", "{18E077E9-6770-43D4-875D-C669A4CE6B50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,18 +55,18 @@ Global
 		{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}.Release|x64.Build.0 = Release|Any CPU
 		{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}.Release|x86.ActiveCfg = Release|Any CPU
 		{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}.Release|x86.Build.0 = Release|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|x64.Build.0 = Debug|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Debug|x86.Build.0 = Debug|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|x64.ActiveCfg = Release|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|x64.Build.0 = Release|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|x86.ActiveCfg = Release|Any CPU
-		{D3D5102F-08E9-4F6A-BB00-E040176360BE}.Release|x86.Build.0 = Release|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Debug|x64.Build.0 = Debug|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Debug|x86.Build.0 = Debug|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Release|x64.ActiveCfg = Release|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Release|x64.Build.0 = Release|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Release|x86.ActiveCfg = Release|Any CPU
+		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
