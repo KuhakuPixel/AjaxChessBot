@@ -23,6 +23,7 @@ namespace AjaxChessBotHelperLib
             string strBetweenChar = "";
             for (int i = 0; i < str.Length; i++)
             {
+                
                 //found the content starting from this "fromChar"
                 if (str[i] == charStart)
                 {
@@ -52,6 +53,7 @@ namespace AjaxChessBotHelperLib
                     break;
                 }
             }
+          
             return strBetweenChar;
         }
 

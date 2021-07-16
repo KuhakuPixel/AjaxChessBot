@@ -38,22 +38,7 @@ namespace AjaxDynamicHtmlReader
                     textWriter.WriteLine(s);
             }
         }
-        static string GetHtml(string url)
-        {
-
-            string result = "";
-            using (HttpClient client = new HttpClient())
-            {
-                using (HttpResponseMessage response = client.GetAsync(url).Result)
-                {
-                    using (HttpContent content = response.Content)
-                    {
-                        result = content.ReadAsStringAsync().Result;
-                    }
-                }
-            }
-            return result;
-        }
+     
         static string GetHtml2(string url)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -74,21 +59,6 @@ namespace AjaxDynamicHtmlReader
             }
             return data;
         }
-        static string GetHtml3(string url)
-        {
-
-            string htmlCode = "";
-            using (WebClient client = new WebClient())
-            {
-                htmlCode = client.DownloadString(url);
-            }
-            return htmlCode;
-        }
-        static void OutputHtmlToText(string url,string pathToWriteTo)
-        {
-            string htmlCode = GetHtml2(url);
-            File.WriteAllText(pathToWriteTo, htmlCode);
-            Console.WriteLine("Output Html code sucsessfull");
-        }
+     
     }
 }

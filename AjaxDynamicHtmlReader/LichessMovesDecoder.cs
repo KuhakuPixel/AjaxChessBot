@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using AjaxChessBotHelperLib;
 namespace AjaxDynamicHtmlReader
 {
     class LichessMovesDecoder
@@ -24,10 +24,10 @@ namespace AjaxDynamicHtmlReader
 
             string jsScript = GetJavaScriptFromHtmlCode(htmlCodes);
             List<string> uciMoves = new List<string>();
-            //starts scanning for UCI(Universal chess interface ) and san
+            //starts scanning for UCI(Universal chess interface )
             for (int i = 0; i < jsScript.Length; i++)
             {
-                
+
                 if (i < jsScript.Length - 3)
                 {
                     //found uci ,scan for move
@@ -40,33 +40,20 @@ namespace AjaxDynamicHtmlReader
                             // find data in the string after semi colon
                             if (jsScript[j] == ':')
                             {
-                                int startIndex = -1;
-                                int endIndex = -1;
-                                if (j < jsScript.Length - 1)
-                                {
-                                    for (int k = j + 1; k < jsScript.Length; k++)
-                                    {
 
-                                        if (jsScript[k] == '"' && startIndex < 0)
-                                        {
-                                            startIndex = k;
-                                        }
-                                        else if (jsScript[k] == '"')
-                                        {
-                                            endIndex = k;
-                                        }
-                                        string uciMove = jsScript.Substring(startIndex, endIndex - startIndex);
-                                        uciMoves.Add(uciMove);
-                                    }
-
-                                }
-
+                                string uciMove=AjaxStringHelper.GetStringBetweenTwoChar(
+                                    str: jsScript.Substring(j, jsScript.Length - j),
+                                    charStart: '"',
+                                    charEnd: '"',
+                                    isInclusive: false
+                                    );
+                                uciMoves.Add(uciMove);
                             }
 
                         }
                     }
                 }
-               
+
             }
 
         }
