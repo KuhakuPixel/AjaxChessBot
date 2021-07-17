@@ -80,18 +80,9 @@ namespace AjaxDynamicHtmlReader
         }
         public static ChessGameProperties.PieceColor DecodeLichessPlayerColor(List<string> htmlCodes)
         {
-            ChessGameProperties.PieceColor playerColor=ChessGameProperties.PieceColor.white;
+            
             string jsScript = OnlineChessGameStateDecoder.GetJavaScriptFromLichessHtmlCode(htmlCodes);
-            //the color of the player is found on ("player":"black") when loading javascript
-            for(int i = 0; i < jsScript.Length; i++)
-            {
-                //extracting playerColor
-                if (i < jsScript.Length - 6)
-                {
-                    //if(jsScript[i]=='p')
-                }
-            }
-            return playerColor;
+            return DecodeLichessPlayerColorFromJavaScript(jsScript);
         }
         public static ChessGameProperties.PieceColor DecodeLichessPlayerColorFromJavaScript(string jsScript)
         {
