@@ -20,7 +20,7 @@ namespace AjaxDynamicHtmlReader
 
         }
         /// <summary>
-        /// Decodes move from a html source 
+        /// Decodes lichess game move from a html source 
         /// </summary>
         /// <param name="htmlCodes"></param>
         /// <returns></returns>
@@ -28,54 +28,12 @@ namespace AjaxDynamicHtmlReader
         {
 
             string jsScript = GetJavaScriptFromLichessHtmlCode(htmlCodes);
-            List<string> uciMoves = new List<string>();
-
-
-            //get element in string  after " "uci":" "
-            //starts scanning for uci (Universal chess interface ) move
-            for (int i = 0; i < jsScript.Length; i++)
-            {
-                //subString="uci":"
-                string subString = "\"uci\":\"";
-                if (i+subString.Length < jsScript.Length)
-                {
-                 
-                    //found "uci":"exampleMove"
-                    if (AjaxStringHelper.IsSubStringInTheFirstSubStringOfString(str:jsScript,startIndex:i,
-                        subString:subString))
-                    {
-
-                        int startIndex = i + subString.Length - 1;
-                        int endIndex = jsScript.Length - i;
-
-                        //get element in string  after " "uci":"e2e4" " 
-                        string uciMove = AjaxStringHelper.GetStringBetweenTwoChar(
-                            str: jsScript.Substring(startIndex,endIndex),
-                            charStart: '"',
-                            charEnd: '"',
-                            isInclusive: false
-                            );
-
-                        uciMoves.Add(uciMove);
-                    }
-               
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-          
-            return uciMoves;
+            return DecodeLichessMoveFromJavaScript(jsScript);
 
         }
-        /// <summary>
-        /// Decodes move from a html source 
-        /// </summary>
-        /// <param name="htmlCodes"></param>
-        /// <returns></returns>
-        public static List<string> DecodeLichessMove(string jsScript)
+        
+        
+        public static List<string> DecodeLichessMoveFromJavaScript(string jsScript)
         {
 
             
@@ -135,7 +93,48 @@ namespace AjaxDynamicHtmlReader
             }
             return playerColor;
         }
+        public static ChessGameProperties.PieceColor DecodeLichessPlayerColorFromJavaScript(string jsScript)
+        {
+            ChessGameProperties.PieceColor playerColor=ChessGameProperties.PieceColor.white;
+            //the color of the player is found on ("player":"black") when loading javascript
+            for (int i = 0; i < jsScript.Length; i++)
+            {
+                //subString= "player":"
+                string subString = "\"player\":\"";
+                if (i + subString.Length < jsScript.Length)
+                {
+                    //found "player":"color"
+                    if (AjaxStringHelper.IsSubStringInTheFirstSubStringOfString(str: jsScript, startIndex: i,
+                        subString: subString))
+                    {
+                        int startIndex = i + subString.Length - 1;
 
+                        string str = jsScript.Substring(startIndex, jsScript.Length - startIndex);
+                        //get element in string  after " "uci":"e2e4" " 
+                        string playerColorString = AjaxStringHelper.GetStringBetweenTwoChar(
+                            str: str,
+                            charStart: '"',
+                            charEnd: '"',
+                            isInclusive: false
+                            );
+
+                        if (playerColorString.ToLower() == "black")
+                        {
+                            playerColor = ChessGameProperties.PieceColor.black;
+                        }
+                        else if (playerColorString.ToLower() == "white")
+                        {
+                            playerColor = ChessGameProperties.PieceColor.white;
+                        }
+                        else
+                        {
+                            throw new ArgumentException("player's piece color is invalid: " + playerColor+" ,only black and white is available");
+                        }
+                    }
+                }
+            }
+            return playerColor;
+        }
     }
 
 }

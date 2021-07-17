@@ -17,6 +17,7 @@ namespace AjaxDynamicHtmlReader
             this.gameLink = gameLink;
             List<string> gameHtmlCodes=AjaxHtmlReader.ReadAndProcessHtmlSource(gameLink, includeContentInsideTag: false);
             currentMoves=OnlineChessGameStateDecoder.DecodeLichessMove(gameHtmlCodes);
+            playerColor = OnlineChessGameStateDecoder.DecodeLichessPlayerColor(gameHtmlCodes);
         }
 
 
