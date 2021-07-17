@@ -4,11 +4,11 @@ using System.Text;
 using AjaxChessBotHelperLib;
 namespace AjaxDynamicHtmlReader
 {
-    class ChessMovesDecoder
+    class OnlineChessGameDecoder
     {
         public static string GetJavaScriptFromLichessHtmlCode(List<string> htmlCodes)
         {
-            for (int i = htmlCodes.Count-1; i>=0; i--)
+            for (int i = htmlCodes.Count - 1; i >= 0; i--)
             {
                 //found js
                 if (htmlCodes[i].Contains("lichess.load.then"))
@@ -19,9 +19,14 @@ namespace AjaxDynamicHtmlReader
             throw new ArgumentException("No JavaScript found in the html codes");
 
         }
-        public static List<string> DecodeLichessMove(string lichessGameUrl)
+        /// <summary>
+        /// Decodes move from a html source 
+        /// </summary>
+        /// <param name="htmlCodes"></param>
+        /// <returns></returns>
+        public static List<string> DecodeLichessMove(List<string> htmlCodes)
         {
-            List<string> htmlCodes = AjaxHtmlReader.ReadAndProcessHtmlSource(lichessGameUrl, includeContentInsideTag: false);
+
             string jsScript = GetJavaScriptFromLichessHtmlCode(htmlCodes);
             List<string> uciMoves = new List<string>();
             //starts scanning for UCI(Universal chess interface )
@@ -41,13 +46,13 @@ namespace AjaxDynamicHtmlReader
                             if (jsScript[j] == ':')
                             {
 
-                                string uciMove=AjaxStringHelper.GetStringBetweenTwoChar(
+                                string uciMove = AjaxStringHelper.GetStringBetweenTwoChar(
                                     str: jsScript.Substring(j, jsScript.Length - j),
                                     charStart: '"',
                                     charEnd: '"',
                                     isInclusive: false
                                     );
-                                
+
                                 uciMoves.Add(uciMove);
                                 break;
                             }
@@ -65,7 +70,23 @@ namespace AjaxDynamicHtmlReader
 
         }
 
+        public static ChessGameProperties.PieceColor DecodeLichessPlayerColor(List<string> htmlCodes)
+        {
+            ChessGameProperties.PieceColor playerColor=ChessGameProperties.PieceColor.white;
+            string jsScript = OnlineChessGameDecoder.GetJavaScriptFromLichessHtmlCode(htmlCodes);
+            //the color of the player is found on ("player":"black") when loading javascript
+            for(int i = 0; i < jsScript.Length; i++)
+            {
+                //extracting playerColor
+                if (i < jsScript.Length - 6)
+                {
+                    //if(jsScript[i]=='p')
+                }
+            }
+            return playerColor;
+        }
 
     }
+
 }
 

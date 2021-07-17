@@ -6,27 +6,32 @@ namespace AjaxDynamicHtmlReader
 {
     class ChessGameState
     {
-        enum PieceColor
-        {
-            white,
-            black
-        }
-        private PieceColor playerColor;
+      
+        private ChessGameProperties.PieceColor playerColor;
         private string gameLink = "";
         private List<string> currentMoves = new List<string>();
         //todo: find all the properties from the link like the color of the player ,the moves and ect
         public ChessGameState(string gameLink)
         {
+            //initializing moves
             this.gameLink = gameLink;
-            currentMoves=ChessMovesDecoder.DecodeLichessMove(gameLink);
+            List<string> gameHtmlCodes=AjaxHtmlReader.ReadAndProcessHtmlSource(gameLink, includeContentInsideTag: false);
+            currentMoves=OnlineChessGameDecoder.DecodeLichessMove(gameHtmlCodes);
         }
 
 
 
         //funciton to update the gamestate
-        public void UpdateGameState()
+        private void UpdateGameState()
         {
-            currentMoves = ChessMovesDecoder.DecodeLichessMove(gameLink);
+            List<string> gameHtmlCodes = AjaxHtmlReader.ReadAndProcessHtmlSource(this.gameLink, includeContentInsideTag: false);
+            currentMoves = OnlineChessGameDecoder.DecodeLichessMove(gameHtmlCodes);
+        }
+
+        public List<string> GetCurrentMoves()
+        {
+            this.UpdateGameState();
+            return currentMoves;
         }
 
     }

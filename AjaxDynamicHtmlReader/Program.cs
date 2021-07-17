@@ -14,10 +14,11 @@ namespace AjaxDynamicHtmlReader
         {
             Console.Write("Enter lichess link:");
             string lichessGameLink = Console.ReadLine();
+            ChessGameState chessGameState=new ChessGameState(lichessGameLink);
             int lastMoveCount = 0;
             while (true)
             {
-                List<string> currentMoves = ChessMovesDecoder.DecodeLichessMove(lichessGameLink);
+                List<string> currentMoves =chessGameState.GetCurrentMoves();
                 //if (currentMoves.Count > lastMoveCount)
                 // {
                    

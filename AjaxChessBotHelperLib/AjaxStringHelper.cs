@@ -57,7 +57,37 @@ namespace AjaxChessBotHelperLib
             return strBetweenChar;
         }
 
+        /// <summary>
+        /// startIndex is inclusive
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="subString"></param>
+        /// <returns></returns>
+        public static bool IsSubStringInTheFirstSubStringOfString(string str,int startIndex,string subString)
+        {
+            if (startIndex >= str.Length)
+            {
+                throw new IndexOutOfRangeException("startIndex is out of range "+"startIndex = "+startIndex.ToString()+",length of str = "+str.Length);
+            }
+            else if (subString.Length>str.Length-startIndex)
+            {
+                throw new IndexOutOfRangeException("subString.Length +startIndex is bigger than  str.Length");
+            }
+            else if (startIndex < 0)
+            {
+                throw new IndexOutOfRangeException("startIndex is less than 0 ,startIndex ="+startIndex.ToString());
+            }
+            for(int i = 0; i < subString.Length; i++)
+            {
+                if ( subString[i]!=str[i+startIndex])
+                {
+                    return false;
+                }
+            }
 
+            return true;
+        }
 
     }
 }
