@@ -4,9 +4,9 @@ using System.Text;
 using AjaxChessBotHelperLib;
 namespace AjaxDynamicHtmlReader
 {
-    class LichessMovesDecoder
+    class ChessMovesDecoder
     {
-        public static string GetJavaScriptFromHtmlCode(List<string> htmlCodes)
+        public static string GetJavaScriptFromLichessHtmlCode(List<string> htmlCodes)
         {
             for (int i = htmlCodes.Count-1; i>=0; i--)
             {
@@ -22,7 +22,7 @@ namespace AjaxDynamicHtmlReader
         public static List<string> DecodeLichessMove(string lichessGameUrl)
         {
             List<string> htmlCodes = AjaxHtmlReader.ReadAndProcessHtmlSource(lichessGameUrl, includeContentInsideTag: false);
-            string jsScript = GetJavaScriptFromHtmlCode(htmlCodes);
+            string jsScript = GetJavaScriptFromLichessHtmlCode(htmlCodes);
             List<string> uciMoves = new List<string>();
             //starts scanning for UCI(Universal chess interface )
             for (int i = 0; i < jsScript.Length; i++)
@@ -47,6 +47,7 @@ namespace AjaxDynamicHtmlReader
                                     charEnd: '"',
                                     isInclusive: false
                                     );
+                                
                                 uciMoves.Add(uciMove);
                                 break;
                             }
@@ -56,6 +57,10 @@ namespace AjaxDynamicHtmlReader
                 }
 
             }
+
+            //always remove the first entry since in lichess it is always " play0 ,uci:null"
+            if (uciMoves.Count > 0)
+                uciMoves.RemoveAt(0);
             return uciMoves;
 
         }
