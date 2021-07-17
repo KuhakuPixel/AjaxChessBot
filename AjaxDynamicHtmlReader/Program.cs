@@ -25,7 +25,7 @@ namespace AjaxDynamicHtmlReader
                     Console.WriteLine("Current Move");
                     for(int i=0;i<currentMoves.Count;i++)
                     {
-                        Console.WriteLine(i.ToString()+". "+currentMoves[i]);
+                        Console.WriteLine((i+1).ToString()+". "+currentMoves[i]);
                     }
 
                     lastMoveCount = currentMoves.Count;
