@@ -4,7 +4,7 @@ using System.Text;
 using AjaxChessBotHelperLib;
 namespace AjaxDynamicHtmlReader
 {
-    class OnlineChessGameStateDecoder
+    public static class OnlineChessGameStateDecoder
     {
         public static string GetJavaScriptFromLichessHtmlCode(List<string> htmlCodes)
         {
@@ -45,10 +45,12 @@ namespace AjaxDynamicHtmlReader
                         subString:subString))
                     {
 
-                        
+                        int startIndex = i + subString.Length - 1;
+                        int endIndex = jsScript.Length - i;
+
                         //get element in string  after " "uci":"e2e4" " 
                         string uciMove = AjaxStringHelper.GetStringBetweenTwoChar(
-                            str: jsScript.Substring(i+subString.Length-1, jsScript.Length - i),
+                            str: jsScript.Substring(startIndex,endIndex),
                             charStart: '"',
                             charEnd: '"',
                             isInclusive: false
@@ -68,7 +70,56 @@ namespace AjaxDynamicHtmlReader
             return uciMoves;
 
         }
+        /// <summary>
+        /// Decodes move from a html source 
+        /// </summary>
+        /// <param name="htmlCodes"></param>
+        /// <returns></returns>
+        public static List<string> DecodeLichessMove(string jsScript)
+        {
 
+            
+            List<string> uciMoves = new List<string>();
+
+
+            //get element in string  after " "uci":" "
+            //starts scanning for uci (Universal chess interface ) move
+            for (int i = 0; i < jsScript.Length; i++)
+            {
+                //subString="uci":"
+                string subString = "\"uci\":\"";
+                if (i + subString.Length < jsScript.Length)
+                {
+
+                    //found "uci":"exampleMove"
+                    if (AjaxStringHelper.IsSubStringInTheFirstSubStringOfString(str: jsScript, startIndex: i,
+                        subString: subString))
+                    {
+                        int startIndex = i + subString.Length - 1;
+                        
+                        string str = jsScript.Substring(startIndex,jsScript.Length-startIndex);
+                        //get element in string  after " "uci":"e2e4" " 
+                        string uciMove = AjaxStringHelper.GetStringBetweenTwoChar(
+                            str: str,
+                            charStart: '"',
+                            charEnd: '"',
+                            isInclusive: false
+                            );
+
+                        uciMoves.Add(uciMove);
+                    }
+
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+
+            return uciMoves;
+
+        }
         public static ChessGameProperties.PieceColor DecodeLichessPlayerColor(List<string> htmlCodes)
         {
             ChessGameProperties.PieceColor playerColor=ChessGameProperties.PieceColor.white;

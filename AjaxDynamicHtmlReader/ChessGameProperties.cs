@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AjaxDynamicHtmlReader
 {
-    class ChessGameProperties
+    public class ChessGameProperties
     {
         public enum PieceColor
         {
