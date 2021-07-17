@@ -16,7 +16,7 @@ namespace AjaxDynamicHtmlReader
             //initializing moves
             this.gameLink = gameLink;
             List<string> gameHtmlCodes=AjaxHtmlReader.ReadAndProcessHtmlSource(gameLink, includeContentInsideTag: false);
-            currentMoves=OnlineChessGameDecoder.DecodeLichessMove(gameHtmlCodes);
+            currentMoves=OnlineChessGameStateDecoder.DecodeLichessMove(gameHtmlCodes);
         }
 
 
@@ -25,7 +25,7 @@ namespace AjaxDynamicHtmlReader
         private void UpdateGameState()
         {
             List<string> gameHtmlCodes = AjaxHtmlReader.ReadAndProcessHtmlSource(this.gameLink, includeContentInsideTag: false);
-            currentMoves = OnlineChessGameDecoder.DecodeLichessMove(gameHtmlCodes);
+            currentMoves = OnlineChessGameStateDecoder.DecodeLichessMove(gameHtmlCodes);
         }
 
         public List<string> GetCurrentMoves()

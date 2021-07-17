@@ -4,7 +4,7 @@ using System.Text;
 using AjaxChessBotHelperLib;
 namespace AjaxDynamicHtmlReader
 {
-    class OnlineChessGameDecoder
+    class OnlineChessGameStateDecoder
     {
         public static string GetJavaScriptFromLichessHtmlCode(List<string> htmlCodes)
         {
@@ -29,43 +29,42 @@ namespace AjaxDynamicHtmlReader
 
             string jsScript = GetJavaScriptFromLichessHtmlCode(htmlCodes);
             List<string> uciMoves = new List<string>();
-            //starts scanning for UCI(Universal chess interface )
+
+
+            //get element in string  after " "uci":" "
+            //starts scanning for uci (Universal chess interface ) move
             for (int i = 0; i < jsScript.Length; i++)
             {
-
-                if (i < jsScript.Length - 3)
+                //subString="uci":"
+                string subString = "\"uci\":\"";
+                if (i+subString.Length < jsScript.Length)
                 {
-                    //found uci ,scan for move
-                    if (jsScript[i] == 'u' && jsScript[i + 1] == 'c' && jsScript[i + 2] == 'i')
+                 
+                    //found "uci":"exampleMove"
+                    if (AjaxStringHelper.IsSubStringInTheFirstSubStringOfString(str:jsScript,startIndex:i,
+                        subString:subString))
                     {
-                        //extracting uci move
-                        //Example: "uci":"e2e4"
-                        for (int j = i + 3; j < jsScript.Length; j++)
-                        {
-                            // find data in the string after semi colon
-                            if (jsScript[j] == ':')
-                            {
 
-                                string uciMove = AjaxStringHelper.GetStringBetweenTwoChar(
-                                    str: jsScript.Substring(j, jsScript.Length - j),
-                                    charStart: '"',
-                                    charEnd: '"',
-                                    isInclusive: false
-                                    );
+                        
+                        //get element in string  after " "uci":"e2e4" " 
+                        string uciMove = AjaxStringHelper.GetStringBetweenTwoChar(
+                            str: jsScript.Substring(i+subString.Length-1, jsScript.Length - i),
+                            charStart: '"',
+                            charEnd: '"',
+                            isInclusive: false
+                            );
 
-                                uciMoves.Add(uciMove);
-                                break;
-                            }
-
-                        }
+                        uciMoves.Add(uciMove);
                     }
+               
                 }
-
+                else
+                {
+                    break;
+                }
             }
 
-            //always remove the first entry since in lichess it is always " play0 ,uci:null"
-            if (uciMoves.Count > 0)
-                uciMoves.RemoveAt(0);
+          
             return uciMoves;
 
         }
@@ -73,7 +72,7 @@ namespace AjaxDynamicHtmlReader
         public static ChessGameProperties.PieceColor DecodeLichessPlayerColor(List<string> htmlCodes)
         {
             ChessGameProperties.PieceColor playerColor=ChessGameProperties.PieceColor.white;
-            string jsScript = OnlineChessGameDecoder.GetJavaScriptFromLichessHtmlCode(htmlCodes);
+            string jsScript = OnlineChessGameStateDecoder.GetJavaScriptFromLichessHtmlCode(htmlCodes);
             //the color of the player is found on ("player":"black") when loading javascript
             for(int i = 0; i < jsScript.Length; i++)
             {

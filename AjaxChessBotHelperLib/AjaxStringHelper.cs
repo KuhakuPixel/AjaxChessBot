@@ -6,7 +6,7 @@ namespace AjaxChessBotHelperLib
     public class AjaxStringHelper
     {
         /// <summary>
-        /// 
+        /// Will return the first occurance of element that are between charStart and charEnd
         /// </summary>
         /// <param name="str"></param>
         /// <param name="charStart"></param>
@@ -29,9 +29,6 @@ namespace AjaxChessBotHelperLib
                 {
                     for (int j = i; j < str.Length; j++)
                     {
-
-
-                        //end
                         if (str[j] != charEnd)
                         {
                             if (str[j] == charStart && isInclusive)
@@ -39,7 +36,8 @@ namespace AjaxChessBotHelperLib
                             else if (str[j] != charStart)
                                 strBetweenChar += str[j];
                         }
-                        else if(!string.IsNullOrEmpty(strBetweenChar))
+                        //end
+                        else if (!string.IsNullOrEmpty(strBetweenChar))
                         {
                             if (isInclusive)
                                 strBetweenChar += str[j];
