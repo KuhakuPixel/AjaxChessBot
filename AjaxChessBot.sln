@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxDynamicHtmlReader", "Aj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxChessBotHelperLib", "AjaxChessBotHelperLib\AjaxChessBotHelperLib.csproj", "{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxChessBotTest", "AjaxChessBotTest\AjaxChessBotTest.csproj", "{18E077E9-6770-43D4-875D-C669A4CE6B50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxChessBotTest", "AjaxChessBotTest\AjaxChessBotTest.csproj", "{18E077E9-6770-43D4-875D-C669A4CE6B50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
