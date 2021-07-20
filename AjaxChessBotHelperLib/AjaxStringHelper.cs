@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 
+
 namespace AjaxChessBotHelperLib
 {
     public class AjaxStringHelper
@@ -21,7 +22,7 @@ namespace AjaxChessBotHelperLib
                 throw new ArgumentException("str doesn't contain fromChar or toChar");
             }
             string strBetweenChar = "";
-            
+
             for (int i = 0; i < str.Length; i++)
             {
                 
