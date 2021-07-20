@@ -13,8 +13,14 @@ namespace AjaxDynamicHtmlReader
     {
         static void Main(string[] args)
         {
-            TestSendInputAndGetOutputFromProcess(@"C:\Users\Nicho\Downloads\StockFish\stockfish_14_win_x64_avx2\stockfish_14_x64_avx2.exe");
+            //TestSendInputAndGetOutputFromProcess(@"C:\Users\Nicho\Downloads\StockFish\stockfish_14_win_x64_avx2\stockfish_14_x64_avx2.exe");
+            UciChessEngineProcess uciChessEngineProcess = new UciChessEngineProcess(
+                @"C:\Users\Nicho\Downloads\StockFish\stockfish_14_win_x64_avx2\stockfish_14_x64_avx2.exe");
+            string output=uciChessEngineProcess.SendCommandAndReceiveOutput("uci",1000);
+            Console.WriteLine("Output From Command is:\n"+output);
         }
+        // Opens urls and .html documents using Internet Explorer.
+     
         static void TestSendInputAndGetOutputFromProcess(string pathToExe)
         {
             Console.WriteLine("Starting process");
@@ -27,8 +33,10 @@ namespace AjaxDynamicHtmlReader
                 myProcess.StartInfo.UseShellExecute = false;
                 myProcess.StartInfo.RedirectStandardInput = true;
                 myProcess.StartInfo.RedirectStandardOutput = true;
+                myProcess.EnableRaisingEvents = false;
+                
                 myProcess.Start();
-
+                
                 StreamWriter myStreamWriter = myProcess.StandardInput;
 
                 // Prompt the user for input text lines to sort.
@@ -39,9 +47,18 @@ namespace AjaxDynamicHtmlReader
                 command = Console.ReadLine();
                 myStreamWriter.WriteLine(command);
                 string standard_output="";
-                while ((myProcess.StandardOutput.ReadLine()) != null)
+                while (!myProcess.StandardOutput.EndOfStream)
                 {
-                    Console.WriteLine(myProcess.StandardOutput.ReadLine());
+               
+                    if (myProcess.StandardOutput.ReadLine()!=null)
+                    {
+                        Console.WriteLine(myProcess.StandardOutput.ReadLine());
+                    }
+                
+                    if (myProcess.StandardOutput.EndOfStream)
+                    {
+                        Console.WriteLine("exiting process");
+                    }
                 }
                 // End the input stream to the sort command.
                 // When the stream closes, the sort command
@@ -53,8 +70,7 @@ namespace AjaxDynamicHtmlReader
                 
                
 
-                // Wait for the sort process to write the sorted text lines.
-                myProcess.WaitForExit();
+               //myProcess.WaitForExit();
             }
          
         }

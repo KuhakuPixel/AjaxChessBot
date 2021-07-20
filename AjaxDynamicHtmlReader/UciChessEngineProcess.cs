@@ -2,32 +2,92 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
+
 namespace AjaxDynamicHtmlReader
 {
     public class UciChessEngineProcess
     {
-        public static void StartUciChessEngine(string pathToEngineExe)
+        ProcessStartInfo processStartInfo;
+        public  UciChessEngineProcess(string filename)
         {
-            Process process = new Process();
-
-            // Stop the process from opening a new window
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.RedirectStandardInput = true;
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.CreateNoWindow = false;
+            processStartInfo = new ProcessStartInfo();
+            processStartInfo.FileName = filename;
+            processStartInfo.UseShellExecute = false;
+            processStartInfo.RedirectStandardInput = true;
+            processStartInfo.RedirectStandardOutput = true;
+            processStartInfo.RedirectStandardError = true;
+           
+        }
+        /// <summary>
+        /// timeout in milisecond
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
+        public string SendCommandAndReceiveOutput(string command,int timeout)
+        {
             
-            // Setup executable and parameters
-            process.StartInfo.FileName = pathToEngineExe;
-            //process.StartInfo.Arguments = "--test";
+            StringBuilder output = new StringBuilder();
+            StringBuilder error = new StringBuilder();
+            
+            using (Process process = new Process())
+            {
+                process.StartInfo = this.processStartInfo;
+              
 
-            // Go
-            process.Start();
-            process.StandardInput.WriteLine("uci");
-            process.StandardInput.Flush();
+                using (AutoResetEvent outputWaitHandle = new AutoResetEvent(false))
+                using (AutoResetEvent errorWaitHandle = new AutoResetEvent(false))
+                {
+                    process.OutputDataReceived += (sender, e) =>
+                    {
+                        if (e.Data == null)
+                        {
+                            outputWaitHandle.Set();
+                        }
+                        else
+                        {
+                            output.AppendLine(e.Data);
+                        }
+                    };
+                    process.ErrorDataReceived += (sender, e) =>
+                    {
+                        if (e.Data == null)
+                        {
+                            errorWaitHandle.Set();
+                        }
+                        else
+                        {
+                            error.AppendLine(e.Data);
+                        }
+                    };
 
-            string output=process.StandardOutput.ReadLine();
+                    process.Start();
+                    process.StandardInput.WriteLine(command);
+                    process.BeginOutputReadLine();
+                    process.BeginErrorReadLine();
 
+                    if (process.WaitForExit(timeout) &&
+                        outputWaitHandle.WaitOne(timeout) &&
+                        errorWaitHandle.WaitOne(timeout))
+                    {
+                        if (process.ExitCode == 0)
+                        {
+                            //Console.WriteLine("Process sucsessfull");
+                            return output.ToString();
+                        }
+                        return error.ToString();
+                    }
+                    else
+                    {
+                        //Console.WriteLine("Timeout ,output is :" + output.ToString());
+                        return output.ToString();
 
+                        // Timed out.
+                    }
+                }
+            }
+            
         }
     }
 }
