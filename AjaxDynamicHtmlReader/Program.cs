@@ -16,8 +16,18 @@ namespace AjaxDynamicHtmlReader
             //TestSendInputAndGetOutputFromProcess(@"C:\Users\Nicho\Downloads\StockFish\stockfish_14_win_x64_avx2\stockfish_14_x64_avx2.exe");
             UciChessEngineProcess uciChessEngineProcess = new UciChessEngineProcess(
                 @"C:\Users\Nicho\Downloads\StockFish\stockfish_14_win_x64_avx2\stockfish_14_x64_avx2.exe");
-            string output=uciChessEngineProcess.SendCommandAndReceiveOutput("uci",1000);
-            Console.WriteLine("Output From Command is:\n"+output);
+            List<string> output=uciChessEngineProcess.SendCommandAndReceiveOutput("uci",1000);
+            if (output.Count > 0)
+            {
+                if (output[output.Count - 1]=="uciok")
+                {
+                    Console.WriteLine("Chess engine is compatable with the program");
+                }
+                else
+                {
+                    Console.WriteLine("Non uci engine");
+                }
+            }
         }
         // Opens urls and .html documents using Internet Explorer.
      

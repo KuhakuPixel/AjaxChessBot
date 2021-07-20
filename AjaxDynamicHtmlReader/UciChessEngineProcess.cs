@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
-
+using AjaxChessBotHelperLib;
 namespace AjaxDynamicHtmlReader
 {
     public class UciChessEngineProcess
@@ -25,9 +25,10 @@ namespace AjaxDynamicHtmlReader
         /// <param name="command"></param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        public string SendCommandAndReceiveOutput(string command,int timeout)
+        public List<string> SendCommandAndReceiveOutput(string command,int timeout)
         {
             
+
             StringBuilder output = new StringBuilder();
             StringBuilder error = new StringBuilder();
             
@@ -74,14 +75,18 @@ namespace AjaxDynamicHtmlReader
                         if (process.ExitCode == 0)
                         {
                             //Console.WriteLine("Process sucsessfull");
-                            return output.ToString();
+                            return output.ToList();
                         }
-                        return error.ToString();
+                        else
+                        {
+                            return error.ToList();
+                        }
+                     
                     }
                     else
                     {
                         //Console.WriteLine("Timeout ,output is :" + output.ToString());
-                        return output.ToString();
+                        return output.ToList();
 
                         // Timed out.
                     }
