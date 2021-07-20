@@ -6,6 +6,11 @@ namespace AjaxDynamicHtmlReader
 {
     public static class OnlineChessGameStateDecoder
     {
+        public enum MoveNotation
+        {
+            uci,
+            fen
+        }
         public static string GetJavaScriptFromLichessHtmlCode(List<string> htmlCodes)
         {
             for (int i = htmlCodes.Count - 1; i >= 0; i--)
@@ -24,36 +29,45 @@ namespace AjaxDynamicHtmlReader
         /// </summary>
         /// <param name="htmlCodes"></param>
         /// <returns></returns>
-        public static List<string> DecodeLichessMove(List<string> htmlCodes)
+        public static List<string> DecodeLichessMove(List<string> htmlCodes, MoveNotation moveNotation)
         {
 
             string jsScript = GetJavaScriptFromLichessHtmlCode(htmlCodes);
-            return DecodeLichessMoveFromJavaScript(jsScript);
+            return DecodeLichessMoveFromJavaScript(jsScript,  moveNotation);
 
         }
         
         
-        public static List<string> DecodeLichessMoveFromJavaScript(string jsScript)
+        public static List<string> DecodeLichessMoveFromJavaScript(string jsScript,MoveNotation moveNotation)
         {
 
             
-            List<string> uciMoves = new List<string>();
+            List<string> moves = new List<string>();
 
-
+             string key = "";
+            switch (moveNotation)
+            {
+                case MoveNotation.uci:
+                    key= "\"uci\":\"";
+                    break;
+                case MoveNotation.fen:
+                    key = "\"fen\":\"";
+                    break;
+            }
             //get element in string  after " "uci":" "
             //starts scanning for uci (Universal chess interface ) move
             for (int i = 0; i < jsScript.Length; i++)
             {
                 //subString="uci":"
-                string subString = "\"uci\":\"";
-                if (i + subString.Length < jsScript.Length)
+               
+                if (i + key.Length < jsScript.Length)
                 {
 
                     //found "uci":"exampleMove"
                     if (AjaxStringHelper.IsSubStringInTheFirstSubStringOfString(str: jsScript, startIndex: i,
-                        subString: subString))
+                        subString: key))
                     {
-                        int startIndex = i + subString.Length - 1;
+                        int startIndex = i + key.Length - 1;
                         
                         string str = jsScript.Substring(startIndex,jsScript.Length-startIndex);
                         //get element in string  after " "uci":"e2e4" " 
@@ -64,7 +78,7 @@ namespace AjaxDynamicHtmlReader
                             isInclusive: false
                             );
 
-                        uciMoves.Add(uciMove);
+                        moves.Add(uciMove);
                     }
 
                 }
@@ -75,7 +89,7 @@ namespace AjaxDynamicHtmlReader
             }
 
 
-            return uciMoves;
+            return moves;
 
         }
         public static ChessGameProperties.PieceColor DecodeLichessPlayerColor(List<string> htmlCodes)
