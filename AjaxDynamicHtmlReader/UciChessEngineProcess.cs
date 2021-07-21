@@ -8,9 +8,21 @@ namespace AjaxDynamicHtmlReader
 {
     public class UciChessEngineProcess
     {
+        public class CommandAndTime
+        {
+            public string command;
+            public int time;
+            public CommandAndTime(string command,int time)
+            {
+                this.command = command;
+                this.time = time;
+            }
+        }
         ProcessStartInfo processStartInfo;
         public  UciChessEngineProcess(string filename)
         {
+         
+            
             processStartInfo = new ProcessStartInfo();
             processStartInfo.FileName = filename;
             processStartInfo.UseShellExecute = false;
@@ -18,7 +30,9 @@ namespace AjaxDynamicHtmlReader
             processStartInfo.RedirectStandardOutput = true;
             processStartInfo.RedirectStandardError = true;
 
-            List<string> output =this.SendCommandAndReceiveOutput("uci", 1000);
+            List<string> output = this.SendCommandAndReceiveOutput(new List<CommandAndTime> {
+                new CommandAndTime("uci",100),
+            }) ;
             if (output.Count > 0)
             {
                 if (output[output.Count - 1] == "uciok")
@@ -43,11 +57,13 @@ namespace AjaxDynamicHtmlReader
         {
             List<string> outputs = new List<string>();
             string fenPosition=chessGameState.GetCurrentMovesFen();
-      
-            outputs.AddRange(SendCommandAndReceiveOutput("position" + " " + "fen" + " " + fenPosition, 10));
-            outputs.AddRange(SendCommandAndReceiveOutput("go", maxThinkingTime));
-            outputs.AddRange(SendCommandAndReceiveOutput("stop",100));
-
+            outputs = SendCommandAndReceiveOutput(new List<CommandAndTime> {
+                new CommandAndTime("position" + " " + "fen" + " " + fenPosition, 10),
+                new CommandAndTime("go", maxThinkingTime),
+                new CommandAndTime("stop",100),
+            }
+            ); 
+        
             
             return outputs[outputs.Count-1];
         }
@@ -57,10 +73,13 @@ namespace AjaxDynamicHtmlReader
         /// <param name="command"></param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        public List<string> SendCommandAndReceiveOutput(string command,int timeout)
+        public List<string> SendCommandAndReceiveOutput(List<CommandAndTime> commandAndTimes)
         {
-            
+            int timeout = 10;
 
+            for (int i = 0; i< commandAndTimes.Count; i++){
+                timeout += commandAndTimes[i].time;
+            }
             StringBuilder output = new StringBuilder();
             StringBuilder error = new StringBuilder();
             
@@ -96,7 +115,12 @@ namespace AjaxDynamicHtmlReader
                     };
 
                     process.Start();
-                    process.StandardInput.WriteLine(command);
+                    for(int i = 0; i < commandAndTimes.Count; i++)
+                    {
+                        process.StandardInput.WriteLine(commandAndTimes[i].command);
+                        Thread.Sleep(commandAndTimes[i].time);
+                    }
+                  
                     process.BeginOutputReadLine();
                     process.BeginErrorReadLine();
 
