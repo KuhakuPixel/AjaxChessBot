@@ -60,7 +60,7 @@ namespace AjaxDynamicHtmlReader
             outputs = SendCommandAndReceiveOutput(new List<CommandAndTime> {
                 new CommandAndTime("position" + " " + "fen" + " " + fenPosition, 10),
                 new CommandAndTime("go", maxThinkingTime),
-                new CommandAndTime("stop",100),
+                new CommandAndTime("stop",10),
             }
             ); 
         

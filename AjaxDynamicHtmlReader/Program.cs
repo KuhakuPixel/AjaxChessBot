@@ -30,8 +30,13 @@ namespace AjaxDynamicHtmlReader
             while (true)
             {
                 string currentMoves = chessGameState.GetCurrentMovesFen();
-                string bestMove=uciChessEngineProcess.GetBestMove(chessGameState, 1000);
-                Console.WriteLine(bestMove);
+                ChessGameProperties.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
+                if (currentTurn == chessGameState.PlayerColor)
+                {
+                    string bestMove = uciChessEngineProcess.GetBestMove(chessGameState, 1000);
+                    Console.WriteLine(currentTurn + "'s turn: " + bestMove);
+                }
+               
 
             }
         }

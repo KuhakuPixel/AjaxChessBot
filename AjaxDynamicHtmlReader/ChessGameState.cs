@@ -8,8 +8,12 @@ namespace AjaxDynamicHtmlReader
     {
       
         private ChessGameProperties.PieceColor playerColor;
+        public ChessGameProperties.PieceColor PlayerColor { get => playerColor; }
         private string gameLink = "";
         private List<string> allGameMovesFen = new List<string>();
+
+  
+
         //todo: find all the properties from the link like the color of the player ,the moves and ect
         public ChessGameState(string gameLink)
         {
@@ -29,6 +33,27 @@ namespace AjaxDynamicHtmlReader
             allGameMovesFen = OnlineChessGameStateDecoder.DecodeLichessMove(gameHtmlCodes,OnlineChessGameStateDecoder.MoveNotation.fen);
         }
 
+        public ChessGameProperties.PieceColor GetCurrentTurn(string fenPosition)
+        {
+            //example of fen string
+            //rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1
+            string turnCode = fenPosition.Split(' ')[1];
+            if (turnCode == "b")
+            {
+                return ChessGameProperties.PieceColor.black;
+            }
+            else if (turnCode == "w")
+            {
+                return ChessGameProperties.PieceColor.white;
+            }
+            else
+            {
+                throw new ArgumentException("fenPosition is invalid,cannot get the current turn of the game\n" +
+                    "fenPosition: "+fenPosition);
+            }
+         
+     
+        }
         public string GetCurrentMovesFen()
         {
             this.UpdateGameState();
