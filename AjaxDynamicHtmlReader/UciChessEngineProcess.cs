@@ -17,7 +17,39 @@ namespace AjaxDynamicHtmlReader
             processStartInfo.RedirectStandardInput = true;
             processStartInfo.RedirectStandardOutput = true;
             processStartInfo.RedirectStandardError = true;
-           
+
+            List<string> output =this.SendCommandAndReceiveOutput("uci", 1000);
+            if (output.Count > 0)
+            {
+                if (output[output.Count - 1] == "uciok")
+                {
+                    Console.WriteLine("Chess engine is compatable with the program");
+                }
+                else
+                {
+                    throw new Exception("Engine is not uci compatable");
+                    
+                }
+            }
+
+        }
+        /// <summary>
+        /// maxThinkingTime is in ms
+        /// </summary>
+        /// <param name="chessGameState"></param>
+        /// <param name="maxThinkingTime"></param>
+        /// <returns></returns>
+        public string GetBestMove(ChessGameState chessGameState,int maxThinkingTime)
+        {
+            List<string> outputs = new List<string>();
+            string fenPosition=chessGameState.GetCurrentMovesFen();
+      
+            outputs.AddRange(SendCommandAndReceiveOutput("position" + " " + "fen" + " " + fenPosition, 10));
+            outputs.AddRange(SendCommandAndReceiveOutput("go", maxThinkingTime));
+            outputs.AddRange(SendCommandAndReceiveOutput("stop",100));
+
+            
+            return outputs[outputs.Count-1];
         }
         /// <summary>
         /// timeout in milisecond
@@ -94,5 +126,6 @@ namespace AjaxDynamicHtmlReader
             }
             
         }
+        
     }
 }

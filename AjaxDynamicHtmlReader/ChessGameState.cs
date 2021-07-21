@@ -4,19 +4,19 @@ using System.Text;
 
 namespace AjaxDynamicHtmlReader
 {
-    class ChessGameState
+    public class ChessGameState
     {
       
         private ChessGameProperties.PieceColor playerColor;
         private string gameLink = "";
-        private List<string> currentMoves = new List<string>();
+        private List<string> allGameMovesFen = new List<string>();
         //todo: find all the properties from the link like the color of the player ,the moves and ect
         public ChessGameState(string gameLink)
         {
             //initializing moves
             this.gameLink = gameLink;
             List<string> gameHtmlCodes=AjaxHtmlReader.ReadAndProcessHtmlSource(gameLink, includeContentInsideTag: false);
-            currentMoves=OnlineChessGameStateDecoder.DecodeLichessMove(gameHtmlCodes,OnlineChessGameStateDecoder.MoveNotation.fen);
+            allGameMovesFen=OnlineChessGameStateDecoder.DecodeLichessMove(gameHtmlCodes,OnlineChessGameStateDecoder.MoveNotation.fen);
             playerColor = OnlineChessGameStateDecoder.DecodeLichessPlayerColor(gameHtmlCodes);
         }
 
@@ -26,13 +26,21 @@ namespace AjaxDynamicHtmlReader
         private void UpdateGameState()
         {
             List<string> gameHtmlCodes = AjaxHtmlReader.ReadAndProcessHtmlSource(this.gameLink, includeContentInsideTag: false);
-            currentMoves = OnlineChessGameStateDecoder.DecodeLichessMove(gameHtmlCodes,OnlineChessGameStateDecoder.MoveNotation.fen);
+            allGameMovesFen = OnlineChessGameStateDecoder.DecodeLichessMove(gameHtmlCodes,OnlineChessGameStateDecoder.MoveNotation.fen);
         }
 
-        public List<string> GetCurrentMoves()
+        public string GetCurrentMovesFen()
         {
             this.UpdateGameState();
-            return currentMoves;
+            if (allGameMovesFen.Count > 0)
+            {
+                return allGameMovesFen[allGameMovesFen.Count - 1];
+            }
+            else
+            {
+               throw new Exception("allGameMovesFen is empty");
+            }
+          
         }
 
     }
