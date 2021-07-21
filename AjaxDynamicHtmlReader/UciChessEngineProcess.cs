@@ -53,12 +53,12 @@ namespace AjaxDynamicHtmlReader
         /// <param name="chessGameState"></param>
         /// <param name="maxThinkingTime"></param>
         /// <returns></returns>
-        public string GetBestMove(ChessGameState chessGameState,int maxThinkingTime)
+        public string GetBestMove(string currenntFenPosition,int maxThinkingTime)
         {
             List<string> outputs = new List<string>();
-            string fenPosition=chessGameState.GetCurrentMovesFen();
+          
             outputs = SendCommandAndReceiveOutput(new List<CommandAndTime> {
-                new CommandAndTime("position" + " " + "fen" + " " + fenPosition, 10),
+                new CommandAndTime("position" + " " + "fen" + " " + currenntFenPosition, 10),
                 new CommandAndTime("go", maxThinkingTime),
                 new CommandAndTime("stop",10),
             }

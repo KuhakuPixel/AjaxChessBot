@@ -14,8 +14,11 @@ namespace AjaxDynamicHtmlReader
         static void Main(string[] args)
         {
             //TestSendInputAndGetOutputFromProcess(@"C:\Users\Nicho\Downloads\StockFish\stockfish_14_win_x64_avx2\stockfish_14_x64_avx2.exe");
+            //FindBestMoveFromLichessGame();
+            // Console.Write("Link");
+            //string gamelink=Console.ReadLine();
+            //ChessGameState gameState = new ChessGameState(gamelink);
             FindBestMoveFromLichessGame();
-            
         }
     
         static void FindBestMoveFromLichessGame()
@@ -33,13 +36,15 @@ namespace AjaxDynamicHtmlReader
                 ChessGameProperties.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
                 if (currentTurn == chessGameState.PlayerColor)
                 {
-                    string bestMove = uciChessEngineProcess.GetBestMove(chessGameState, 1000);
+                    string bestMove = uciChessEngineProcess.GetBestMove(currentMoves, 1000);
                     Console.WriteLine(currentTurn + "'s turn: " + bestMove);
                 }
                
 
             }
         }
+        
+
     }
 }
 
