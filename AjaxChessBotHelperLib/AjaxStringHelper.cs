@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -25,7 +26,7 @@ namespace AjaxChessBotHelperLib
 
             for (int i = 0; i < str.Length; i++)
             {
-                
+
                 //found the content starting from this "fromChar"
                 if (str[i] == charStart)
                 {
@@ -45,7 +46,7 @@ namespace AjaxChessBotHelperLib
                                 strBetweenChar += str[j];
                             break;
                         }
-                       
+
 
 
 
@@ -53,7 +54,7 @@ namespace AjaxChessBotHelperLib
                     break;
                 }
             }
-          
+
             return strBetweenChar;
         }
 
@@ -64,23 +65,23 @@ namespace AjaxChessBotHelperLib
         /// <param name="startIndex"></param>
         /// <param name="subString"></param>
         /// <returns></returns>
-        public static bool IsSubStringInTheFirstSubStringOfString(string str,int startIndex,string subString)
+        public static bool IsSubStringInTheFirstSubStringOfString(string str, int startIndex, string subString)
         {
             if (startIndex >= str.Length)
             {
-                throw new IndexOutOfRangeException("startIndex is out of range "+"startIndex = "+startIndex.ToString()+",length of str = "+str.Length);
+                throw new IndexOutOfRangeException("startIndex is out of range " + "startIndex = " + startIndex.ToString() + ",length of str = " + str.Length);
             }
-            else if (subString.Length>str.Length-startIndex)
+            else if (subString.Length > str.Length - startIndex)
             {
                 throw new IndexOutOfRangeException("subString.Length +startIndex is bigger than  str.Length");
             }
             else if (startIndex < 0)
             {
-                throw new IndexOutOfRangeException("startIndex is less than 0 ,startIndex ="+startIndex.ToString());
+                throw new IndexOutOfRangeException("startIndex is less than 0 ,startIndex =" + startIndex.ToString());
             }
-            for(int i = 0; i < subString.Length; i++)
+            for (int i = 0; i < subString.Length; i++)
             {
-                if ( subString[i]!=str[i+startIndex])
+                if (subString[i] != str[i + startIndex])
                 {
                     return false;
                 }
@@ -88,7 +89,7 @@ namespace AjaxChessBotHelperLib
 
             return true;
         }
-        public static char GetCharByAlphabetIndex(int index,bool toUppercase=false)
+        public static char GetCharByAlphabetIndex(int index, bool toUppercase = false)
         {
             const string letters = "abcdefghijklmnopqrstuvwxyz";
 
@@ -100,6 +101,35 @@ namespace AjaxChessBotHelperLib
             {
                 return letters[index];
             }
+        }
+        public static List<string> SplitStringToChunk(string str, int lengthOfChunk, bool includeRemainder)
+        {
+            if ((str.Length % lengthOfChunk) != 0 && !includeRemainder)
+            {
+                throw new ArgumentException("str.Length is not divisible by lengthOfChunk , includeRemainder must be set to" +
+                    "true if remainder is desired");
+            }
+            if (lengthOfChunk > str.Length)
+            {
+                throw new ArgumentException("lengthOfChunk is bigger than str.Length");
+            }
+            List<string> splittedStrings = new List<string>();
+
+            string tempStr = "";
+            for (int i = 0; i < str.Length; i++)
+            {
+                tempStr += str[i];
+                if ((i + 1) % lengthOfChunk == 0)
+                {
+                    splittedStrings.Add(tempStr);
+                    tempStr = "";
+                }
+            }
+            if (!string.IsNullOrEmpty(tempStr))
+            {
+                splittedStrings.Add(tempStr);
+            }
+            return splittedStrings;
         }
     }
 }

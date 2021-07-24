@@ -1,6 +1,9 @@
 using System;
 using Xunit;
 using AjaxChessBotHelperLib;
+using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace AjaxChessBotTest
 {
     public class AjaxStringHelperTest
@@ -13,7 +16,7 @@ namespace AjaxChessBotTest
         public void GetStringBetweenTwoCharTest(string str, char charStart, char charEnd, bool isInclusive, string expected)
         {
             string contentBetweenChar = AjaxStringHelper.GetStringBetweenTwoChar(str, charStart, charEnd, isInclusive);
-            Assert.Equal(expected, contentBetweenChar);
+            Xunit.Assert.Equal(expected, contentBetweenChar);
 
 
         }
@@ -26,9 +29,28 @@ namespace AjaxChessBotTest
             string subString, bool expected)
         {
             bool actual = AjaxStringHelper.IsSubStringInTheFirstSubStringOfString(str, startIndex, subString);
-            Assert.Equal(expected, actual);
+            Xunit.Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void SplitStringToChunkTest0()
+        {
+            List<string> expected = new List<string>() { "e2", "e4" };
+            List<string> actual=AjaxStringHelper.SplitStringToChunk("e2e4",2,true);
+
+            CollectionAssert.AreEqual(expected, actual);
+          
+        }
+        [Fact]
+        public void SplitStringToChunkWithRemainderTest0()
+        {
+            
+            List<string> expected = new List<string>() { "h7", "h8","q"};
+            List<string> actual = AjaxStringHelper.SplitStringToChunk("h7h8q", 2, true);
+
+            CollectionAssert.AreEqual(expected, actual);
+
+        }
 
 
     }

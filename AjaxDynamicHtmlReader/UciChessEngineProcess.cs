@@ -64,8 +64,9 @@ namespace AjaxDynamicHtmlReader
             }
             ); 
         
-            
-            return outputs[outputs.Count-1];
+            //when stop is sent , a uci enigne should send 
+            //bestmove [exampleMove] ponder [exampleMove]
+            return outputs[outputs.Count-1].Split(' ')[1];
         }
         /// <summary>
         /// timeout in milisecond

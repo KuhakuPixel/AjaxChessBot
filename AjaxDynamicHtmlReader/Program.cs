@@ -14,6 +14,8 @@ namespace AjaxDynamicHtmlReader
     {
         static void Main(string[] args)
         {
+            UciChessEngineProcess uciChessEngineProcess = new UciChessEngineProcess(
+            @"C:\Users\Nicho\Downloads\StockFish\stockfish_14_win_x64_avx2\stockfish_14_x64_avx2.exe");
             Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinate = new Dictionary<string, MouseOperation.MousePoint>();
             while (true)
             {
@@ -49,6 +51,53 @@ namespace AjaxDynamicHtmlReader
                             Console.WriteLine("Current Coordinate:(" + point.X + "," + point.Y + ")");
                         }
                     } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+                }
+                else if (command == "play")
+                {
+                    if (chessBoardCoordinate.Count == 64)
+                    {
+                        Console.Write("Lichess Game Link");
+                        string lichessGameLink = Console.ReadLine();
+                        ChessGameState chessGameState = new ChessGameState(lichessGameLink);
+
+                        string lastMoves = "";
+                        while (true)
+                        {
+                            string currentMoves = chessGameState.GetCurrentMovesFen();
+                            ChessGameProperties.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
+                            //move 
+                            if (currentTurn == chessGameState.PlayerColor && currentMoves != lastMoves)
+                            {
+                                string bestMove = uciChessEngineProcess.GetBestMove(currentMoves, 1000);
+
+                                //split moves like e2e4 or h7h8q to separate moves
+                                List<string> bestMoveSplitted = AjaxStringHelper.SplitStringToChunk(bestMove, 2, true);
+
+                                //move  the piece
+                                MouseOperation.SetCursorPosition(chessBoardCoordinate[bestMoveSplitted[0]]);
+                                MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
+                                MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+
+
+                                MouseOperation.SetCursorPosition(chessBoardCoordinate[bestMoveSplitted[1]]);
+                                MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
+                                MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+                                Console.WriteLine(currentTurn + "'s turn: " + bestMove);
+                            }
+                            lastMoves = currentMoves;
+
+
+                        }
+                    }
+                    else if (chessBoardCoordinate.Count == 0)
+                    {
+                        Console.WriteLine("board Position not registered , use the \"register\" command to register the position of the baord");
+                    }
+                    else
+                    {
+                        throw new ArgumentException("not all chess's position is registered only " + chessBoardCoordinate.Count.ToString() +
+                            " are registered" + "need 64 position");
+                    }
                 }
             }
 
