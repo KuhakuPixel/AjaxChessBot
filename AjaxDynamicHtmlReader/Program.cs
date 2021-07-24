@@ -76,12 +76,12 @@ namespace AjaxDynamicHtmlReader
                                 //move  the piece
                                 MouseOperation.SetCursorPosition(chessBoardCoordinate[bestMoveSplitted[0]]);
                                 MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
-                                MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+                            
 
 
                                 MouseOperation.SetCursorPosition(chessBoardCoordinate[bestMoveSplitted[1]]);
-                                MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
                                 MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+                                //MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
                                 Console.WriteLine(currentTurn + "'s turn: " + bestMove);
                             }
                             lastMoves = currentMoves;
@@ -98,6 +98,21 @@ namespace AjaxDynamicHtmlReader
                         throw new ArgumentException("not all chess's position is registered only " + chessBoardCoordinate.Count.ToString() +
                             " are registered" + "need 64 position");
                     }
+                }
+                else if(command == "testclick")
+                {
+                    do
+                    {
+                        while (!Console.KeyAvailable)
+                        {
+                            MouseOperation.MousePoint currentCoordinate = MouseOperation.GetCursorPosition();
+                            Console.WriteLine("Clicking at: "+currentCoordinate.X.ToString()+","+currentCoordinate.Y.ToString());
+                            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
+                            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+                            Console.WriteLine("test");
+                        }
+                    }
+                    while (Console.ReadKey(true).Key != ConsoleKey.Escape);
                 }
             }
 
@@ -153,7 +168,7 @@ namespace AjaxDynamicHtmlReader
             {
                 for (int w = 0; w < 8; w++)
                 {
-                    string chessAlgebraicNotation = AjaxStringHelper.GetCharByAlphabetIndex(w) + h.ToString();
+                    string chessAlgebraicNotation = AjaxStringHelper.GetCharByAlphabetIndex(w) + (h+1).ToString();
                     chessBoardCoordinates.Add(chessAlgebraicNotation, coordinateIterator);
                     Console.WriteLine(chessAlgebraicNotation + ": " + coordinateIterator.X.ToString() + "," + coordinateIterator.Y.ToString());
                     coordinateIterator.X += boardLength / 8;
