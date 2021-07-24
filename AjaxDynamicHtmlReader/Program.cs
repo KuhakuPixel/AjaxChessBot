@@ -14,11 +14,44 @@ namespace AjaxDynamicHtmlReader
     {
         static void Main(string[] args)
         {
-            MapToIndividualCoordinates(new List<MouseOperation.MousePoint>
+            Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinate = new Dictionary<string, MouseOperation.MousePoint>();
+            while (true)
             {
-                new MouseOperation.MousePoint(0,0),
-                new MouseOperation.MousePoint(600,600),
-            }) ;
+                Console.Write("Command: ");
+                string command = Console.ReadLine();
+                if (command == "register")
+                {
+                    MouseOperation.MousePoint bottomLeftCoordinates = new MouseOperation.MousePoint(0, 0);
+                    MouseOperation.MousePoint topRightCoordinates = new MouseOperation.MousePoint(0, 0);
+                    Console.WriteLine("bottom Left of the board:");
+                    if (Console.ReadKey(true).Key == ConsoleKey.Enter)
+                    {
+                        bottomLeftCoordinates = MouseOperation.GetCursorPosition();
+                        Console.WriteLine("Registered sucsessfully");
+                    }
+
+                    Console.WriteLine("top right off the board:");
+                    if (Console.ReadKey(true).Key == ConsoleKey.Enter)
+                    {
+                        topRightCoordinates = MouseOperation.GetCursorPosition();
+                        Console.WriteLine("Registered sucsessfully");
+                    }
+                    chessBoardCoordinate = MapToIndividualCoordinates(bottomLeftCoordinates, topRightCoordinates);
+
+                }
+                else if (command == "scan")
+                {
+                    do
+                    {
+                        while (!Console.KeyAvailable)
+                        {
+                            MouseOperation.MousePoint point = MouseOperation.GetCursorPosition();
+                            Console.WriteLine("Current Coordinate:(" + point.X + "," + point.Y + ")");
+                        }
+                    } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+                }
+            }
+
             /*
             List<MouseOperation.MousePoint> points=new List<MouseOperation.MousePoint>();
             //lets work on the system to save the coordinates
@@ -45,43 +78,43 @@ namespace AjaxDynamicHtmlReader
 
 
         }
-        public static  Dictionary<string,MouseOperation.MousePoint> MapToIndividualCoordinates
-            (List<MouseOperation.MousePoint> coordinates)
+
+        public static Dictionary<string, MouseOperation.MousePoint> MapToIndividualCoordinates
+            (MouseOperation.MousePoint bottomLeftPoint, MouseOperation.MousePoint topRightPoint)
         {
+
+            //note the center is at top left and y is max at bottom and 0 at top
 
             Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinates =
                 new Dictionary<string, MouseOperation.MousePoint>();
 
-            if (coordinates.Count != 2)
-            {
-                throw new ArgumentException("coordinates 's length must be exactly 2");
-            }
-            MouseOperation.MousePoint bottomLeftPoint=coordinates[0];
-            MouseOperation.MousePoint topRightPoint = coordinates[1];
 
-            //
-            int boardLength=topRightPoint.X - bottomLeftPoint.X;
-            int boardHeight = topRightPoint.Y - bottomLeftPoint.Y;
+
+
+            int boardLength = Math.Abs(topRightPoint.X - bottomLeftPoint.X);
+            int boardHeight = Math.Abs(topRightPoint.Y - bottomLeftPoint.Y);
 
             //will start center of the bottom left square
-            MouseOperation.MousePoint coordinateIterator = new MouseOperation.MousePoint(boardLength/16,boardHeight/16);
-        
-            for(int h = 0; h < 8; h++)
+            MouseOperation.MousePoint coordinateIterator = new MouseOperation.MousePoint(bottomLeftPoint.X + boardLength / 16,
+                bottomLeftPoint.Y - boardHeight / 16);
+
+            for (int h = 0; h < 8; h++)
             {
-                for(int w = 0;w < 8; w++)
+                for (int w = 0; w < 8; w++)
                 {
-                    string chessAlgebraicNotation=AjaxStringHelper.GetCharByAlphabetIndex(w)+h.ToString();
+                    string chessAlgebraicNotation = AjaxStringHelper.GetCharByAlphabetIndex(w) + h.ToString();
                     chessBoardCoordinates.Add(chessAlgebraicNotation, coordinateIterator);
-                    Console.WriteLine(chessAlgebraicNotation + ": " + coordinateIterator.X.ToString()+","+coordinateIterator.Y.ToString());
+                    Console.WriteLine(chessAlgebraicNotation + ": " + coordinateIterator.X.ToString() + "," + coordinateIterator.Y.ToString());
                     coordinateIterator.X += boardLength / 8;
-                    
+
                 }
                 coordinateIterator.X = boardLength / 16;
-                coordinateIterator.Y += boardHeight / 8;
+                coordinateIterator.Y -= boardHeight / 8;
+                Console.WriteLine("");
             }
             return chessBoardCoordinates;
         }
-        
+
         static void FindBestMoveFromLichessGame()
         {
             UciChessEngineProcess uciChessEngineProcess = new UciChessEngineProcess(
