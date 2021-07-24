@@ -88,6 +88,18 @@ namespace AjaxChessBotHelperLib
 
             return true;
         }
+        public static char GetCharByAlphabetIndex(int index,bool toUppercase=false)
+        {
+            const string letters = "abcdefghijklmnopqrstuvwxyz";
 
+            if (toUppercase)
+            {
+                return Char.ToUpper(letters[index]);
+            }
+            else
+            {
+                return letters[index];
+            }
+        }
     }
 }
