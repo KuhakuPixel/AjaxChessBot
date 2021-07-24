@@ -95,8 +95,10 @@ namespace AjaxDynamicHtmlReader
             int boardHeight = Math.Abs(topRightPoint.Y - bottomLeftPoint.Y);
 
             //will start center of the bottom left square
-            MouseOperation.MousePoint coordinateIterator = new MouseOperation.MousePoint(bottomLeftPoint.X + boardLength / 16,
+            MouseOperation.MousePoint coordinateIteratorStart = new MouseOperation.MousePoint(bottomLeftPoint.X + boardLength / 16,
                 bottomLeftPoint.Y - boardHeight / 16);
+
+            MouseOperation.MousePoint coordinateIterator = coordinateIteratorStart;
 
             for (int h = 0; h < 8; h++)
             {
@@ -108,7 +110,7 @@ namespace AjaxDynamicHtmlReader
                     coordinateIterator.X += boardLength / 8;
 
                 }
-                coordinateIterator.X = boardLength / 16;
+                coordinateIterator.X = coordinateIteratorStart.X;
                 coordinateIterator.Y -= boardHeight / 8;
                 Console.WriteLine("");
             }
