@@ -18,9 +18,15 @@ namespace AjaxDynamicHtmlReader
             // Console.Write("Link");
             //string gamelink=Console.ReadLine();
             //ChessGameState gameState = new ChessGameState(gamelink);
-            FindBestMoveFromLichessGame();
+            //FindBestMoveFromLichessGame();
+            while (true)
+            {
+                MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+                MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
+            }
         }
-    
+        
+
         static void FindBestMoveFromLichessGame()
         {
             UciChessEngineProcess uciChessEngineProcess = new UciChessEngineProcess(
@@ -29,16 +35,18 @@ namespace AjaxDynamicHtmlReader
         
             string lichessGameLink = Console.ReadLine();
             ChessGameState chessGameState = new ChessGameState(lichessGameLink);
-           
+
+            string lastMoves ="";
             while (true)
             {
                 string currentMoves = chessGameState.GetCurrentMovesFen();
                 ChessGameProperties.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
-                if (currentTurn == chessGameState.PlayerColor)
+                if (currentTurn == chessGameState.PlayerColor&&currentMoves!=lastMoves)
                 {
                     string bestMove = uciChessEngineProcess.GetBestMove(currentMoves, 1000);
                     Console.WriteLine(currentTurn + "'s turn: " + bestMove);
                 }
+                lastMoves = currentMoves;
                
 
             }
