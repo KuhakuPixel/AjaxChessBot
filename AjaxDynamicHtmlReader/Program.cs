@@ -16,7 +16,8 @@ namespace AjaxDynamicHtmlReader
         {
             UciChessEngineProcess uciChessEngineProcess = new UciChessEngineProcess(
             @"C:\Users\Nicho\Downloads\StockFish\stockfish_14_win_x64_avx2\stockfish_14_x64_avx2.exe");
-            Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinate = new Dictionary<string, MouseOperation.MousePoint>();
+            Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingWhite = new Dictionary<string, MouseOperation.MousePoint>();
+            Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingBlack = new Dictionary<string, MouseOperation.MousePoint>();
             while (true)
             {
                 Console.Write("Command: ");
@@ -38,7 +39,12 @@ namespace AjaxDynamicHtmlReader
                         topRightCoordinates = MouseOperation.GetCursorPosition();
                         Console.WriteLine("Registered sucsessfully");
                     }
-                    chessBoardCoordinate = MapToIndividualCoordinates(bottomLeftCoordinates, topRightCoordinates);
+
+                    
+                    chessBoardCoordinatePlayingWhite = MapToIndividualChessCoordinates(bottomLeftCoordinates, topRightCoordinates,
+                        ChessGameProperties.PieceColor.white);
+                    chessBoardCoordinatePlayingBlack = MapToIndividualChessCoordinates(bottomLeftCoordinates, topRightCoordinates,
+                        ChessGameProperties.PieceColor.black);
 
                 }
                 else if (command == "scan")
@@ -54,7 +60,7 @@ namespace AjaxDynamicHtmlReader
                 }
                 else if (command == "play")
                 {
-                    if (chessBoardCoordinate.Count == 64)
+                    if (chessBoardCoordinatePlayingWhite.Count == 64&& chessBoardCoordinatePlayingBlack.Count == 64)
                     {
                         Console.Write("Lichess Game Link");
                         string lichessGameLink = Console.ReadLine();
@@ -74,13 +80,28 @@ namespace AjaxDynamicHtmlReader
                                 List<string> bestMoveSplitted = AjaxStringHelper.SplitStringToChunk(bestMove, 2, true);
 
                                 //move  the piece
-                                MouseOperation.SetCursorPosition(chessBoardCoordinate[bestMoveSplitted[0]]);
-                                MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
-                            
+                                switch (chessGameState.PlayerColor)
+                                {
+                                    case ChessGameProperties.PieceColor.white:
+                                        {
+                                            MouseOperation.MousePoint fromPoint = chessBoardCoordinatePlayingWhite[bestMoveSplitted[0]];
+                                            MouseOperation.MousePoint toPoint = chessBoardCoordinatePlayingWhite[bestMoveSplitted[1]];
+                                            MouseOperation.DragMouseAcross(fromPoint, toPoint);
+                                            break;
+                                        }
 
 
-                                MouseOperation.SetCursorPosition(chessBoardCoordinate[bestMoveSplitted[1]]);
-                                MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+                                    case ChessGameProperties.PieceColor.black:
+                                        {
+                                            MouseOperation.MousePoint fromPoint = chessBoardCoordinatePlayingBlack[bestMoveSplitted[0]];
+                                            MouseOperation.MousePoint toPoint = chessBoardCoordinatePlayingBlack[bestMoveSplitted[1]];
+                                            MouseOperation.DragMouseAcross(fromPoint, toPoint);
+                                            break;
+                                        }
+
+
+
+                                }
                                 //MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
                                 Console.WriteLine(currentTurn + "'s turn: " + bestMove);
                             }
@@ -89,24 +110,24 @@ namespace AjaxDynamicHtmlReader
 
                         }
                     }
-                    else if (chessBoardCoordinate.Count == 0)
+                    else if (chessBoardCoordinatePlayingWhite.Count == 0|| chessBoardCoordinatePlayingBlack.Count == 0)
                     {
                         Console.WriteLine("board Position not registered , use the \"register\" command to register the position of the baord");
                     }
                     else
                     {
-                        throw new ArgumentException("not all chess's position is registered only " + chessBoardCoordinate.Count.ToString() +
+                        throw new ArgumentException("not all chess's position is registered only " + chessBoardCoordinatePlayingWhite.Count.ToString() +
                             " are registered" + "need 64 position");
                     }
                 }
-                else if(command == "testclick")
+                else if (command == "testclick")
                 {
                     do
                     {
                         while (!Console.KeyAvailable)
                         {
                             MouseOperation.MousePoint currentCoordinate = MouseOperation.GetCursorPosition();
-                            Console.WriteLine("Clicking at: "+currentCoordinate.X.ToString()+","+currentCoordinate.Y.ToString());
+                            Console.WriteLine("Clicking at: " + currentCoordinate.X.ToString() + "," + currentCoordinate.Y.ToString());
                             MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
                             MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
                             Console.WriteLine("test");
@@ -143,8 +164,8 @@ namespace AjaxDynamicHtmlReader
 
         }
 
-        public static Dictionary<string, MouseOperation.MousePoint> MapToIndividualCoordinates
-            (MouseOperation.MousePoint bottomLeftPoint, MouseOperation.MousePoint topRightPoint)
+        public static Dictionary<string, MouseOperation.MousePoint> MapToIndividualChessCoordinates
+            (MouseOperation.MousePoint bottomLeftPoint, MouseOperation.MousePoint topRightPoint, ChessGameProperties.PieceColor playerPieceColor)
         {
 
             //note the center is at top left and y is max at bottom and 0 at top
@@ -164,11 +185,21 @@ namespace AjaxDynamicHtmlReader
 
             MouseOperation.MousePoint coordinateIterator = coordinateIteratorStart;
 
-            for (int h = 0; h < 8; h++)
+            for (int y = 0; y < 8; y++)
             {
-                for (int w = 0; w < 8; w++)
+                for (int x = 0; x < 8; x++)
                 {
-                    string chessAlgebraicNotation = AjaxStringHelper.GetCharByAlphabetIndex(w) + (h+1).ToString();
+                    string chessAlgebraicNotation = "";
+                    switch (playerPieceColor)
+                    {
+                        case ChessGameProperties.PieceColor.white:
+                            chessAlgebraicNotation = AjaxStringHelper.GetCharByAlphabetIndex(x) + (y + 1).ToString();
+                            break;
+                        case ChessGameProperties.PieceColor.black:
+                            //reverse the order for black because bottom left when playing black is h8
+                            chessAlgebraicNotation = AjaxStringHelper.GetCharByAlphabetIndex(7-x) + (8 - y).ToString();
+                            break;
+                    }
                     chessBoardCoordinates.Add(chessAlgebraicNotation, coordinateIterator);
                     Console.WriteLine(chessAlgebraicNotation + ": " + coordinateIterator.X.ToString() + "," + coordinateIterator.Y.ToString());
                     coordinateIterator.X += boardLength / 8;

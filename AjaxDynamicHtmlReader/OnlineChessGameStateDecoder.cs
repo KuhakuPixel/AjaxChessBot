@@ -67,7 +67,7 @@ namespace AjaxDynamicHtmlReader
                     if (AjaxStringHelper.IsSubStringInTheFirstSubStringOfString(str: jsScript, startIndex: i,
                         subString: key))
                     {
-                        int startIndex = i + key.Length - 1;
+                        int startIndex = (i + key.Length) - 1;
                         
                         string str = jsScript.Substring(startIndex,jsScript.Length-startIndex);
                         //get element in string  after " "uci":"e2e4" " 

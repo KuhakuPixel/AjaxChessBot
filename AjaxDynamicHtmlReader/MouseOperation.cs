@@ -61,6 +61,14 @@ namespace AjaxDynamicHtmlReader
                 ;
         }
 
+        public static void DragMouseAcross(MousePoint from ,MousePoint to)
+        {
+            MouseOperation.SetCursorPosition(from);
+            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
+            MouseOperation.SetCursorPosition(to);
+            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+
+        }
         [StructLayout(LayoutKind.Sequential)]
         public struct MousePoint
         {
