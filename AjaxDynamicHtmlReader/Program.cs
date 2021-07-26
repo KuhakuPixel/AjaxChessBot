@@ -13,11 +13,13 @@ namespace AjaxDynamicHtmlReader
     class Program
     {
         static private UciChessEngineProcess uciChessEngineProcess;
+        static private AjaxConfigFile ajaxConfigFile=new AjaxConfigFile();
+        
         static void PrintWelcome()
         {
-         
+
             Console.ForegroundColor = ConsoleColor.Blue;
-                              
+
             Console.WriteLine("░█████╗░░░░░░██╗░█████╗░██╗░░██╗  ██████╗░░█████╗░████████╗");
             Console.WriteLine("██╔══██╗░░░░░██║██╔══██╗╚██╗██╔╝  ██╔══██╗██╔══██╗╚══██╔══╝");
             Console.WriteLine("███████║░░░░░██║███████║░╚███╔╝░  ██████╦╝██║░░██║░░░██║░░░");
@@ -51,9 +53,8 @@ namespace AjaxDynamicHtmlReader
 
             PrintWelcome();
 
-           
-            Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingWhite = new Dictionary<string, MouseOperation.MousePoint>();
-            Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingBlack = new Dictionary<string, MouseOperation.MousePoint>();
+
+         
             while (true)
             {
                 Console.Write("Command: ");
@@ -64,13 +65,27 @@ namespace AjaxDynamicHtmlReader
                     Console.WriteLine("import     Import the chess engine             ");
                     Console.WriteLine("register   Register the board coordinate in the screen             ");
                     Console.WriteLine("play       Run the bot(need to use the register command first)     ");
+                    Console.WriteLine("save       Save The current configuration of the program     ");
+                    Console.WriteLine("load       Load configuration for the program    ");
                     Console.ForegroundColor = ConsoleColor.White;
 
+                }
+                else if (command == "save")
+                {
+                   ajaxConfigFile = new AjaxConfigFile(ajaxConfigFile.pathToEngine,
+                           ajaxConfigFile.chessBoardCoordinatePlayingWhite,
+                           ajaxConfigFile.chessBoardCoordinatePlayingBlack);
+                    ajaxConfigFile.Save();
+                }
+                else if (command == "load")
+                {
+                    ajaxConfigFile.Load();
                 }
                 else if (command == "import")
                 {
                     Console.Write("Path to chess engine (Must be UCI compatable) : ");
-                    string pathToEngine=Console.ReadLine();
+                    string pathToEngine = Console.ReadLine();
+                    ajaxConfigFile.pathToEngine = pathToEngine;
                     uciChessEngineProcess = new UciChessEngineProcess(pathToEngine);
                 }
                 else if (command == "register")
@@ -91,10 +106,10 @@ namespace AjaxDynamicHtmlReader
                         Console.WriteLine("Registered sucsessfully");
                     }
 
-                    
-                    chessBoardCoordinatePlayingWhite = MapToIndividualChessCoordinates(bottomLeftCoordinates, topRightCoordinates,
+
+                    ajaxConfigFile.chessBoardCoordinatePlayingWhite = MapToIndividualChessCoordinates(bottomLeftCoordinates, topRightCoordinates,
                         ChessGameProperties.PieceColor.white);
-                    chessBoardCoordinatePlayingBlack = MapToIndividualChessCoordinates(bottomLeftCoordinates, topRightCoordinates,
+                    ajaxConfigFile.chessBoardCoordinatePlayingBlack = MapToIndividualChessCoordinates(bottomLeftCoordinates, topRightCoordinates,
                         ChessGameProperties.PieceColor.black);
 
                 }
@@ -117,63 +132,68 @@ namespace AjaxDynamicHtmlReader
                         Console.WriteLine("Chess Engine hasn't been imported  use \"import\" command to import the engine");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
-                    else if (chessBoardCoordinatePlayingWhite.Count == 0 || chessBoardCoordinatePlayingBlack.Count == 0)
+                    else if (ajaxConfigFile.chessBoardCoordinatePlayingWhite.Count == 0 || ajaxConfigFile.chessBoardCoordinatePlayingBlack.Count == 0)
                     {
                         Console.WriteLine("board Position not registered , use the \"register\" command to register the position of the baord");
                     }
                     //valid and ready
-                    else if (chessBoardCoordinatePlayingWhite.Count == 64&& chessBoardCoordinatePlayingBlack.Count == 64)
+                    else if (ajaxConfigFile.chessBoardCoordinatePlayingWhite.Count == 64 && ajaxConfigFile.chessBoardCoordinatePlayingBlack.Count == 64)
                     {
-                        Console.Write("Lichess Game Link");
+                        Console.Write("Lichess Game Link: ");
                         string lichessGameLink = Console.ReadLine();
+
                         ChessGameState chessGameState = new ChessGameState(lichessGameLink);
+                        Console.WriteLine("Playing Game, press esc key to stop");
 
                         string lastMoves = "";
-                        while (true)
+                        do
                         {
-                            string currentMoves = chessGameState.GetCurrentMovesFen();
-                            ChessGameProperties.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
-                            //move 
-                            if (currentTurn == chessGameState.PlayerColor && currentMoves != lastMoves)
+                            while (!Console.KeyAvailable)
                             {
-                                string bestMove = uciChessEngineProcess.GetBestMove(currentMoves, 1000);
-
-                                //split moves like e2e4 or h7h8q to separate moves
-                                List<string> bestMoveSplitted = AjaxStringHelper.SplitStringToChunk(bestMove, 2, true);
-
-                                //move  the piece
-                                switch (chessGameState.PlayerColor)
+                                string currentMoves = chessGameState.GetCurrentMovesFen();
+                                ChessGameProperties.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
+                                //move 
+                                if (currentTurn == chessGameState.PlayerColor && currentMoves != lastMoves)
                                 {
-                                    case ChessGameProperties.PieceColor.white:
-                                        {
-                                            MouseOperation.MousePoint fromPoint = chessBoardCoordinatePlayingWhite[bestMoveSplitted[0]];
-                                            MouseOperation.MousePoint toPoint = chessBoardCoordinatePlayingWhite[bestMoveSplitted[1]];
-                                            MouseOperation.DragMouseAcross(fromPoint, toPoint);
-                                            break;
-                                        }
+                                    string bestMove = uciChessEngineProcess.GetBestMove(currentMoves, 1000);
+
+                                    //split moves like e2e4 or h7h8q to separate moves
+                                    List<string> bestMoveSplitted = AjaxStringHelper.SplitStringToChunk(bestMove, 2, true);
+
+                                    //move  the piece
+                                    switch (chessGameState.PlayerColor)
+                                    {
+                                        case ChessGameProperties.PieceColor.white:
+                                            {
+                                                MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[0]];
+                                                MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[1]];
+                                                MouseOperation.DragMouseAcross(fromPoint, toPoint);
+                                                break;
+                                            }
 
 
-                                    case ChessGameProperties.PieceColor.black:
-                                        {
-                                            MouseOperation.MousePoint fromPoint = chessBoardCoordinatePlayingBlack[bestMoveSplitted[0]];
-                                            MouseOperation.MousePoint toPoint = chessBoardCoordinatePlayingBlack[bestMoveSplitted[1]];
-                                            MouseOperation.DragMouseAcross(fromPoint, toPoint);
-                                            break;
-                                        }
+                                        case ChessGameProperties.PieceColor.black:
+                                            {
+                                                MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[0]];
+                                                MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[1]];
+                                                MouseOperation.DragMouseAcross(fromPoint, toPoint);
+                                                break;
+                                            }
 
 
 
+                                    }
+                                    //MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+                                    Console.WriteLine(currentTurn + "'s turn: " + bestMove);
                                 }
-                                //MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
-                                Console.WriteLine(currentTurn + "'s turn: " + bestMove);
+                                lastMoves = currentMoves;
                             }
-                            lastMoves = currentMoves;
-
-
                         }
+                        while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+
                     }
-                   
-                   
+
+
                 }
                 else if (command == "testclick")
                 {
@@ -199,30 +219,7 @@ namespace AjaxDynamicHtmlReader
                 }
             }
 
-            /*
-            List<MouseOperation.MousePoint> points=new List<MouseOperation.MousePoint>();
-            //lets work on the system to save the coordinates
-            for(int i = 0; i < 2; i++)
-            {
-                Console.WriteLine("Pos");
-                if(Console.ReadKey(false).Key==ConsoleKey.Enter)
-                {
-                    points.Add(MouseOperation.GetCursorPosition());
-                }
-            }
-            */
-            /*
-            do
-            {
-                while (!Console.KeyAvailable)
-                {
-                    MouseOperation.MousePoint point =MouseOperation.GetCursorPosition();
-                    Console.WriteLine("Current Coordinate:("+point.X+","+point.Y+")");
-                }
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
-            */
-
-
+         
 
         }
 
@@ -259,7 +256,7 @@ namespace AjaxDynamicHtmlReader
                             break;
                         case ChessGameProperties.PieceColor.black:
                             //reverse the order for black because bottom left when playing black is h8
-                            chessAlgebraicNotation = AjaxStringHelper.GetCharByAlphabetIndex(7-x) + (8 - y).ToString();
+                            chessAlgebraicNotation = AjaxStringHelper.GetCharByAlphabetIndex(7 - x) + (8 - y).ToString();
                             break;
                     }
                     chessBoardCoordinates.Add(chessAlgebraicNotation, coordinateIterator);
