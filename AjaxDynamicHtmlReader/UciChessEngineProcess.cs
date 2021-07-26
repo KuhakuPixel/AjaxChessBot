@@ -31,7 +31,7 @@ namespace AjaxDynamicHtmlReader
             processStartInfo.RedirectStandardError = true;
 
             List<string> output = this.SendCommandAndReceiveOutput(new List<CommandAndTime> {
-                new CommandAndTime("uci",100),
+                new CommandAndTime("uci",1000),
             }) ;
             if (output.Count > 0)
             {

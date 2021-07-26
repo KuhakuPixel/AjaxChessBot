@@ -12,17 +12,68 @@ namespace AjaxDynamicHtmlReader
 {
     class Program
     {
+        static private UciChessEngineProcess uciChessEngineProcess;
+        static void PrintWelcome()
+        {
+         
+            Console.ForegroundColor = ConsoleColor.Blue;
+                              
+            Console.WriteLine("░█████╗░░░░░░██╗░█████╗░██╗░░██╗  ██████╗░░█████╗░████████╗");
+            Console.WriteLine("██╔══██╗░░░░░██║██╔══██╗╚██╗██╔╝  ██╔══██╗██╔══██╗╚══██╔══╝");
+            Console.WriteLine("███████║░░░░░██║███████║░╚███╔╝░  ██████╦╝██║░░██║░░░██║░░░");
+            Console.WriteLine("██╔══██║██╗░░██║██╔══██║░██╔██╗░  ██╔══██╗██║░░██║░░░██║░░░");
+            Console.WriteLine("██║░░██║╚█████╔╝██║░░██║██╔╝╚██╗  ██████╦╝╚█████╔╝░░░██║░░░");
+            Console.WriteLine("╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝  ╚═════╝░░╚════╝░░░░╚═╝░░░");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("                                   Created by NicholasPixel");
+
+            Console.WriteLine("AjaxBot is open source ");
+            Console.WriteLine("Contribute at:");
+            Console.WriteLine("https://github.com/KuhakuPixel/AjaxChessBot");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("DISCLAIMER!!!: Developers are not responsible if your account ");
+            Console.WriteLine("               Is banned when using this program");
+
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Type help For turtorial ");
+
+            Console.ForegroundColor = ConsoleColor.White;
+        }
         static void Main(string[] args)
         {
-            UciChessEngineProcess uciChessEngineProcess = new UciChessEngineProcess(
-            @"C:\Users\Nicho\Downloads\StockFish\stockfish_14_win_x64_avx2\stockfish_14_x64_avx2.exe");
+
+
+            PrintWelcome();
+
+           
             Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingWhite = new Dictionary<string, MouseOperation.MousePoint>();
             Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingBlack = new Dictionary<string, MouseOperation.MousePoint>();
             while (true)
             {
                 Console.Write("Command: ");
                 string command = Console.ReadLine();
-                if (command == "register")
+                if (command == "help")
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("import     Import the chess engine             ");
+                    Console.WriteLine("register   Register the board coordinate in the screen             ");
+                    Console.WriteLine("play       Run the bot(need to use the register command first)     ");
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                }
+                else if (command == "import")
+                {
+                    Console.Write("Path to chess engine (Must be UCI compatable) : ");
+                    string pathToEngine=Console.ReadLine();
+                    uciChessEngineProcess = new UciChessEngineProcess(pathToEngine);
+                }
+                else if (command == "register")
                 {
                     MouseOperation.MousePoint bottomLeftCoordinates = new MouseOperation.MousePoint(0, 0);
                     MouseOperation.MousePoint topRightCoordinates = new MouseOperation.MousePoint(0, 0);
@@ -60,7 +111,18 @@ namespace AjaxDynamicHtmlReader
                 }
                 else if (command == "play")
                 {
-                    if (chessBoardCoordinatePlayingWhite.Count == 64&& chessBoardCoordinatePlayingBlack.Count == 64)
+                    if (uciChessEngineProcess == null)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Chess Engine hasn't been imported  use \"import\" command to import the engine");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else if (chessBoardCoordinatePlayingWhite.Count == 0 || chessBoardCoordinatePlayingBlack.Count == 0)
+                    {
+                        Console.WriteLine("board Position not registered , use the \"register\" command to register the position of the baord");
+                    }
+                    //valid and ready
+                    else if (chessBoardCoordinatePlayingWhite.Count == 64&& chessBoardCoordinatePlayingBlack.Count == 64)
                     {
                         Console.Write("Lichess Game Link");
                         string lichessGameLink = Console.ReadLine();
@@ -110,15 +172,8 @@ namespace AjaxDynamicHtmlReader
 
                         }
                     }
-                    else if (chessBoardCoordinatePlayingWhite.Count == 0|| chessBoardCoordinatePlayingBlack.Count == 0)
-                    {
-                        Console.WriteLine("board Position not registered , use the \"register\" command to register the position of the baord");
-                    }
-                    else
-                    {
-                        throw new ArgumentException("not all chess's position is registered only " + chessBoardCoordinatePlayingWhite.Count.ToString() +
-                            " are registered" + "need 64 position");
-                    }
+                   
+                   
                 }
                 else if (command == "testclick")
                 {
@@ -134,6 +189,13 @@ namespace AjaxDynamicHtmlReader
                         }
                     }
                     while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Unknown command :" + command);
+                    Console.WriteLine("Use \"help command to list all of possible command\"");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
 
