@@ -30,21 +30,27 @@ namespace AjaxDynamicHtmlReader
             processStartInfo.RedirectStandardOutput = true;
             processStartInfo.RedirectStandardError = true;
 
+            #region Checking if Engine is uci compatable
             List<string> output = this.SendCommandAndReceiveOutput(new List<CommandAndTime> {
                 new CommandAndTime("uci",1000),
-            }) ;
+            });
             if (output.Count > 0)
             {
                 if (output[output.Count - 1] == "uciok")
                 {
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Chess engine is compatable with the program");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     throw new Exception("Engine is not uci compatable");
-                    
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
+            #endregion
+
 
         }
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -24,13 +25,14 @@ namespace AjaxDynamicHtmlReader
         }
         public void Save()
         {
-            string json=JsonSerializer.Serialize(this);
+         
+            string json = JsonConvert.SerializeObject(this);
             File.WriteAllText("AjaxConfig.json", json);
         }
         public void Load()
         {
             string json= File.ReadAllText("AjaxConfig.json");
-            AjaxConfigFile loadedConfig=JsonSerializer.Deserialize<AjaxConfigFile>(json);
+            AjaxConfigFile loadedConfig = JsonConvert.DeserializeObject<AjaxConfigFile>(json);
             this.pathToEngine = loadedConfig.pathToEngine;
             this.chessBoardCoordinatePlayingBlack = loadedConfig.chessBoardCoordinatePlayingBlack;
             this.chessBoardCoordinatePlayingWhite = loadedConfig.chessBoardCoordinatePlayingWhite;

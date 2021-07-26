@@ -47,14 +47,28 @@ namespace AjaxDynamicHtmlReader
 
             Console.ForegroundColor = ConsoleColor.White;
         }
+        static void LoadConfig()
+        {
+            try
+            {
+                ajaxConfigFile.Load();
+                if (!string.IsNullOrEmpty(ajaxConfigFile.pathToEngine))
+                {
+                    uciChessEngineProcess = new UciChessEngineProcess(ajaxConfigFile.pathToEngine);
+
+                }
+
+            }
+            catch (Exception e)
+            {
+               
+            }
+        }
         static void Main(string[] args)
         {
 
-
+            LoadConfig();
             PrintWelcome();
-
-
-         
             while (true)
             {
                 Console.Write("Command: ");
@@ -66,7 +80,7 @@ namespace AjaxDynamicHtmlReader
                     Console.WriteLine("register   Register the board coordinate in the screen             ");
                     Console.WriteLine("play       Run the bot(need to use the register command first)     ");
                     Console.WriteLine("save       Save The current configuration of the program     ");
-                    Console.WriteLine("load       Load configuration for the program    ");
+                    
                     Console.ForegroundColor = ConsoleColor.White;
 
                 }
@@ -76,10 +90,6 @@ namespace AjaxDynamicHtmlReader
                            ajaxConfigFile.chessBoardCoordinatePlayingWhite,
                            ajaxConfigFile.chessBoardCoordinatePlayingBlack);
                     ajaxConfigFile.Save();
-                }
-                else if (command == "load")
-                {
-                    ajaxConfigFile.Load();
                 }
                 else if (command == "import")
                 {
