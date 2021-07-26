@@ -59,9 +59,9 @@ namespace AjaxDynamicHtmlReader
         }
         static void Main(string[] args)
         {
-
-            LoadConfig();
             PrintWelcome();
+            LoadConfig();
+            
             while (true)
             {
                 Console.Write("Command: ");
@@ -146,7 +146,9 @@ namespace AjaxDynamicHtmlReader
                         string lichessGameLink = Console.ReadLine();
 
                         ChessGameState chessGameState = new ChessGameState(lichessGameLink);
-                        Console.WriteLine("Playing Game, press esc key to stop");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("the bot will now Game, press esc key to stop");
+                        Console.ForegroundColor = ConsoleColor.White;
 
                         string lastMoves = "";
                         do

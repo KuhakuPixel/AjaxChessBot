@@ -28,6 +28,9 @@ namespace AjaxDynamicHtmlReader
          
             string json = JsonConvert.SerializeObject(this);
             File.WriteAllText("AjaxConfig.json", json);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Saving the program state sucsessfull");
+            Console.ForegroundColor = ConsoleColor.White;
         }
         public void Load()
         {

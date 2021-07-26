@@ -46,7 +46,7 @@ namespace AjaxDynamicHtmlReader
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     throw new Exception("Engine is not uci compatable");
-                    Console.ForegroundColor = ConsoleColor.White;
+                    
                 }
             }
             #endregion
