@@ -64,8 +64,16 @@ namespace AjaxDynamicHtmlReader
         public static void DragMouseAcross(MousePoint from ,MousePoint to)
         {
             MouseOperation.SetCursorPosition(from);
+
+            //make a click once to activate the windows that is going to be clicked
+            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
+            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+            //
             MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
             MouseOperation.SetCursorPosition(to);
+            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+
+            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
             MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
 
         }

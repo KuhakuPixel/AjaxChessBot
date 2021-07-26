@@ -8,16 +8,29 @@ namespace AjaxDynamicHtmlReader
 {
     class AjaxConfigFile
     {
+        public int normalThinkTime = 1000;
+        public int randomThinkTimeMin = 1000;
+        public int randomThinkTimeMax = 3000;
         public string pathToEngine;
+        public bool randomizeThinkingTime = false;
         public Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingWhite = new Dictionary<string, MouseOperation.MousePoint>();
         public Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingBlack = new Dictionary<string, MouseOperation.MousePoint>();
-        public AjaxConfigFile(string pathToEngine, 
-            Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingWhite,Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingBlack)
+        public AjaxConfigFile(
+            string pathToEngine,
+            Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingWhite,
+            Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingBlack,
+            int normalThinkTime,
+            int randomThinkTimeMin,
+            int randomThinkTimeMax
+            )
+        
         {
             this.pathToEngine = pathToEngine;
             this.chessBoardCoordinatePlayingWhite = chessBoardCoordinatePlayingWhite;
             this.chessBoardCoordinatePlayingBlack = chessBoardCoordinatePlayingBlack;
-
+            this.normalThinkTime =normalThinkTime;
+            this.randomThinkTimeMin = randomThinkTimeMin;
+            this.randomThinkTimeMax = randomThinkTimeMax;
         }
         public AjaxConfigFile()
         {
@@ -39,6 +52,10 @@ namespace AjaxDynamicHtmlReader
             this.pathToEngine = loadedConfig.pathToEngine;
             this.chessBoardCoordinatePlayingBlack = loadedConfig.chessBoardCoordinatePlayingBlack;
             this.chessBoardCoordinatePlayingWhite = loadedConfig.chessBoardCoordinatePlayingWhite;
+            this.normalThinkTime = loadedConfig.normalThinkTime;
+            this.randomThinkTimeMin = loadedConfig.randomThinkTimeMin;
+            this.randomThinkTimeMax = loadedConfig.randomThinkTimeMax;
+            this.randomizeThinkingTime = loadedConfig.randomizeThinkingTime;
         }
     }
 }

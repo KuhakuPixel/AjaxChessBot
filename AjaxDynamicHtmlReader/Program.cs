@@ -7,7 +7,7 @@ namespace AjaxDynamicHtmlReader
     {
         static private UciChessEngineProcess uciChessEngineProcess;
         static private AjaxConfigFile ajaxConfigFile=new AjaxConfigFile();
-        
+        static private Random random = new Random();
         static void PrintWelcome()
         {
 
@@ -69,19 +69,20 @@ namespace AjaxDynamicHtmlReader
                 if (command == "help")
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("import     Import the chess engine             ");
-                    Console.WriteLine("register   Register the board coordinate in the screen             ");
-                    Console.WriteLine("play       Run the bot(need to use the register command first)     ");
-                    Console.WriteLine("save       Save The current configuration of the program     ");
-                    
+                    Console.WriteLine("play              Run the bot(need to use the register command first)     ");
+                    Console.WriteLine("import            Import the chess engine             ");
+                    Console.WriteLine("save              Save The current configuration of the program     ");
+                    Console.WriteLine("register          Register the board coordinate in the screen             ");
+                    Console.WriteLine("randomThinkTime   if set to 'y' then it will have a random thinking time that can be changed by the user ");
+                    Console.WriteLine("                  if set to 'n' then it will have a fixed thinking time that can be changed by the user ");
+                    Console.WriteLine("set_time_normal   set Consistent time move in milisecond (min time:250 ms)        ");
+                    Console.WriteLine("set_time_random   Choose Time to make a move between a range of time in milisecond   ");
+
                     Console.ForegroundColor = ConsoleColor.White;
 
                 }
                 else if (command == "save")
                 {
-                   ajaxConfigFile = new AjaxConfigFile(ajaxConfigFile.pathToEngine,
-                           ajaxConfigFile.chessBoardCoordinatePlayingWhite,
-                           ajaxConfigFile.chessBoardCoordinatePlayingBlack);
                     ajaxConfigFile.Save();
                 }
                 else if (command == "import")
@@ -160,7 +161,18 @@ namespace AjaxDynamicHtmlReader
                                 //move 
                                 if (currentTurn == chessGameState.PlayerColor && currentMoves != lastMoves)
                                 {
-                                    string bestMove = uciChessEngineProcess.GetBestMove(currentMoves, 1000);
+
+
+                                    string bestMove = "";
+                                    if (ajaxConfigFile.randomizeThinkingTime)
+                                    {
+                                        int randomizedThinkingTime=random.Next(ajaxConfigFile.randomThinkTimeMin, ajaxConfigFile.randomThinkTimeMax);
+                                        bestMove = uciChessEngineProcess.GetBestMove(currentMoves, randomizedThinkingTime);
+                                    }
+                                    else
+                                    {
+                                       bestMove=uciChessEngineProcess.GetBestMove(currentMoves, ajaxConfigFile.normalThinkTime);
+                                    }
 
                                     //split moves like e2e4 or h7h8q to separate moves
                                     List<string> bestMoveSplitted = AjaxStringHelper.SplitStringToChunk(bestMove, 2, true);
@@ -172,6 +184,7 @@ namespace AjaxDynamicHtmlReader
                                             {
                                                 MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[0]];
                                                 MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[1]];
+
                                                 MouseOperation.DragMouseAcross(fromPoint, toPoint);
                                                 break;
                                             }
@@ -200,6 +213,90 @@ namespace AjaxDynamicHtmlReader
 
 
                 }
+                else if (command == "set_time_normal")
+                {
+                    Console.Write("time: ");
+                    string timeStr = Console.ReadLine();
+                    int normalThinkTime;
+                    if (int.TryParse(timeStr, out normalThinkTime))
+                    {
+                        ajaxConfigFile.normalThinkTime = normalThinkTime;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Input must be a whole number");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+
+
+                }
+                else if (command == "set_time_random")
+                {
+                    Console.Write("time min(ms) (must at least be 250 ms): ");
+                    string timeMinStr = Console.ReadLine();
+                    int timeMin;
+                    if (int.TryParse(timeMinStr, out timeMin))
+                    {
+                        if (timeMin < 250)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("timeMin must be bigger than 250 ms");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            continue;
+                        }
+                        ajaxConfigFile.randomThinkTimeMin = timeMin;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Input must be a whole number");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        continue;
+                    }
+
+
+                    Console.Write("time max(ms): ");
+                    string timeMaxStr = Console.ReadLine();
+                    int timeMax;
+                    if (int.TryParse(timeMaxStr, out timeMax))
+                    {
+                        if (timeMin > timeMax)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Error:timeMin is bigger than timeMax!");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        ajaxConfigFile.randomThinkTimeMax = timeMax;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Input must be a whole number");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        continue;
+                    }
+                }
+                else if (command == "randomThinkTime")
+                {
+                    Console.Write("value(y/n):");
+                    string value = Console.ReadLine();
+                    if (value == "y")
+                    {
+                        ajaxConfigFile.randomizeThinkingTime = true;
+
+                    }
+                    else if (value == "n")
+                    {
+                        ajaxConfigFile.randomizeThinkingTime = false;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("value must be either y/n");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                }
                 else if (command == "testclick")
                 {
                     do
@@ -219,7 +316,7 @@ namespace AjaxDynamicHtmlReader
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Unknown command :" + command);
-                    Console.WriteLine("Use \"help command to list all of possible command\"");
+                    Console.WriteLine("Use \"help\" command to list all of possible command");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
