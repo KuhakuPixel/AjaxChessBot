@@ -8,60 +8,26 @@ namespace AjaxDynamicHtmlReader
         static private UciChessEngineProcess uciChessEngineProcess;
         static private AjaxConfigFile ajaxConfigFile=new AjaxConfigFile();
         static private Random random = new Random();
-        static void PrintWelcome()
-        {
-
-            Console.ForegroundColor = ConsoleColor.Blue;
-
-            Console.WriteLine("░█████╗░░░░░░██╗░█████╗░██╗░░██╗  ██████╗░░█████╗░████████╗");
-            Console.WriteLine("██╔══██╗░░░░░██║██╔══██╗╚██╗██╔╝  ██╔══██╗██╔══██╗╚══██╔══╝");
-            Console.WriteLine("███████║░░░░░██║███████║░╚███╔╝░  ██████╦╝██║░░██║░░░██║░░░");
-            Console.WriteLine("██╔══██║██╗░░██║██╔══██║░██╔██╗░  ██╔══██╗██║░░██║░░░██║░░░");
-            Console.WriteLine("██║░░██║╚█████╔╝██║░░██║██╔╝╚██╗  ██████╦╝╚█████╔╝░░░██║░░░");
-            Console.WriteLine("╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝  ╚═════╝░░╚════╝░░░░╚═╝░░░");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("                                   Created by NicholasPixel");
-
-            Console.WriteLine("AjaxBot is open source ");
-            Console.WriteLine("Contribute at:");
-            Console.WriteLine("https://github.com/KuhakuPixel/AjaxChessBot");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("DISCLAIMER!!!: Developers are not responsible if your account ");
-            Console.WriteLine("               Is banned when using this program");
-
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Type help For turtorial ");
-
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        static void LoadConfig()
-        {
-            try
-            {
-                ajaxConfigFile.Load();
-                if (!string.IsNullOrEmpty(ajaxConfigFile.pathToEngine))
-                {
-                    uciChessEngineProcess = new UciChessEngineProcess(ajaxConfigFile.pathToEngine);
-
-                }
-
-            }
-            catch (Exception e)
-            {
-               
-            }
-        }
+       
         static void Main(string[] args)
+        {
+            Console.Write("Link: ");
+           string chesscomUrl= Console.ReadLine();
+            List<string>content=AjaxHtmlReader.ReadAndProcessHtmlSource(chesscomUrl,false);
+            foreach(string line in content)
+            {
+                Console.WriteLine(line);
+            }
+       
+               
+         
+
+        }
+        static void RunProgram()
         {
             PrintWelcome();
             LoadConfig();
-            
+
             while (true)
             {
                 Console.Write("Command: ");
@@ -166,12 +132,12 @@ namespace AjaxDynamicHtmlReader
                                     string bestMove = "";
                                     if (ajaxConfigFile.randomizeThinkingTime)
                                     {
-                                        int randomizedThinkingTime=random.Next(ajaxConfigFile.randomThinkTimeMin, ajaxConfigFile.randomThinkTimeMax);
+                                        int randomizedThinkingTime = random.Next(ajaxConfigFile.randomThinkTimeMin, ajaxConfigFile.randomThinkTimeMax);
                                         bestMove = uciChessEngineProcess.GetBestMove(currentMoves, randomizedThinkingTime);
                                     }
                                     else
                                     {
-                                       bestMove=uciChessEngineProcess.GetBestMove(currentMoves, ajaxConfigFile.normalThinkTime);
+                                        bestMove = uciChessEngineProcess.GetBestMove(currentMoves, ajaxConfigFile.normalThinkTime);
                                     }
 
                                     //split moves like e2e4 or h7h8q to separate moves
@@ -321,10 +287,56 @@ namespace AjaxDynamicHtmlReader
                 }
             }
 
-         
-
         }
+        static void PrintWelcome()
+        {
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.WriteLine("░█████╗░░░░░░██╗░█████╗░██╗░░██╗  ██████╗░░█████╗░████████╗");
+            Console.WriteLine("██╔══██╗░░░░░██║██╔══██╗╚██╗██╔╝  ██╔══██╗██╔══██╗╚══██╔══╝");
+            Console.WriteLine("███████║░░░░░██║███████║░╚███╔╝░  ██████╦╝██║░░██║░░░██║░░░");
+            Console.WriteLine("██╔══██║██╗░░██║██╔══██║░██╔██╗░  ██╔══██╗██║░░██║░░░██║░░░");
+            Console.WriteLine("██║░░██║╚█████╔╝██║░░██║██╔╝╚██╗  ██████╦╝╚█████╔╝░░░██║░░░");
+            Console.WriteLine("╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝  ╚═════╝░░╚════╝░░░░╚═╝░░░");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("                                   Created by NicholasPixel");
+
+            Console.WriteLine("AjaxBot is open source ");
+            Console.WriteLine("Contribute at:");
+            Console.WriteLine("https://github.com/KuhakuPixel/AjaxChessBot");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("DISCLAIMER!!!: Developers are not responsible if your account ");
+            Console.WriteLine("               Is banned when using this program");
+
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Type help For turtorial ");
+
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void LoadConfig()
+        {
+            try
+            {
+                ajaxConfigFile.Load();
+                if (!string.IsNullOrEmpty(ajaxConfigFile.pathToEngine))
+                {
+                    uciChessEngineProcess = new UciChessEngineProcess(ajaxConfigFile.pathToEngine);
+
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
         public static Dictionary<string, MouseOperation.MousePoint> MapToIndividualChessCoordinates
             (MouseOperation.MousePoint bottomLeftPoint, MouseOperation.MousePoint topRightPoint, ChessGameProperties.PieceColor playerPieceColor)
         {

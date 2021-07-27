@@ -1,0 +1,18 @@
+Function call stack(not clicking button)
+(helpers.ts)
+-const sentryWrapped: WrappedFunction = function(this: any): void {
+    const args = Array.prototype.slice.call(arguments);
+-Grammarly-check.js(annonymus function)
+-adblock-uiscripts-rightclick_hook.js
+-(helpers.ts):wrappedFunction
+
+
+
+Function call stack(clicking button)
+(helpers.ts)
+-const sentryWrapped: WrappedFunction = function(this: any): void {
+    const args = Array.prototype.slice.call(arguments);
+-Grammarly-check.js(annonymus function)
+-(helpers.ts):wrappedFunction
+-adblock-uiscripts-rightclick_hook.js
+-(helpers.ts):wrappedFunction
