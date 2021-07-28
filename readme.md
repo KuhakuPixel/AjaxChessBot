@@ -28,6 +28,6 @@ Want to contribute? Great!
 
 ## License
 
-GNU GPLv3
+[GNU GPLv3](https://github.com/KuhakuPixel/AjaxChessBot/blob/master/LICENSE)
 
 
