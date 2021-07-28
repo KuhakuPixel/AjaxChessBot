@@ -2,7 +2,7 @@
 ## A chess bot for online chess game
 ![ScreenShot](docs/MainScreenShot.png)
 
-![ScreenShot](docs/Help11.png)
+![ScreenShot](docs/Turtorial/Help11.png)
 Ajax Chess Bot is free ,open source and light weight Check [Turtorial](https://github.com/KuhakuPixel/AjaxChessBot/tree/master/docs/Turtorial) to learn how to use the program
 
 
