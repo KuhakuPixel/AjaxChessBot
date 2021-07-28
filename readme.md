@@ -24,8 +24,10 @@ Example of uci compatable engine:
 
 Want to contribute? Great!
 
-
-
+## Supported online chess website
+ - lichess.org ✔
+ - chess.com ❌
+ 
 ## License
 
 [GNU GPLv3](https://github.com/KuhakuPixel/AjaxChessBot/blob/master/LICENSE)
