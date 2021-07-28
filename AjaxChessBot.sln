@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30709.132
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxDynamicHtmlReader", "AjaxDynamicHtmlReader\AjaxDynamicHtmlReader.csproj", "{39B18C54-3886-4199-84FC-C840E9EAF5A4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxChessBotHelperLib", "AjaxChessBotHelperLib\AjaxChessBotHelperLib.csproj", "{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxChessBotTest", "AjaxChessBotTest\AjaxChessBotTest.csproj", "{18E077E9-6770-43D4-875D-C669A4CE6B50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxChessBot", "AjaxChessBot\AjaxChessBot.csproj", "{63871013-363F-47B0-9527-5B9F9B53AF4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,18 +19,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Debug|x64.Build.0 = Debug|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Debug|x86.Build.0 = Debug|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Release|x64.ActiveCfg = Release|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Release|x64.Build.0 = Release|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Release|x86.ActiveCfg = Release|Any CPU
-		{39B18C54-3886-4199-84FC-C840E9EAF5A4}.Release|x86.Build.0 = Release|Any CPU
 		{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42B7E8B5-9662-4347-A966-D1CFF5CE15A3}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -55,6 +43,18 @@ Global
 		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Release|x64.Build.0 = Release|Any CPU
 		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Release|x86.ActiveCfg = Release|Any CPU
 		{18E077E9-6770-43D4-875D-C669A4CE6B50}.Release|x86.Build.0 = Release|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Debug|x64.Build.0 = Debug|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Debug|x86.Build.0 = Debug|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Release|x64.ActiveCfg = Release|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Release|x64.Build.0 = Release|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Release|x86.ActiveCfg = Release|Any CPU
+		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

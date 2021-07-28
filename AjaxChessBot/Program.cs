@@ -11,6 +11,8 @@ namespace AjaxDynamicHtmlReader
        
         static void Main(string[] args)
         {
+            RunProgram();
+            /*
             Console.Write("Link: ");
            string chesscomUrl= Console.ReadLine();
             List<string>content=AjaxHtmlReader.ReadAndProcessHtmlSource(chesscomUrl,false);
@@ -18,7 +20,7 @@ namespace AjaxDynamicHtmlReader
             {
                 Console.WriteLine(line);
             }
-       
+            */
                
          
 
@@ -62,14 +64,14 @@ namespace AjaxDynamicHtmlReader
                 {
                     MouseOperation.MousePoint bottomLeftCoordinates = new MouseOperation.MousePoint(0, 0);
                     MouseOperation.MousePoint topRightCoordinates = new MouseOperation.MousePoint(0, 0);
-                    Console.WriteLine("bottom Left of the board:");
+                    Console.WriteLine("bottom Left of the board (Press enter to submit the position):");
                     if (Console.ReadKey(true).Key == ConsoleKey.Enter)
                     {
                         bottomLeftCoordinates = MouseOperation.GetCursorPosition();
                         Console.WriteLine("Registered sucsessfully");
                     }
 
-                    Console.WriteLine("top right off the board:");
+                    Console.WriteLine("top right off the board (Press enter to submit the position):");
                     if (Console.ReadKey(true).Key == ConsoleKey.Enter)
                     {
                         topRightCoordinates = MouseOperation.GetCursorPosition();

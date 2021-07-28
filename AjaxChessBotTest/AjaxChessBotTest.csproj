@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AjaxChessBotHelperLib\AjaxChessBotHelperLib.csproj" />
-    <ProjectReference Include="..\AjaxDynamicHtmlReader\AjaxDynamicHtmlReader.csproj" />
+    <ProjectReference Include="..\AjaxDynamicHtmlReader\AjaxChessBot.csproj" />
   </ItemGroup>
 
 </Project>
