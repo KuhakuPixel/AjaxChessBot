@@ -4,7 +4,7 @@
 
 
 Ajax Chess Bot is free ,open source and light weight
-[Turtorial](Turtorial/)
+[Turtorial](https://github.com/KuhakuPixel/AjaxChessBot/tree/master/docs/Turtorial)
 
 ## Features
 
@@ -16,7 +16,6 @@ Ajax Chess Bot is free ,open source and light weight
 Ajax Chess Bot  requires an uci compatable chess engine  to run.
 
 Example of uci compatable engine:
-
  - [install stockfish](https://stockfishchess.org/download/)
 
 
