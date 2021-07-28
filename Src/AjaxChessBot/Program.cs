@@ -12,18 +12,6 @@ namespace AjaxDynamicHtmlReader
         static void Main(string[] args)
         {
             RunProgram();
-            /*
-            Console.Write("Link: ");
-           string chesscomUrl= Console.ReadLine();
-            List<string>content=AjaxHtmlReader.ReadAndProcessHtmlSource(chesscomUrl,false);
-            foreach(string line in content)
-            {
-                Console.WriteLine(line);
-            }
-            */
-               
-         
-
         }
         static void RunProgram()
         {
