@@ -3,7 +3,7 @@
 ![ScreenShot](docs/MainScreenShot.png)
 
 ![ScreenShot](docs/Turtorial/Help11.png)
-Ajax Chess Bot is free ,open source and light weight Check [Turtorial](https://github.com/KuhakuPixel/AjaxChessBot/tree/master/docs/Turtorial) or [Video Turtorial](https://www.youtube.com/watch?v=0B-lAP5APhU&ab_channel=Hakuku)to learn how to use the program
+Ajax Chess Bot is free ,open source and light weight Check [Turtorial](https://github.com/KuhakuPixel/AjaxChessBot/tree/master/docs/Turtorial) or [Video Turtorial](https://www.youtube.com/watch?v=0B-lAP5APhU&ab_channel=Hakuku) to learn how to use the program
 
 
 ## Features
