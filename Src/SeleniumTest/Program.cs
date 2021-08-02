@@ -26,8 +26,15 @@ namespace SeleniumTest
                     {
                         if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                         {
-                            By by = By.CssSelector(".icon-font-chess.download");
-                            driver.FindElement(by).Click();
+                        
+                            driver.FindElement(By.CssSelector(".icon-font-chess.download")).Click();
+                            
+                        
+                            //string htmlContent = driver.PageSource;
+                            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                            string htmlContent = (string)js.ExecuteScript("return document.documentElement.outerHTML;");
+                            Console.WriteLine(htmlContent);
+                            driver.FindElement(By.CssSelector(".icon-font-chess.x.ui_outside-close-icon")).Click();
                             Console.WriteLine("click");
                         }
                     }
