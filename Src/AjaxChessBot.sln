@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxChessBotTest", "AjaxChe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjaxChessBot", "AjaxChessBot\AjaxChessBot.csproj", "{63871013-363F-47B0-9527-5B9F9B53AF4D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumTest", "SeleniumTest\SeleniumTest.csproj", "{047BB214-C218-4367-93C8-3838ED806182}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Release|x64.Build.0 = Release|Any CPU
 		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Release|x86.ActiveCfg = Release|Any CPU
 		{63871013-363F-47B0-9527-5B9F9B53AF4D}.Release|x86.Build.0 = Release|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Debug|x64.Build.0 = Debug|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Debug|x86.Build.0 = Debug|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Release|x64.ActiveCfg = Release|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Release|x64.Build.0 = Release|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Release|x86.ActiveCfg = Release|Any CPU
+		{047BB214-C218-4367-93C8-3838ED806182}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

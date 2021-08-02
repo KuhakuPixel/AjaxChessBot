@@ -1,0 +1,1085 @@
+
+        
+    
+    
+        
+    
+    
+    
+  
+              
+      
+        
+  
+    
+  
+
+    
+  
+
+    
+
+    
+
+
+
+
+
+        
+
+
+
+
+
+
+
+    
+
+
+    
+          
+  
+  
+      
+  
+  
+
+  
+
+
+
+    
+          
+  
+  
+      
+  
+  
+
+
+  
+
+
+
+
+
+    
+          
+  
+  
+      
+  
+  
+
+  
+
+      
+
+    
+          
+  
+  
+      
+  
+  
+
+
+                
+  
+      
+  
+
+  
+
+              
+      
+          
+  Play Chess Online Against the Computer - Chess.com
+
+        
+            
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+  
+    
+          
+
+          
+
+          
+
+          
+
+          
+
+  
+  
+          
+        
+  
+    
+              
+    
+    
+
+      
+        
+  
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WQJVC73');
+  
+      #board-vs-personalities, .fade-in-overlay { background-image: url('https://images.chesscomfiles.com/chess-themes/boards/green/150.png'); }
+      .coordinate-light { fill: #779952; } .coordinate-dark { fill: #edeed1; } .highlight { background-color: #ffff00; }
+      #board-vs-personalities .piece.wp, #board-vs-personalities .promotion-piece.wp { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wp.png'); }#board-vs-personalities .piece.wn, #board-vs-personalities .promotion-piece.wn { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wn.png'); }#board-vs-personalities .piece.wb, #board-vs-personalities .promotion-piece.wb { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wb.png'); }#board-vs-personalities .piece.wr, #board-vs-personalities .promotion-piece.wr { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wr.png'); }#board-vs-personalities .piece.wq, #board-vs-personalities .promotion-piece.wq { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wq.png'); }#board-vs-personalities .piece.wk, #board-vs-personalities .promotion-piece.wk { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wk.png'); }#board-vs-personalities .piece.bp, #board-vs-personalities .promotion-piece.bp { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bp.png'); }#board-vs-personalities .piece.bn, #board-vs-personalities .promotion-piece.bn { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bn.png'); }#board-vs-personalities .piece.bb, #board-vs-personalities .promotion-piece.bb { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bb.png'); }#board-vs-personalities .piece.br, #board-vs-personalities .promotion-piece.br { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/br.png'); }#board-vs-personalities .piece.bq, #board-vs-personalities .promotion-piece.bq { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bq.png'); }#board-vs-personalities .piece.bk, #board-vs-personalities .promotion-piece.bk { background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bk.png'); }
+    body, div, a, p, span{ user-select: text !important; }p, h1, h2, h3, h4, h5, h6{ cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important; color: #fff !important; }#tyche_trendi_parent_container { display: none !important; }.pw-tag { text-align: center; opacity: 1}.pw-oop-tag {width: 1px; height: 1px; line-height:1px; position: fixed}.pw-tag-hidden { visibility: hidden; opacity: 0}.pw-in-article { padding:20px 0; }.pw-in-article_hidden { visibility: hidden; height:0; }.pw-fixed-mobile-leaderboard{ position: fixed;bottom: 0px;left: 50%;width: 320px;height:50px;margin-left:-160px;z-index: 2147483645;text-align: center;padding: 2px 0;background: rgba(0, 0, 0, 0.8);transition: opacity .6s ease-in}.fixed-mobile-close { cursor: pointer;border-top: 1px solid rgba(0,0,0,0.35);border-left: 1px solid rgba(0,0,0,0.35);border-right: 1px solid rgba(0,0,0,0.35);border-radius: 4px 4px 0 0; padding: 3px 6px 3px 6px;position: absolute; top: -22px; right: -1px; z-index: -1;background-color: rgba(0,0,0,0.55);box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);color: rgba(255,255,255,0.75);line-height: 1.2;font-size: 12px;font-family: Helvetica,Arial,sans-serif;-webkit-transition: all .5s ease-out;-moz-transition: all .5s ease-out;-o-transition: all .5s ease-out;transition: all .5s ease-out;}.pw-siderail-left-close { cursor: pointer;border-top: 1px solid rgba(0,0,0,0.35);border-left: 1px solid rgba(0,0,0,0.35);border-right: 1px solid rgba(0,0,0,0.35);border-radius: 4px 4px 0 0; padding: 3px 6px 3px 6px; position: absolute;top: -22px; left: -1px; z-index: -1; background-color: rgba(0,0,0,0.55);box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);color: rgba(255,255,255,0.75);line-height: 1.2;font-size: 12px;font-family: Helvetica,Arial,sans-serif;-webkit-transition: all .5s ease-out;-moz-transition: all .5s ease-out;-o-transition: all .5s ease-out;transition: all .5s ease-out;}.pw-siderail-right-close { cursor: pointer;border-top: 1px solid rgba(0,0,0,0.35);border-left: 1px solid rgba(0,0,0,0.35);border-right: 1px solid rgba(0,0,0,0.35);border-radius: 4px 4px 0 0; padding: 3px 6px 3px 6px; position: absolute;top: -22px; right: -1px; z-index: -1; background-color: rgba(0,0,0,0.55);box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);color: rgba(255,255,255,0.75);line-height: 1.2;font-size: 12px;font-family: Helvetica,Arial,sans-serif;-webkit-transition: all .5s ease-out;-moz-transition: all .5s ease-out;-o-transition: all .5s ease-out;transition: all .5s ease-out;}div[data-pw-desk="leaderboard_atf"].pw-sticky,div[data-pw-mobi="leaderboard_atf"].pw-sticky { z-index: 2147483645;position: fixed; top:0px; left:0px; width: 100%; padding: 20px 0;background: rgba(0,0,0,.2);overflow:hidden;transition: 750ms opacity ease-out;opacity: 1;border-bottom: 1px solid rgba(238, 238, 238, 0.4)}div[data-pw-desk="med_rect_atf"].pw-sticky { z-index: 2147483644;position: fixed; width: 300px; padding: 0; background: transparent;overflow:hidden;transition: 750ms opacity ease-out;opacity: 1;border-bottom: 20px solid #fff;border-top: 20px solid #fff}.pws-sticky:before {z-index: -1;-webkit-filter: blur(34px);width: 100%;height: 100%;content: "";position: absolute;top: 0px;left: 0px;background: rgba(0,0,0,.5);}.pw-sticky-hide{opacity: 0%;}#pw-oop-behind_page { z-index: 0}#pw-oop-above_page { z-index: 2147483647}#pw-oop-top_rail { top: 0px; left:0px}#pw-oop-left_rail { left: 0px; top: 0px; position: fixed;min-width:160px;height:600px}#pw-oop-right_rail { right: 0px; top: 0px; position: fixed;min-width:160px;height:600px}.pw-tps{ display: none }#tycheConsole{ background-color: #fff; border-top: 1px solid;font-family: Arial, Helvetica, sans-serif; font-size: 12px;position: fixed; bottom: 0; width: 100%; padding: 0 2% 2% 2%;z-index: 9999999999; box-sizing: border-box}#tycheConsole a:visited{ color: rgb(52, 152, 219) }#tycheConsole li:hover{background: rgba(52, 152, 219,.26)}.ad__name{ display:inline-block; width: 15%; font-weight:bold;}div[data-pw-desk="leaderboard_atf"] > div > iframe { margin:auto; }#pw-oop-bottom_rail > div > iframe { margin:auto; }#video_backfill {position: relative; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%);z-index: 11}#video_backfill > .pw_report_ad_container { display: block}
+
+
+
+  
+
+
+
+
+
+
+
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQJVC73"height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    
+        
+    
+        
+      
+        
+      
+    
+    
+        
+    
+      
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+window.chesscom = window.chesscom || {};
+
+
+
+
+
+  
+
+                                                                                                                                                                                                                                                                                      
+window.chesscom.features = ['goldilocks_eval_bar', 'chessboard_board_images', 'chat_new_send_message_editor', 'chessboard_loggly_error_reporting', 'deprecate_cob2_flipboard_service_value', 'diagram_editor_new_chessboard_migration', 'diagram_viewer_new_chessboard', 'eco_add_tooltips', 'form_chips_new_ds', 'fix_komodo_stalemate_quick_analysis', 'is_not_messageable_reason', 'leaderboard_home_page', 'lessons_rating_rank', 'lessons_leaderboard_graph', 'new_events_enable_ads', 'presence_ui_amplitude_logger', 'profile_presence_refresh', 'puzzle_rush_leaderboard_fix', 'seo_exit_retention_modal', 'share_board_sounds_plugin', 'v5_modal_automate_challenge', 'v5_new_modal_share_template', 'web_daily_puzzle_paywall', 'web_endgames_product', 'web_practice_product', 'web_user_callback_games_by_type_and_timeclass', 'daily_puzzle_streaks', 'web_toaster_themes', 'web_user_callback_games_by_type_and_timeclass'];
+
+
+
+    
+    
+      
+    
+  
+
+    
+    
+        
+                        
+                  
+    
+    
+        
+        
+      Play
+              
+          
+    
+        
+    
+    
+    
+        
+      Puzzles
+    
+    
+        
+    
+    
+    
+        
+      Learn
+              
+          
+    
+        
+    
+    
+    
+        
+    
+      Today
+    
+    
+        
+    
+    
+    
+        
+      Connect
+          
+    
+    
+    
+    
+
+        
+      More
+    
+    
+        
+    
+    
+    
+    
+              
+            
+        
+          
+        
+        Sign Up
+      
+      
+            
+        
+          
+        
+        Log In
+      
+                
+    
+            
+                  
+        
+          
+        
+        
+          Light UI
+          Dark UI
+        
+      
+        
+            
+            
+        
+      
+        
+        Search
+      
+            
+        
+        
+          
+        
+      
+          
+    
+        
+      
+        
+      
+      Help
+    
+    
+        
+            
+      
+            
+        
+          
+        
+        Ask a Question
+      
+      
+            
+        
+          
+        
+        Report Abuse
+      
+      
+            
+        
+          
+        
+        Make a Suggestion
+      
+      
+            
+        
+          
+        
+        Billing Issues
+      
+      
+            
+        
+          
+        
+        Report a Bug
+      
+          
+      
+  
+
+
+    
+
+  
+        Maximum 
+    (3200)
+       +2 
+
+    87654321abcdefgh
+    
+      
+    
+    
+    
+      
+      
+    
+    
+      
+      
+    
+  
+    
+  
+    
+      
+    
+    
+    
+      
+        
+      
+      
+    
+  
+    
+  
+    
+      
+    
+    
+    
+    
+  
+    
+  
+    
+      
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+      
+    
+  
+    
+  
+    
+      
+    
+      
+      
+    
+    
+      
+      
+    
+  
+    
+  
+    
+      
+    
+    
+    
+      
+    
+  
+    
+  
+    
+      
+    
+    
+    
+      
+      
+    
+    
+      
+      
+    
+  
+    
+  
+    
+      
+    
+      
+      
+    
+    
+      
+        
+      
+      
+    
+  
+    
+  
+    
+      
+    
+    
+    
+      
+      
+      
+      
+    
+    
+      
+      
+      
+      
+    
+  
+    
+  
+    
+      
+    
+    
+    
+      
+    
+    
+  
+    
+  
+    
+      
+    
+    
+    
+      
+      
+      
+      
+    
+  
+    
+  
+    
+      
+    
+      
+        
+      
+      
+    
+    
+      
+        
+      
+      
+    
+  
+    
+  
+    
+      
+    
+      
+      
+    
+    
+      
+    
+    
+  
+    
+  
+
+  
+    
+      .cls-1 {
+        opacity: 0.3;
+      }
+
+      .cls-2 {
+        fill: #f8f8f8;
+      }
+
+      .cls-3 {
+        fill: #8a8886;
+      }
+    
+  
+  
+    
+    
+    
+    
+  
+
+
+
+    
+        
+    
+
+        Guest       
+
+      
+  
+  
+  
+  
+  
+
+  
+    
+
+    
+
+    
+  
+
+  
+      
+    
+
+    Drills
+  
+
+  
+
+  
+     
+
+    
+
+    
+  
+
+  
+      Sicilian Defense: Bowdler Attack
+      
+        
+        
+      
+    
+
+    1.e4c52.c4e63.f3a64.d3d55.f4dxc46.dxc4xd1+7.xd1f68.c3d7
+
+      
+
+      
+
+      
+  
+
+          
+     
+    Remove Ads
+  
+  
+
+  
+        
+  window.PubSub = {};
+  window.PubSub.options = {
+    environment: 'prod',
+    url: {
+              socket: 'wss://services.chess.com/pubsub',
+        publish: 'https://services.chess.com/pubsub/publish',
+        error: 'https://services.chess.com/pubsub/errors',
+                  base: 'https://services.chess.com',
+          chat: 'https://services.chess.com/service/chat',
+          classroom: 'https://services.chess.com/service/classroom/',
+          game: 'https://services.chess.com/service/play/',
+          invitations: 'https://services.chess.com/service/invitations/',
+          matcher: 'https://services.chess.com/service/matcher/',
+          reactions: 'https://services.chess.com/service/reactions/',
+          topplayers: 'https://services.chess.com/service/topplayers/',
+          users: '',
+                presence: 'https://services.chess.com/service/presence',
+          },
+      };
+
+  
+    
+                                                
+  
+
+      
+    
+    
+  
+    var Config = {
+      "cometd.url": "/cometd",
+      "domain.main": "//www.chess.com",
+      "domain.static": "//betacssjs.chesscomfiles.com",
+      "domain.files": "//files.chesscomfiles.com",
+      "domain.live": "//live.chess.com",
+      "domain.live2": "//live2.chess.com",
+      "domain.liveh2": "//liveh2.chess.com",
+      "domain.live3": "//live3.chess.com",
+      "domain.voice": "rtmp://voice.chess.com",
+      "domain.cssjs": "//betacssjs.chesscomfiles.com",
+      "domain.images": "//images.chesscomfiles.com",
+      "domain.avatars": "//avatars.chesscomfiles.com",
+      "domain.baseUrl": "",
+      "isFacebookCanvas": false,
+      "facebookId": "429665630433565",
+      "pathToEngineWorker": "/bundles/app/js/vendor/jschessengine/stockfish.6983901b.js",
+      "pathToEngineWorkerAlt": "/bundles/app/js/engine/stockfish.1de0d633.js",
+      "pathToJCE": "/bundles/app/js/vendor/jschessengine/jschessengine.min.5ea1f76f.js",
+      "pathToWasmEngine": "/bundles/app/js/vendor/jschessengine/stockfish.6103b42f.bin",
+      "pathToNonWasmEngine": "/bundles/app/js/vendor/jschessengine/stockfish.asm.1abfa10c.js",
+      "pathToKomodoWorker": "/bundles/app/js/vendor/jschessengine/komodo.75017b80.js",
+      "pathToWasmKomodo": "/bundles/app/js/vendor/jschessengine/komodo.b28431d8.bin",
+      "pathToNonWasmKomodo": "/bundles/app/js/vendor/jschessengine/komodo.asm.79a4950f.js",
+      "pathToKomodoLiteWorker": "/bundles/app/js/vendor/jschessengine/komodo-lite.22e0146c.js",
+      "pathToWasmKomodoLite": "/bundles/app/js/vendor/jschessengine/komodo-lite.ffb7a45e.bin",
+      "pathToNonWasmKomodoLite": "/bundles/app/js/vendor/jschessengine/komodo-lite.asm.d60ca982.js",
+      "pathToKomodoTepWorker": "/bundles/app/js/vendor/jschessengine/komodo-tep.80782137.js",
+      "pathToWasmKomodoTep": "/bundles/app/js/vendor/jschessengine/komodo-tep.55e13ea5.wasm",
+      "pathToEcoJson": "/bundles/app/js/common/json/eco.cb92c466.json",
+      "pathToBook": "/bundles/app/js/vendor/jschessengine/books/book.c30917a9.json",
+      "pathToBookSmall": "/bundles/app/js/engine/book-small.c30917a9.json",
+      "pathToWebGL": "/bundles/app/js/vendor/webgl_three.61269fce.js",
+      "pathToGamePreviewLoader": "/bundles/web/images/game-preview-loading.8677fb94.png",
+      "pathToPersonalityBooks": {
+        "aggressive": "/bundles/app/js/vendor/jschessengine/books/personalities/aggressive.50a9b452.bin",
+        "balanced": "/bundles/app/js/vendor/jschessengine/books/personalities/balanced.71d69282.bin",
+        "beginner": "/bundles/app/js/vendor/jschessengine/books/personalities/beginner.f122c7c5.bin",
+        "classical": "/bundles/app/js/vendor/jschessengine/books/personalities/classical.2e31ad51.bin",
+        "f-pawner": "/bundles/app/js/vendor/jschessengine/books/personalities/f-pawner.bb8a15f1.bin",
+        "fischer": "/bundles/app/js/vendor/jschessengine/books/personalities/fischer.c93e412d.bin",
+        "gambit": "/bundles/app/js/vendor/jschessengine/books/personalities/gambit.3ef59ed2.bin",
+        "indian": "/bundles/app/js/vendor/jschessengine/books/personalities/indian.8e8f8dd6.bin",
+        "nakamura": "/bundles/app/js/vendor/jschessengine/books/personalities/nakamura.1b408716.bin",
+        "offbeat": "/bundles/app/js/vendor/jschessengine/books/personalities/offbeat.c125e5bf.bin",
+        "positional": "/bundles/app/js/vendor/jschessengine/books/personalities/positional.988b37b5.bin",
+        "quick_queen": "/bundles/app/js/vendor/jschessengine/books/personalities/quick_queen.523ee0a4.bin",
+        "rensch": "/bundles/app/js/vendor/jschessengine/books/personalities/rensch.f0d14299.bin",
+        "winger": "/bundles/app/js/vendor/jschessengine/books/personalities/winger.77d88765.bin"
+      },
+      "threadedEnginePaths": {
+        "stockfish": {
+          "multiThreaded": {
+            "loader": "/bundles/app/js/engine/stockfish.1de0d633.js",
+            "engine": "/bundles/app/js/engine/stockfish.609cf51a.wasm",
+          },
+          "singleThreaded": {
+            "loader": "/bundles/app/js/engine/stockfish-single.830cf9cc.js",
+            "engine": "/bundles/app/js/engine/stockfish-single.8ffa2b70.wasm",
+          },
+          "asm": "/bundles/app/js/engine/stockfish.asm.16fa8540.js",
+        },
+      },
+      "pathToTinyMCE": "/bundles/app/js/tinymce-lazy.client.9437a8f5.js",
+      "oldThemes": false,
+      "isLive": false,
+      "isStaff": false,
+      "noAvatar": '/bundles/web/images/user-image.007dad08.svg',
+      "wdlJsonModel": '/bundles/web/wdl/model.dfd18bce.json',
+      "wdlWeights": '/bundles/web/wdl/group1-shard1of1.1e2725b8.bin',
+      "ad.noAds": false,
+      "ad.layout": "ros",
+      "ad.disabledAds": []
+    };
+
+    
+          Config.pathToDiagramViewerCSS =  "/bundles/app/css/diagram-viewer.client.f851ce4e.css",
+      Config.pathToDiagramViewerJS = "/bundles/app/js/diagram-viewer.client.c390790a.js",
+    
+        window.__CHESSCOM_RTL__ = false;
+
+        //<![CDATA[
+    context = {"i18n":{"locale":"en_US","contentLanguage":"any","mobile":{"computer":"Computer","daily_chess":"Daily Chess","tactics":"Tactics","lessons":"Lessons","videos":"Videos","articles":"Articles","forums":"Forums","friends":"Friends","messages":"Messages","stats":"Stats","settings":"Settings","trophies":"Trophies"}},"csrf":{"token":"HJaKg7q1rG_LGkWgvjeYptF1U1dHSdsnNpwIU_ZEr9w","logout":"QUMHwzqAgcdhQH9n7QmAoMhz0HvEWiyQ7O-Jqvp6VoY"},"amplitudeKey":"5cc41a1e56d0ee35d4c85d1d4225d2d1","iterableKey":"f771b86cf083441f992a4bb01d3d600f","adyen":{"key":"10001|D97C83A6DB30A889AAC517489C56512C733B365B8E5E2E5CB5FD860751EC3EC14A145FE6FD2EF1A338D375DB3D9F7B988631B64D4B9C9BE3DE007D8C60649F2BAC7B0798A869892B683110B2FE53E89EBB9923A0EF7113FDEEEBC57FDB21AA8F99D3757DB7C8A8E6458D3B628B357396E77CD3C31158B203BEDAF3AC56E11A94C3BA745CAE7847B6C7D5C6B1D6E68204147A9B98EC334560F94A484FC5335F8AA4716BF13E0153B9B0E7FF75384449563F935AF0173C5F8F1CBE20B1C91593C2F7AF07A83E48F31DA8F4F5959687A682823216342C6E1B36771AC42C9BF0E03F443D07D239F25EB916BC15A908796C698D296130A9BA4A925684416F9C759143","originKey":"pub.v2.1114841580210853.aHR0cHM6Ly93d3cuY2hlc3MuY29t.g3hcnpsxbNsbEo3XJP_laQJwLDCkoYfA1YmHG6Kns8g","sdk":"https:\/\/checkoutshopper-live.adyen.com\/checkoutshopper\/sdk\/3.4.0\/adyen.js"},"iterableMuteApiCallsFeature":false};
+    //]]>
+    
+    context.version = '20210728055311';
+    context.branch = 'master';
+    context.commit = 'dd6d214bdfcd7342ef735f89e4dbd500b15161d6';
+    context.requestId = '336beea98d44b3e2a6a996609502aa9a';
+    context.server = 'web133.chess.com';
+    context.locale = 'en';
+    context.environment = 'prod';
+    context.cookies = {
+      app: '',
+    };
+
+    context.ip = '182.29.26.87';
+    context.chessboardBeta = false
+  
+
+  
+
+  
+
+    
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        registrations.forEach(registration => {
+          if (registration.active.scriptURL.includes('/service-worker.client.js')) {
+            registration.unregister();
+          }
+        });
+      }).catch(() => { });
+    }
+  
+
+
+
+
+    
+      
+  
+      
+    
+  
+  
+
+
+
+    
+
+      
+      
+  
+      
+    
+  
+  
+
+    
+
+
+
+
+
+    
+      
+  
+      
+    
+  
+  
+
+
+
+        
+  
+
+
+
+        
+
+    
+    
+      window.chesscom = window.chesscom || {};
+      window.chesscom.sentry = {
+        appCookie: '',
+        incrementCallback: 'https://www.chess.com/metrics/fe_sentry',
+        key: '',
+      }
+    
+
+    
+  
+  
+  
+
+  
+      
+  
+    window.__CHESSCOM_WEBGL_ASSET_PATHS__ = {
+    "three-d/board/board.json": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/board.f425db44.json",
+    "three-d/board/textures/board_8_bit_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_8_bit_notation.a3bf6bb5.png",
+    "three-d/board/textures/board_8_bit.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_8_bit.c238987b.jpg",
+    "three-d/board/textures/board_bases_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_bases_notation.4fa42cab.png",
+    "three-d/board/textures/board_bases.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_bases.5966f51d.jpg",
+    "three-d/board/textures/board_blackwhite_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_blackwhite_notation.9d31ef9e.png",
+    "three-d/board/textures/board_blackwhite.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_blackwhite.f6436596.jpg",
+    "three-d/board/textures/board_blue_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_blue_notation.a7ed2c2a.png",
+    "three-d/board/textures/board_blue.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_blue.7d30c9fc.jpg",
+    "three-d/board/textures/board_brown_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_brown_notation.66e656e5.png",
+    "three-d/board/textures/board_brown.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_brown.f8e9e53d.jpg",
+    "three-d/board/textures/board_bubblegum_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_bubblegum_notation.75637678.png",
+    "three-d/board/textures/board_bubblegum.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_bubblegum.34d5bf78.jpg",
+    "three-d/board/textures/board_burled_wood_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_burled_wood_notation.f3f69a8a.png",
+    "three-d/board/textures/board_burled_wood.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_burled_wood.4ba59d4b.jpg",
+    "three-d/board/textures/board_dark_wood_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_dark_wood_notation.6fe2bbf7.png",
+    "three-d/board/textures/board_dark_wood.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_dark_wood.ac2798f7.jpg",
+    "three-d/board/textures/board_dash_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_dash_notation.3913780e.png",
+    "three-d/board/textures/board_dash.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_dash.fe973b28.jpg",
+    "three-d/board/textures/board_glass_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_glass_notation.bfcc418d.png",
+    "three-d/board/textures/board_glass.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_glass.462df59a.jpg",
+    "three-d/board/textures/board_graffiti_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_graffiti_notation.ee28e65f.png",
+    "three-d/board/textures/board_graffiti.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_graffiti.ddc5ac93.jpg",
+    "three-d/board/textures/board_green_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_green_notation.af017c39.png",
+    "three-d/board/textures/board_green.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_green.944bda20.jpg",
+    "three-d/board/textures/board_grey_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_grey_notation.5f5188b1.png",
+    "three-d/board/textures/board_grey.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_grey.26eeeb0d.jpg",
+    "three-d/board/textures/board_icy_sea_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_icy_sea_notation.8a2dbe83.png",
+    "three-d/board/textures/board_icy_sea.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_icy_sea.7e97a7c5.jpg",
+    "three-d/board/textures/board_light_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_light_notation.ed019a76.png",
+    "three-d/board/textures/board_light.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_light.fe79815a.jpg",
+    "three-d/board/textures/board_lolz_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_lolz_notation.a00264f3.png",
+    "three-d/board/textures/board_lolz.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_lolz.cf1f0e6b.jpg",
+    "three-d/board/textures/board_marble_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_marble_notation.85730a04.png",
+    "three-d/board/textures/board_marble.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_marble.fb694be3.jpg",
+    "three-d/board/textures/board_marbleblue_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_marbleblue_notation.733ec2a6.png",
+    "three-d/board/textures/board_marbleblue.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_marbleblue.c5708acd.jpg",
+    "three-d/board/textures/board_marblebrown_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_marblebrown_notation.b4deece6.png",
+    "three-d/board/textures/board_marblebrown.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_marblebrown.106671ff.jpg",
+    "three-d/board/textures/board_marblegreen_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_marblegreen_notation.5b6fd2c5.png",
+    "three-d/board/textures/board_marblegreen.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_marblegreen.a56f3a5d.jpg",
+    "three-d/board/textures/board_metal_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_metal_notation.2644fa29.png",
+    "three-d/board/textures/board_metal.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_metal.9e8343ff.jpg",
+    "three-d/board/textures/board_neon_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_neon_notation.8aa5eb20.png",
+    "three-d/board/textures/board_neon.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_neon.1c8ed3ca.jpg",
+    "three-d/board/textures/board_newspaper_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_newspaper_notation.0d446457.png",
+    "three-d/board/textures/board_newspaper.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_newspaper.940c4c9b.jpg",
+    "three-d/board/textures/board_orange_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_orange_notation.ac13f29e.png",
+    "three-d/board/textures/board_orange.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_orange.df689dfe.jpg",
+    "three-d/board/textures/board_overlay_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_overlay_notation.a6b83a1e.png",
+    "three-d/board/textures/board_overlay.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_overlay.b76a5834.jpg",
+    "three-d/board/textures/board_parchment_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_parchment_notation.af97cabb.png",
+    "three-d/board/textures/board_parchment.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_parchment.dac73d51.jpg",
+    "three-d/board/textures/board_pink_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_pink_notation.811ee777.png",
+    "three-d/board/textures/board_pink.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_pink.e3b56463.jpg",
+    "three-d/board/textures/board_purple_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_purple_notation.f9f8349a.png",
+    "three-d/board/textures/board_purple.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_purple.429e87cc.jpg",
+    "three-d/board/textures/board_red_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_red_notation.51389339.png",
+    "three-d/board/textures/board_red.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_red.4824adf7.jpg",
+    "three-d/board/textures/board_sand_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_sand_notation.3712caa6.png",
+    "three-d/board/textures/board_sand.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_sand.5eb8d889.jpg",
+    "three-d/board/textures/board_shadow.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_shadow.d490d6b4.png",
+    "three-d/board/textures/board_sky_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_sky_notation.dfa5e504.png",
+    "three-d/board/textures/board_sky.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_sky.f9014b7c.jpg",
+    "three-d/board/textures/board_stone_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_stone_notation.81db0ebf.png",
+    "three-d/board/textures/board_stone.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_stone.75e0be38.jpg",
+    "three-d/board/textures/board_tan_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_tan_notation.606335e2.png",
+    "three-d/board/textures/board_tan.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_tan.de0583bf.jpg",
+    "three-d/board/textures/board_tournament_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_tournament_notation.243f8730.png",
+    "three-d/board/textures/board_tournament.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_tournament.ca792689.jpg",
+    "three-d/board/textures/board_translucent_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_translucent_notation.8def817e.png",
+    "three-d/board/textures/board_translucent.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_translucent.05d18c94.jpg",
+    "three-d/board/textures/board_walnut_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_walnut_notation.cfb242b2.png",
+    "three-d/board/textures/board_walnut.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_walnut.ef9a07ec.jpg",
+    "three-d/board/textures/board_winboard_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_winboard_notation.be4c9f8c.png",
+    "three-d/board/textures/board_winboard.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_winboard.087df05e.jpg",
+    "three-d/board/textures/board_wood_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_wood_notation.b13541a6.png",
+    "three-d/board/textures/board_wood.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_wood.a1c1365b.jpg",
+    "three-d/board/textures/board_wooddark_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_wooddark_notation.6fe2bbf7.png",
+    "three-d/board/textures/board_wooddark.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_wooddark.ac2798f7.jpg",
+    "three-d/board/textures/board_woodlight_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_woodlight_notation.39bc254f.png",
+    "three-d/board/textures/board_woodlight.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_woodlight.cbd0cac3.jpg",
+    "three-d/board/textures/board_woodmid_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_woodmid_notation.15e78f80.png",
+    "three-d/board/textures/board_woodmid.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_woodmid.d30783ac.jpg",
+    "three-d/board/textures/board_woodolive_notation.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_woodolive_notation.d62e0a2a.png",
+    "three-d/board/textures/board_woodolive.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/board/textures/board_woodolive.33fafd16.jpg",
+    "three-d/marking_arrow_L.json": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/marking_arrow_L.be09e498.json",
+    "three-d/marking_arrow_straight.json": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/marking_arrow_straight.a6b956b9.json",
+    "three-d/pieces/staunton_executive/bishop_promotion_black.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/bishop_promotion_black.64337a24.jpg",
+    "three-d/pieces/staunton_executive/bishop_promotion_white.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/bishop_promotion_white.ec7eb316.jpg",
+    "three-d/pieces/staunton_executive/bishop.json": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/bishop.7395ab28.json",
+    "three-d/pieces/staunton_executive/king.json": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/king.fc9672f5.json",
+    "three-d/pieces/staunton_executive/knight_promotion_black.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/knight_promotion_black.cf1d93aa.jpg",
+    "three-d/pieces/staunton_executive/knight_promotion_white.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/knight_promotion_white.0f8d79ee.jpg",
+    "three-d/pieces/staunton_executive/knight.json": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/knight.b9912c7a.json",
+    "three-d/pieces/staunton_executive/pawn.json": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/pawn.32238b68.json",
+    "three-d/pieces/staunton_executive/queen_promotion_black.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/queen_promotion_black.9b4d155e.jpg",
+    "three-d/pieces/staunton_executive/queen_promotion_white.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/queen_promotion_white.7329522b.jpg",
+    "three-d/pieces/staunton_executive/queen.json": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/queen.8793f6ab.json",
+    "three-d/pieces/staunton_executive/rook_promotion_black.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/rook_promotion_black.d0fd00a8.jpg",
+    "three-d/pieces/staunton_executive/rook_promotion_white.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/rook_promotion_white.1bc4a10e.jpg",
+    "three-d/pieces/staunton_executive/rook.json": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/rook.76894e32.json",
+    "three-d/pieces/staunton_executive/textures/bishop_shadow.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/bishop_shadow.0b5ee42e.png",
+    "three-d/pieces/staunton_executive/textures/envmap/negx.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/envmap/negx.33eada3e.jpg",
+    "three-d/pieces/staunton_executive/textures/envmap/negy.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/envmap/negy.9b25971e.jpg",
+    "three-d/pieces/staunton_executive/textures/envmap/negz.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/envmap/negz.a12ca378.jpg",
+    "three-d/pieces/staunton_executive/textures/envmap/posx.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/envmap/posx.b40ae1ef.jpg",
+    "three-d/pieces/staunton_executive/textures/envmap/posy.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/envmap/posy.e2b2685d.jpg",
+    "three-d/pieces/staunton_executive/textures/envmap/posz.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/envmap/posz.e8613ffe.jpg",
+    "three-d/pieces/staunton_executive/textures/king_shadow.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/king_shadow.d6ee554e.png",
+    "three-d/pieces/staunton_executive/textures/knight_shadow.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/knight_shadow.ea452b95.png",
+    "three-d/pieces/staunton_executive/textures/pawn_shadow.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/pawn_shadow.fc807ae3.png",
+    "three-d/pieces/staunton_executive/textures/piece_black.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/piece_black.f1a263b7.jpg",
+    "three-d/pieces/staunton_executive/textures/piece_marble_black.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/piece_marble_black.cfb7a7d9.jpg",
+    "three-d/pieces/staunton_executive/textures/piece_marble_white.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/piece_marble_white.c0d26492.jpg",
+    "three-d/pieces/staunton_executive/textures/piece_metal_black.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/piece_metal_black.fc320163.jpg",
+    "three-d/pieces/staunton_executive/textures/piece_metal_white.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/piece_metal_white.26bd2db6.jpg",
+    "three-d/pieces/staunton_executive/textures/piece_plastic_black.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/piece_plastic_black.5b2b7dca.jpg",
+    "three-d/pieces/staunton_executive/textures/piece_plastic_white.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/piece_plastic_white.add6f6cb.jpg",
+    "three-d/pieces/staunton_executive/textures/piece_white.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/piece_white.02639edc.jpg",
+    "three-d/pieces/staunton_executive/textures/piece_wood_black.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/piece_wood_black.15255deb.jpg",
+    "three-d/pieces/staunton_executive/textures/piece_wood_white.jpg": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/piece_wood_white.40e5ede4.jpg",
+    "three-d/pieces/staunton_executive/textures/queen_shadow.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/queen_shadow.2381b0ed.png",
+    "three-d/pieces/staunton_executive/textures/rook_shadow.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/three-d/pieces/staunton_executive/textures/rook_shadow.a85529f8.png",
+    "two-d/arcade/lightning-blue.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/two-d/arcade/lightning-blue.a1fd37f6.png",
+    "two-d/arcade/lightning-red.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/two-d/arcade/lightning-red.61426d59.png",
+    "two-d/hover-square.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/two-d/hover-square.949e81d1.png",
+    "two-d/natural/dust-particle1.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/two-d/natural/dust-particle1.0e9dd2fc.png",
+    "two-d/natural/dust-particle2.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/two-d/natural/dust-particle2.1cdcf702.png",
+    "two-d/natural/dust-particle3.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/two-d/natural/dust-particle3.12a980a4.png",
+    "two-d/natural/piece-trail-long.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/two-d/natural/piece-trail-long.6ba59bc2.png",
+    "two-d/natural/piece-trail.png": "https://betacssjs.chesscomfiles.com/bundles/web/images/webgl_data/two-d/natural/piece-trail.bb4aaf99.png"
+  };
+
+
+  
+
+
+  
+  document.domain = Config['domain.main'].substr(6);
+
+  var TinymceConfig = {
+    editor_options: {
+      paste_as_text: true,
+      debounce: false,
+      baseURL: '/bundles/app/js/vendor/tinymce',
+      pathToTinyMCE: '/bundles/app/js/vendor/tinymce/web_vendor_tinymce.599b1213.js',
+      theme_url: '/bundles/app/js/vendor/tinymce/themes/modern/theme.min.7a368343.js',
+      content_css: '/bundles/app/css/tinymce-content.client.0a80ab42.css',
+      skin_url: '/bundles/app/js/vendor/tinymce/skins/v2/lightgray',
+      external_plugins: {
+
+                'chessdiagram': 'https://betacssjs.chesscomfiles.com/bundles/app/js/tinymce/plugins/chessdiagram/plugin.bff514ba.js',
+                'imageuploader': 'https://betacssjs.chesscomfiles.com/bundles/app/js/tinymce/plugins/imageuploader.866a4038.js',
+                'smileys': 'https://betacssjs.chesscomfiles.com/bundles/app/js/tinymce/plugins/smileys.174224c3.js',
+                'advlist': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/advlist/plugin.min.07f871a0.js',
+                'autolink': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/autolink/plugin.min.9ec88f0a.js',
+                'link': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/link/plugin.min.da71d62b.js',
+                'lists': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/lists/plugin.min.9ed88739.js',
+                'charmap': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/charmap/plugin.min.3d42b6ec.js',
+                'print': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/print/plugin.min.3ce46fc7.js',
+                'preview': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/preview/plugin.min.6798465f.js',
+                'hr': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/hr/plugin.min.0911253e.js',
+                'anchor': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/anchor/plugin.min.36a2eff9.js',
+                'pagebreak': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/pagebreak/plugin.min.f5570341.js',
+                'spellchecker': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/spellchecker/plugin.min.c421941c.js',
+                'visualblocks': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/visualblocks/plugin.min.61cd5d79.js',
+                'visualchars': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/visualchars/plugin.min.db0c8ef3.js',
+                'code': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/code/plugin.min.7bf5c282.js',
+                'fullscreen': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/fullscreen/plugin.min.0e315429.js',
+                'insertdatetime': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/insertdatetime/plugin.min.9cbdd4c2.js',
+                'media': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/media/plugin.min.111e5c52.js',
+                'nonbreaking': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/nonbreaking/plugin.min.22788c4d.js',
+                'noneditable': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/noneditable/plugin.min.3337c8dc.js',
+                'table': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/table/plugin.min.d767b59d.js',
+                'directionality': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/directionality/plugin.min.884572e8.js',
+                'template': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/template/plugin.min.33d727b7.js',
+                'textcolor': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/textcolor/plugin.min.c4dc7699.js',
+                'paste': 'https://betacssjs.chesscomfiles.com/bundles/app/js/vendor/tinymce/plugins/paste/plugin.min.4bd0c8a7.js',
+        
+      }
+    },
+    theme_options: {"browser_spellcheck":true,"branding":false,"plugins":["autolink chessdiagram imageuploader smileys media spellchecker noneditable textcolor link lists hr"],"menubar":false,"toolbar1":"chessdiagram imageuploader smileys media bold italic forecolor fontsizeselect bullist numlist hr link unlink","theme":"modern","width":"100%","height":100,"auto_convert_smileys":true,"smileys":[[{"shortcut":":X","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/angry.png","title":"angry"},{"shortcut":":-\/","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/meh.png","title":"meh"},{"shortcut":":|","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/frustrated.png","title":"frustrated"},{"shortcut":":)","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/happy.png","title":"happy"},{"shortcut":":D","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/grin.png","title":"grin"},{"shortcut":">:)","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/evil.png","title":"evil"},{"shortcut":":((","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/cry.png","title":"cry"},{"shortcut":":S","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/nervous.png","title":"nervous"},{"shortcut":":(","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/sad.png","title":"sad"},{"shortcut":":@","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/shock.png","title":"shock"},{"shortcut":":O","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/surprise.png","title":"surprise"},{"shortcut":";(","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/tear.png","title":"tear"},{"shortcut":":P","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/tongue.png","title":"tongue"},{"shortcut":";)","url":"\/bundles\/web\/images\/icons\/smileys\/1x\/wink.png","title":"wink"}],[{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/archive.png","title":"archive"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/articles.png","title":"articles"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/blitz.png","title":"blitz"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/blogs.png","title":"blogs"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/bullet.png","title":"bullet"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/castle.png","title":"castle"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/chessbook.png","title":"chessbook"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/clock.png","title":"clock"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/clubs.png","title":"clubs"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/coaches.png","title":"coaches"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/computer.png","title":"computer"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/daily.png","title":"daily"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/fork.png","title":"fork"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/videos.png","title":"videos"}],[{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/devices.png","title":"devices"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/diamond.png","title":"diamond"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/draw.png","title":"draw"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/explorer.png","title":"explorer"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/fish.png","title":"fish"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/forums.png","title":"forums"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/friends.png","title":"friends"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/gold.png","title":"gold"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/lessons.png","title":"lessons"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/live.png","title":"live"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/messages.png","title":"messages"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/news.png","title":"news"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/openings.png","title":"openings"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/peshka.png","title":"peshka"}],[{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/pin.png","title":"pin"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/platinum.png","title":"platinum"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/playhand.png","title":"playhand"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/resign.png","title":"resign"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/settings.png","title":"settings"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/skewer.png","title":"skewer"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/stats.png","title":"stats"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/tactics.png","title":"tactics"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/themes.png","title":"themes"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/thumbdown.png","title":"thumbdown"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/thumbup.png","title":"thumbup"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/tournaments.png","title":"tournaments"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/trophies.png","title":"trophies"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/votechess.png","title":"votechess"}],[{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/half.png","title":"half"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/0-0-0.png","title":"0-0-0"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/0-0.png","title":"0-0"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/chesspawn.png","title":"chesspawn"}],[{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/bp.png","title":"bp"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/bb.png","title":"bb"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/bn.png","title":"bn"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/br.png","title":"br"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/bq.png","title":"bq"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/bk.png","title":"bk"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/wp.png","title":"wp"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/wb.png","title":"wb"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/wn.png","title":"wn"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/wr.png","title":"wr"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/wq.png","title":"wq"},{"url":"\/bundles\/web\/images\/icons\/smileys\/1x\/wk.png","title":"wk"}]],"theme_advanced_toolbar_location":"top","theme_advanced_path":false,"theme_advanced_statusbar_location":"bottom","theme_advanced_resize_horizontal":false,"theme_advanced_resizing":true,"theme_advanced_resizing_use_cookie":false,"font_formats":"Apple System=-apple-system, BlinkMacSystemFont;Arial=arial,helvetica,sans-serif;Courier New=courier new,courier;Helvetica=helvetica;Tahoma=tahoma,arial,helvetica,sans-serif;Times New Roman=times new roman,times;Segoe UI=\"Segoe UI\";","relative_urls":false,"remove_script_host":false,"convert_urls":false,"content_css":"asset[bundles\/app\/css\/tinymce-content.client.css]","paste_webkit_styles":"all","fontsize_formats":"8px 10px 11px 12px 14px 18px 24px 36px"}
+  };
+
+
+  
+    window.chesscom = window.chesscom || {};
+    window.chesscom.hasAccess = window.chesscom.hasAccess || {};
+
+    window.chesscom.vsPersonalities = {
+      fen: '',
+      hasAccess: true,
+      moves: '',
+      workoutId: '',
+      hasChessExplanationEngineWasmAccess: false,
+      hasGetHintFromLinesAccess: true,
+    };
+  
+
+      
+      
+      
+  
+      
+    
+  
+  
+
+
+    
+    
+  
+         
+     
+
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+  
+  
+  
+
+  Download
