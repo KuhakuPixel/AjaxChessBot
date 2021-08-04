@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-namespace AjaxDynamicHtmlReader
+namespace AjaxChessBot
 {
     class MouseOperation
     {

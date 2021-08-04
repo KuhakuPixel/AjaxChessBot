@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 using System.Collections.Generic;
-using AjaxDynamicHtmlReader;
+using AjaxChessBot;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AjaxChessBotTest

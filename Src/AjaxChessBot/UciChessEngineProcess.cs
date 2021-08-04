@@ -4,7 +4,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Threading;
 using AjaxChessBotHelperLib;
-namespace AjaxDynamicHtmlReader
+namespace AjaxChessBot
 {
     public class UciChessEngineProcess
     {

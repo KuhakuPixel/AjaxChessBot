@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Net;
-namespace AjaxDynamicHtmlReader
+namespace AjaxChessBot
 {
 
     public class AjaxHtmlReader

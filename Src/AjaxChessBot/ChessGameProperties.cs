@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AjaxDynamicHtmlReader
+namespace AjaxChessBot
 {
     public class ChessGameProperties
     {

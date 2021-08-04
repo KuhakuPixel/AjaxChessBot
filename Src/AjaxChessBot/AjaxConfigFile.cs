@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
-namespace AjaxDynamicHtmlReader
+namespace AjaxChessBot
 {
     class AjaxConfigFile
     {

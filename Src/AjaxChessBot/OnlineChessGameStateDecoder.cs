@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AjaxChessBotHelperLib;
-namespace AjaxDynamicHtmlReader
+namespace AjaxChessBot
 {
     public static class OnlineChessGameStateDecoder
     {

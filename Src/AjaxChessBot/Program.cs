@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AjaxChessBotHelperLib;
-namespace AjaxDynamicHtmlReader
+namespace AjaxChessBot
 {
     class Program
     {
@@ -356,11 +356,11 @@ namespace AjaxDynamicHtmlReader
                     switch (playerPieceColor)
                     {
                         case ChessGameProperties.PieceColor.white:
-                            chessAlgebraicNotation = AjaxStringHelper.GetCharByAlphabetIndex(x) + (y + 1).ToString();
+                            chessAlgebraicNotation = AjaxStringHelper.AlphabetIndexToChar(x) + (y + 1).ToString();
                             break;
                         case ChessGameProperties.PieceColor.black:
                             //reverse the order for black because bottom left when playing black is h8
-                            chessAlgebraicNotation = AjaxStringHelper.GetCharByAlphabetIndex(7 - x) + (8 - y).ToString();
+                            chessAlgebraicNotation = AjaxStringHelper.AlphabetIndexToChar(7 - x) + (8 - y).ToString();
                             break;
                     }
                     chessBoardCoordinates.Add(chessAlgebraicNotation, coordinateIterator);

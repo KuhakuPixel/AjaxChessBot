@@ -89,7 +89,7 @@ namespace AjaxChessBotHelperLib
 
             return true;
         }
-        public static char GetCharByAlphabetIndex(int index, bool toUppercase = false)
+        public static char AlphabetIndexToChar(int index, bool toUppercase = false)
         {
             const string letters = "abcdefghijklmnopqrstuvwxyz";
 
@@ -101,6 +101,12 @@ namespace AjaxChessBotHelperLib
             {
                 return letters[index];
             }
+        }
+        public static int CharToAlphabetIndex(char char_)
+        {
+            return char.ToUpper(char_) - 64; 
+
+
         }
         public static List<string> SplitStringToChunk(string str, int lengthOfChunk, bool includeRemainder)
         {
