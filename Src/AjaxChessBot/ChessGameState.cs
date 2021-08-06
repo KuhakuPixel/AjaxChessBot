@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using AjaxChessBotHelperLib;
 namespace AjaxChessBot
 {
     public class ChessGameState
     {
       
-        private ChessGameProperties.PieceColor playerColor;
-        public ChessGameProperties.PieceColor PlayerColor { get => playerColor; }
+        private ChessProperty.PieceColor playerColor;
+        public ChessProperty.PieceColor PlayerColor { get => playerColor; }
         private string gameLink = "";
         private List<string> allGameMovesFen = new List<string>();
 
@@ -33,18 +33,18 @@ namespace AjaxChessBot
             allGameMovesFen = OnlineChessGameStateDecoder.DecodeLichessMove(gameHtmlCodes,OnlineChessGameStateDecoder.MoveNotation.fen);
         }
 
-        public ChessGameProperties.PieceColor GetCurrentTurn(string fenPosition)
+        public ChessProperty.PieceColor GetCurrentTurn(string fenPosition)
         {
             //example of fen string
             //rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1
             string turnCode = fenPosition.Split(' ')[1];
             if (turnCode == "b")
             {
-                return ChessGameProperties.PieceColor.black;
+                return ChessProperty.PieceColor.black;
             }
             else if (turnCode == "w")
             {
-                return ChessGameProperties.PieceColor.white;
+                return ChessProperty.PieceColor.white;
             }
             else
             {

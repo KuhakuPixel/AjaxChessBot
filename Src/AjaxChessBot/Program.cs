@@ -68,9 +68,9 @@ namespace AjaxChessBot
 
 
                     ajaxConfigFile.chessBoardCoordinatePlayingWhite = MapToIndividualChessCoordinates(bottomLeftCoordinates, topRightCoordinates,
-                        ChessGameProperties.PieceColor.white);
+                        ChessProperty.PieceColor.white);
                     ajaxConfigFile.chessBoardCoordinatePlayingBlack = MapToIndividualChessCoordinates(bottomLeftCoordinates, topRightCoordinates,
-                        ChessGameProperties.PieceColor.black);
+                        ChessProperty.PieceColor.black);
 
                 }
                 else if (command == "scan")
@@ -113,7 +113,7 @@ namespace AjaxChessBot
                             while (!Console.KeyAvailable)
                             {
                                 string currentMoves = chessGameState.GetCurrentMovesFen();
-                                ChessGameProperties.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
+                                ChessProperty.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
                                 //move 
                                 if (currentTurn == chessGameState.PlayerColor && currentMoves != lastMoves)
                                 {
@@ -136,7 +136,7 @@ namespace AjaxChessBot
                                     //move  the piece
                                     switch (chessGameState.PlayerColor)
                                     {
-                                        case ChessGameProperties.PieceColor.white:
+                                        case ChessProperty.PieceColor.white:
                                             {
                                                 MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[0]];
                                                 MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[1]];
@@ -146,7 +146,7 @@ namespace AjaxChessBot
                                             }
 
 
-                                        case ChessGameProperties.PieceColor.black:
+                                        case ChessProperty.PieceColor.black:
                                             {
                                                 MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[0]];
                                                 MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[1]];
@@ -328,7 +328,7 @@ namespace AjaxChessBot
             }
         }
         public static Dictionary<string, MouseOperation.MousePoint> MapToIndividualChessCoordinates
-            (MouseOperation.MousePoint bottomLeftPoint, MouseOperation.MousePoint topRightPoint, ChessGameProperties.PieceColor playerPieceColor)
+            (MouseOperation.MousePoint bottomLeftPoint, MouseOperation.MousePoint topRightPoint, ChessProperty.PieceColor playerPieceColor)
         {
 
             //note the center is at top left and y is max at bottom and 0 at top
@@ -355,10 +355,10 @@ namespace AjaxChessBot
                     string chessAlgebraicNotation = "";
                     switch (playerPieceColor)
                     {
-                        case ChessGameProperties.PieceColor.white:
+                        case ChessProperty.PieceColor.white:
                             chessAlgebraicNotation = AjaxStringHelper.AlphabetIndexToChar(x) + (y + 1).ToString();
                             break;
-                        case ChessGameProperties.PieceColor.black:
+                        case ChessProperty.PieceColor.black:
                             //reverse the order for black because bottom left when playing black is h8
                             chessAlgebraicNotation = AjaxStringHelper.AlphabetIndexToChar(7 - x) + (8 - y).ToString();
                             break;

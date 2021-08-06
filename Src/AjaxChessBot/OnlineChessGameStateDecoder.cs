@@ -92,15 +92,15 @@ namespace AjaxChessBot
             return moves;
 
         }
-        public static ChessGameProperties.PieceColor DecodeLichessPlayerColor(List<string> htmlCodes)
+        public static ChessProperty.PieceColor DecodeLichessPlayerColor(List<string> htmlCodes)
         {
             
             string jsScript = OnlineChessGameStateDecoder.GetJavaScriptFromLichessHtmlCode(htmlCodes);
             return DecodeLichessPlayerColorFromJavaScript(jsScript);
         }
-        public static ChessGameProperties.PieceColor DecodeLichessPlayerColorFromJavaScript(string jsScript)
+        public static ChessProperty.PieceColor DecodeLichessPlayerColorFromJavaScript(string jsScript)
         {
-            ChessGameProperties.PieceColor playerColor=ChessGameProperties.PieceColor.white;
+            ChessProperty.PieceColor playerColor=ChessProperty.PieceColor.white;
             //the color of the player is found on ("player":"black") when loading javascript
             for (int i = 0; i < jsScript.Length; i++)
             {
@@ -125,11 +125,11 @@ namespace AjaxChessBot
 
                         if (playerColorString.ToLower() == "black")
                         {
-                            playerColor = ChessGameProperties.PieceColor.black;
+                            playerColor = ChessProperty.PieceColor.black;
                         }
                         else if (playerColorString.ToLower() == "white")
                         {
-                            playerColor = ChessGameProperties.PieceColor.white;
+                            playerColor = ChessProperty.PieceColor.white;
                         }
                         else
                         {

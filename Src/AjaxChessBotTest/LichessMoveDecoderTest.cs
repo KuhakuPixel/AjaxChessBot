@@ -4,7 +4,7 @@ using Xunit;
 using System.Collections.Generic;
 using AjaxChessBot;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using AjaxChessBotHelperLib;
 namespace AjaxChessBotTest
 {
     public class LichessMoveDecoderTest
@@ -58,16 +58,16 @@ namespace AjaxChessBotTest
 
         }
         [Theory]
-        [InlineData("whatever  things i hate \"player\":\"white\"", ChessGameProperties.PieceColor.white)]
-        [InlineData("whatever \"player\":\"black\" things i hate ", ChessGameProperties.PieceColor.black)]
-        [InlineData("whatever Dirty Data bla bla bla< \"player\":\"black\"> things i hate ", ChessGameProperties.PieceColor.black)]
-        [InlineData("<\"player\":\"white\">whatever Dirty Data bla bla bla things i hate ", ChessGameProperties.PieceColor.white)]
-        public void DecodeLichessPlayerColor1(string jsScript,ChessGameProperties.PieceColor expected)
+        [InlineData("whatever  things i hate \"player\":\"white\"", ChessProperty.PieceColor.white)]
+        [InlineData("whatever \"player\":\"black\" things i hate ", ChessProperty.PieceColor.black)]
+        [InlineData("whatever Dirty Data bla bla bla< \"player\":\"black\"> things i hate ", ChessProperty.PieceColor.black)]
+        [InlineData("<\"player\":\"white\">whatever Dirty Data bla bla bla things i hate ", ChessProperty.PieceColor.white)]
+        public void DecodeLichessPlayerColor1(string jsScript,ChessProperty.PieceColor expected)
         {
 
             
 
-            ChessGameProperties.PieceColor actual = OnlineChessGameStateDecoder.DecodeLichessPlayerColorFromJavaScript(jsScript);
+            ChessProperty.PieceColor actual = OnlineChessGameStateDecoder.DecodeLichessPlayerColorFromJavaScript(jsScript);
             
 
             Xunit.Assert.Equal(expected, actual);
