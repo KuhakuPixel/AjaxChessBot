@@ -20,6 +20,19 @@ namespace AjaxChessBotTest
 
 
         }
+
+        [Theory]
+        [InlineData("O-O-O","-",2)]
+        [InlineData("O-O-O", "O", 3)]
+        [InlineData("O      -   O   -   O", "O", 3)]
+        [InlineData("NicholasPixel", "i", 2)]
+        public void CountOccuranceTest(string str,string strToCount, int expected)
+        {
+            int actual=str.CountOccurance(strToCount);
+            Xunit.Assert.Equal(expected, actual);
+
+
+        }
         [Theory]
         [InlineData("uci:e2e4", 0, "uci:", true)]
         [InlineData("blabla uci:e2e4", 7, "uci:", true)]

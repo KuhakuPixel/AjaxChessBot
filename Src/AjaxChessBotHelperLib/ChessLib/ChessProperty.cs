@@ -1,17 +1,28 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AjaxChessBotHelperLib
 {
     public class ChessProperty
     {
-        public class SquareLocation
+        public class ExplicitMove
+        {
+            public SquareLocation from;
+            public SquareLocation to;
+
+            public ExplicitMove(SquareLocation from, SquareLocation to)
+            {
+                this.from = from;
+                this.to = to;
+            }
+
+           
+        }
+        public class SquareLocation:IEquatable<SquareLocation>
         {
             private int rankNumber;
             private char fileName;
-             public int RankNumber { get => rankNumber;  }
+            public int RankNumber { get => rankNumber;  }
             public char FileName { get => fileName; }
             public SquareLocation(char file, int rank)
             {
@@ -52,6 +63,20 @@ namespace AjaxChessBotHelperLib
             public string GetString()
             {
                 return fileName.ToString() + rankNumber.ToString();
+            }
+
+            public override int GetHashCode()
+            {
+                return rankNumber.GetHashCode()+fileName.GetHashCode();
+            }
+            public override bool Equals(object obj)
+            {
+                return Equals(obj as SquareLocation);
+            }
+            public bool Equals(SquareLocation other)
+            {
+                return other.fileName == this.fileName && other.rankNumber == this.rankNumber;
+
             }
         }
         

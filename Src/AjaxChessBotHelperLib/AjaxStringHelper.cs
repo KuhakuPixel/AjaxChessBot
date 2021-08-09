@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AjaxChessBotHelperLib
 {
-    public class AjaxStringHelper
+    public static class AjaxStringHelper
     {
         /// <summary>
         /// Will return the first occurance of element that are between charStart and charEnd
@@ -136,6 +136,17 @@ namespace AjaxChessBotHelperLib
                 splittedStrings.Add(tempStr);
             }
             return splittedStrings;
+        }
+        public static int CountOccurance(this string str,string value)
+        {
+            if (!str.Contains(value))
+            {
+                return 0;
+            }
+            else
+            {
+                return str.Length - str.Replace(value, "").Length;
+            }
         }
     }
 }
