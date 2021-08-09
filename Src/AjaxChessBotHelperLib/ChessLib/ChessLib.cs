@@ -171,12 +171,32 @@ namespace AjaxChessBotHelperLib
                     pieceNameToMove.Add(ChessProperty.PieceName.king);
                     pieceNameToMove.Add(ChessProperty.PieceName.rook);
                 }
-                else
+                else if(moveNotation.Length==2)
                 {
-                    pieceNameToMove.Add(ChessProperty.PieceName.pawn);
+                    if (char.IsLetter(moveNotation[0]) && char.IsNumber(moveNotation[1]))
+                    {
+                        pieceNameToMove.Add(ChessProperty.PieceName.pawn);
+                    }
+                  
+                }
+                else if (moveNotation.Length == 1)
+                {
+                    if ("abcdefgh".Contains(moveNotation))
+                    {
+                        pieceNameToMove.Add(ChessProperty.PieceName.pawn);
+                    }
                 }
             }
-            return pieceNameToMove;
+
+            if (pieceNameToMove.Count > 0)
+            {
+                return pieceNameToMove;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid move notation : " + moveNotation);
+            }
+           
 
         }
 
