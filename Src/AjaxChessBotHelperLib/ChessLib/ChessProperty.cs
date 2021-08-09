@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,40 +11,78 @@ namespace AjaxChessBotHelperLib
         {
             private int rankNumber;
             private char fileName;
-
-            public SquareLocation(char fileName, int rankNumber)
+             public int RankNumber { get => rankNumber;  }
+            public char FileName { get => fileName; }
+            public SquareLocation(char file, int rank)
             {
+                if (rank > 8 || rank < 1)
+                {
+                    throw new ArgumentException("rankNumber is invalid:" + rank.ToString());
+                }
+                if (AjaxStringHelper.CharToAlphabetIndex(file) > 8 || AjaxStringHelper.CharToAlphabetIndex(file) < 1)
+                {
+                    throw new ArgumentException("fileName is invalid:" + rank.ToString());
+                }
+                this.rankNumber = rank;
+                this.fileName = file;
+            }
+
+            public SquareLocation(char file, char rank)
+            {
+                if (!char.IsDigit(rank))
+                {
+                    throw new ArgumentException("rankNumber is not a number:" + rank.ToString());
+                }
+                int rankNumber = int.Parse(rank.ToString());
                 if (rankNumber > 8 || rankNumber < 1)
                 {
                     throw new ArgumentException("rankNumber is invalid:" + rankNumber.ToString());
                 }
-                if (AjaxStringHelper.CharToAlphabetIndex(fileName) > 8 || AjaxStringHelper.CharToAlphabetIndex(fileName) < 1)
+                if (AjaxStringHelper.CharToAlphabetIndex(file) > 8 || AjaxStringHelper.CharToAlphabetIndex(file) < 1)
                 {
                     throw new ArgumentException("fileName is invalid:" + rankNumber.ToString());
                 }
+
                 this.rankNumber = rankNumber;
-                this.fileName = fileName;
+                this.fileName = file;
             }
+
+           
+
             public string GetString()
             {
                 return fileName.ToString() + rankNumber.ToString();
             }
         }
         
-        public class ChessPiece
+        public class ChessPiece:IEquatable<ChessPiece>
         {
-            PieceColor pieceColor;
+            private PieceColor pieceColor;
+
+
+            private PieceName pieceName;
+
             public PieceColor PieceColor { get => pieceColor; }
-        
-            PieceName pieceName;
-            public PieceName PieceName { get => pieceName}
+            public PieceName PieceName { get => pieceName; }
+
             public ChessPiece(PieceColor pieceColor, PieceName pieceName)
             {
                 this.pieceColor = pieceColor;
                 this.pieceName = pieceName;
             }
-
-          
+            public override int GetHashCode()
+            {
+                return pieceColor.GetHashCode()+pieceName.GetHashCode();
+            }
+            public override bool Equals(object obj)
+            {
+                return Equals(obj as ChessPiece);
+            }
+            public bool Equals(ChessPiece other)
+            {
+                return other.pieceColor == this.pieceColor && other.pieceName == this.pieceName;
+                
+            }
         }
 
         public enum PieceColor

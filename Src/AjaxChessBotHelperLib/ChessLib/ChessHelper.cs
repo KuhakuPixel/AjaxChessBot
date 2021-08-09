@@ -67,6 +67,9 @@ namespace AjaxChessBotHelperLib
                 case 'k':
                     pieceName = ChessProperty.PieceName.king;
                     break;
+                case 'b':
+                    pieceName = ChessProperty.PieceName.bishop;
+                    break;
                 case 'q':
                     pieceName = ChessProperty.PieceName.queen;
                     break;
@@ -83,7 +86,7 @@ namespace AjaxChessBotHelperLib
                     pieceName = ChessProperty.PieceName.empty;
                     break;
                 default:
-                    throw new ArgumentException("invalid  abbreviatedName of the chess piece : "+pieceName);
+                    throw new ArgumentException("invalid  abbreviatedName of the chess piece : "+abbreviatedName);
                  
             }
             return new ChessProperty.ChessPiece(pieceColor, pieceName);
