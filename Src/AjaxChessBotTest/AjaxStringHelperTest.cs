@@ -64,8 +64,22 @@ namespace AjaxChessBotTest
             CollectionAssert.AreEqual(expected, actual);
 
         }
-
-
+        [Fact]
+        public void RemoveCharsTest0()
+        {
+            string str = "PaimonIsTheBest";
+            string actual=str.RemoveChars(new char[] {'a','I','z'});
+            string expected = "PimonsTheBest";
+            Xunit.Assert.Equal(expected,actual);
+        }
+        [Fact]
+        public void RemoveCharsTest1()
+        {
+            string str = "ILOVEMinecraft";
+            string actual = str.RemoveChars(new char[] {'e','1','a'});
+            string expected = "ILOVEMincrft";
+            Xunit.Assert.Equal(expected, actual);
+        }
     }
 
 }

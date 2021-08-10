@@ -8,6 +8,8 @@ namespace AjaxChessBotHelperLib
     public class ChessLib
     {
         static readonly char[] piecesLetters = new char[] { 'K', 'Q', 'B', 'R', 'N', 'P' };
+        static readonly char[] specialNotationSymbol = new char[] { '+', '#', '!' };
+
         ///note:if chess board class != board flipped then it is white
         public static string MoveListToFEN(List<string> moveList)
         {
@@ -48,8 +50,17 @@ namespace AjaxChessBotHelperLib
 
 
         }
-
-
+        
+        private static bool IsKingSideCastling(string moveNotation)
+        {
+            return (moveNotation.CountOccurance("0") == 2 && moveNotation.CountOccurance("-") == 1 ||
+                   moveNotation.CountOccurance("O") == 2 && moveNotation.CountOccurance("-") == 1);
+        }
+        private static bool IsQueenSideCastling(string moveNotation)
+        {
+            return (moveNotation.CountOccurance("0") == 3 && moveNotation.CountOccurance("-") == 2 ||
+                   moveNotation.CountOccurance("O") == 3 && moveNotation.CountOccurance("-") == 2);
+        }
         public static ChessProperty.ChessPiece GetPieceFromAbbreviation(char abbreviatedName)
         {
             ChessProperty.PieceColor pieceColor = ChessProperty.PieceColor.white;
@@ -127,20 +138,16 @@ namespace AjaxChessBotHelperLib
             return pieceName;
         }
 
-        public static List<ChessProperty.PieceName> GetPieceToMoveFromAlgebraicNotation(string moveNotation)
+        public static List<ChessProperty.ChessPiece> GetPieceToMove(string moveNotation,ChessProperty.PieceColor colorToMove)
         {
-            List<ChessProperty.PieceName> pieceNameToMove = new List<ChessProperty.PieceName>();
+            List<ChessProperty.ChessPiece> piecesToMove = new List<ChessProperty.ChessPiece>();
 
 
-            //remove + (for check notation) because it won't help to determine what piece will move
-            if (moveNotation.Contains("+"))
-            {
-                moveNotation.Replace("+", "");
-            }
+            moveNotation = moveNotation.RemoveChars(specialNotationSymbol);
             //when there is capture notation it is actually not important to determine the moving piece
-            else if (moveNotation.Contains("x"))
+            if (moveNotation.Contains("x"))
             {
-                if (moveNotation.Split('x').Length == 2)
+                if (moveNotation.Split('x').Length>=1)
                 {
                     moveNotation = moveNotation.Split('x')[0];
                 }
@@ -152,30 +159,30 @@ namespace AjaxChessBotHelperLib
                 
             }
             //check if pieces move except castling and moveNotation that doesnt have 'P'
+            
             for (int i = 0; i < piecesLetters.Length; i++)
             {
                 if (moveNotation.Contains(piecesLetters[i].ToString()))
                 {
-                    pieceNameToMove.Add(GetPieceNameFromAbbreviation(piecesLetters[i]));
+                    ChessProperty.PieceName pieceName = GetPieceNameFromAbbreviation(piecesLetters[i]);
+                    piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove,pieceName));
                     break;
                 }
             }
             //check if a castle or a pawnMove that omit p from its notation(usual convention)
-            if (pieceNameToMove.Count == 0)
+            if (piecesToMove.Count == 0)
             {
-                //castling
-                if (moveNotation.CountOccurance("0") >= 2 && moveNotation.CountOccurance("-") >= 1 ||
-                    moveNotation.CountOccurance("O") >= 2 && moveNotation.CountOccurance("-") >= 1
-                    )
+                
+                if (IsKingSideCastling(moveNotation)||IsQueenSideCastling(moveNotation))
                 {
-                    pieceNameToMove.Add(ChessProperty.PieceName.king);
-                    pieceNameToMove.Add(ChessProperty.PieceName.rook);
+                    piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove,ChessProperty.PieceName.king));
+                    piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove, ChessProperty.PieceName.rook));
                 }
                 else if(moveNotation.Length==2)
                 {
                     if (char.IsLetter(moveNotation[0]) && char.IsNumber(moveNotation[1]))
                     {
-                        pieceNameToMove.Add(ChessProperty.PieceName.pawn);
+                        piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove, ChessProperty.PieceName.pawn));
                     }
                   
                 }
@@ -183,14 +190,14 @@ namespace AjaxChessBotHelperLib
                 {
                     if ("abcdefgh".Contains(moveNotation))
                     {
-                        pieceNameToMove.Add(ChessProperty.PieceName.pawn);
+                        piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove, ChessProperty.PieceName.pawn));
                     }
                 }
             }
 
-            if (pieceNameToMove.Count > 0)
+            if (piecesToMove.Count > 0)
             {
-                return pieceNameToMove;
+                return piecesToMove;
             }
             else
             {
@@ -200,5 +207,59 @@ namespace AjaxChessBotHelperLib
 
         }
 
+        public static List<ChessProperty.SquareLocation> GetDestinationSquare(string moveNotation, ChessProperty.PieceColor colorToMove)
+        {
+            moveNotation =moveNotation.RemoveChars(specialNotationSymbol);
+            
+            List<ChessProperty.SquareLocation> destinationSquares = new List<ChessProperty.SquareLocation>();
+            if (moveNotation.Length>=2)
+            {
+
+                if (char.IsLetter(moveNotation[moveNotation.Length-2])
+                    &&char.IsNumber(moveNotation[moveNotation.Length -1]))
+                {
+                    //for all notation except castling the last 2 notation will always be the destination square
+                    destinationSquares.Add(
+                        new ChessProperty.SquareLocation(
+                            moveNotation[moveNotation.Length - 2], 
+                            moveNotation[moveNotation.Length - 1]));
+                }
+                else if (IsKingSideCastling(moveNotation))
+                {
+                    switch (colorToMove)
+                    {
+                        case ChessProperty.PieceColor.white:
+                            {
+                                destinationSquares.Add(new ChessProperty.SquareLocation('g',1));
+                                destinationSquares.Add(new ChessProperty.SquareLocation('f', 1));
+                                break;
+                            }
+                          
+                        case ChessProperty.PieceColor.black:
+                            destinationSquares.Add(new ChessProperty.SquareLocation('g', 8));
+                            destinationSquares.Add(new ChessProperty.SquareLocation('f', 8));
+                            break;
+                    }
+                }
+                else if (IsQueenSideCastling(moveNotation))
+                {
+                    switch (colorToMove)
+                    {
+                        case ChessProperty.PieceColor.white:
+                            {
+                                destinationSquares.Add(new ChessProperty.SquareLocation('c', 1));
+                                destinationSquares.Add(new ChessProperty.SquareLocation('d', 1));
+                                break;
+                            }
+
+                        case ChessProperty.PieceColor.black:
+                            destinationSquares.Add(new ChessProperty.SquareLocation('c', 8));
+                            destinationSquares.Add(new ChessProperty.SquareLocation('d', 8));
+                            break;
+                    }
+                }
+            }
+            return destinationSquares;
+        }
     }
 }

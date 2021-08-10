@@ -148,5 +148,23 @@ namespace AjaxChessBotHelperLib
                 return str.Length - str.Replace(value, "").Length;
             }
         }
+        /// <summary>
+        /// Will ignore the character that doesn't exist in the string
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="charsToRemove"></param>
+        /// <returns></returns>
+        public static string RemoveChars(this string str,char[] charsToRemove)
+        {
+        
+            for (int i = 0; i < charsToRemove.Length; i++)
+            {
+                if (str.Contains(charsToRemove[i].ToString()))
+                {
+                    str=str.Replace(charsToRemove[i].ToString(), "");
+                }
+            }
+            return str;
+        }
     }
 }

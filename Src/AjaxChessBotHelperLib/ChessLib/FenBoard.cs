@@ -63,76 +63,88 @@ namespace AjaxChessBotHelperLib
         /// <returns></returns>
         public ChessProperty.ExplicitMove ConvertMoveToExplicitAlgebraicNotation(string moveNotation, ChessProperty.PieceColor colorToMove)
         {
-            List<char> nonPawnPiecesAlgbraicNotation = new List<char> { 'K', 'Q', 'B', 'R', 'N' };
-            ChessProperty.ExplicitMove explicitMove=new ChessProperty.ExplicitMove(
-                new ChessProperty.SquareLocation('e',2),
+            ChessProperty.ExplicitMove explicitMove = new ChessProperty.ExplicitMove(
+                new ChessProperty.SquareLocation('e', 2),
                 new ChessProperty.SquareLocation('e', 4)
                 );
-            string fromPosition = "";
-            string toPosition = "";
+       
             Dictionary<ChessProperty.ChessPiece, List<ChessProperty.SquareLocation>> piecesLocations = GetPiecesLocation();
 
+            List<ChessProperty.ChessPiece> piecesToMove = ChessLib.GetPieceToMove(moveNotation,colorToMove);
 
-            //pawn move forward
-            if (moveNotation.Length == 2)
+            if (piecesToMove.Count == 1)
             {
-
-                ChessProperty.SquareLocation squareLocationTo = new ChessProperty.SquareLocation(moveNotation[0], moveNotation[1]);
-               
-                if (colorToMove == ChessProperty.PieceColor.white)
+                if (piecesToMove[0].PieceName == ChessProperty.PieceName.pawn)
                 {
-                    if (squareLocationTo.RankNumber == 4)
+                    ChessProperty.SquareLocation destinationSquare = new ChessProperty.SquareLocation(moveNotation[0], moveNotation[1]);
+
+                    if (colorToMove == ChessProperty.PieceColor.white)
                     {
-                        ChessProperty.ChessPiece whitePawn = new ChessProperty.ChessPiece(ChessProperty.PieceColor.white, ChessProperty.PieceName.pawn);
-                        List<ChessProperty.SquareLocation> whitePawnsLocations = piecesLocations[whitePawn];
+                        if (destinationSquare.RankNumber == 4)
+                        {
+                          
+                            List<ChessProperty.SquareLocation> whitePawnsLocations = piecesLocations[piecesToMove[0]];
+
+
+                            if (whitePawnsLocations.Contains(new ChessProperty.SquareLocation(destinationSquare.FileName, 3)))
+                            {
+                                explicitMove = new ChessProperty.ExplicitMove(
+                                    new ChessProperty.SquareLocation(destinationSquare.FileName, 3),
+                                    destinationSquare
+                                    );
+                            }
+                            else if (whitePawnsLocations.Contains(new ChessProperty.SquareLocation(destinationSquare.FileName, 2)))
+                            {
+                                explicitMove = new ChessProperty.ExplicitMove(
+                                    new ChessProperty.SquareLocation(destinationSquare.FileName, 2),
+                                    destinationSquare);
+                            }
+                            else
+                            {
+                                throw new ArgumentException("No pawn to move: " + moveNotation);
+                            }
+
+                        }
+                    }
+                    else if (colorToMove == ChessProperty.PieceColor.black)
+                    {
                         
+                        if (destinationSquare.RankNumber == 5)
+                        {
+                            List<ChessProperty.SquareLocation> blackPawnLocations = piecesLocations[piecesToMove[0]];
 
-                        if (whitePawnsLocations.Contains(new ChessProperty.SquareLocation(squareLocationTo.FileName, 3)))
-                        {
-                            explicitMove = new ChessProperty.ExplicitMove(
-                                new ChessProperty.SquareLocation(squareLocationTo.FileName, 3),
-                                squareLocationTo);
-                        }
-                        else if (whitePawnsLocations.Contains(new ChessProperty.SquareLocation(squareLocationTo.FileName, 2)))
-                        {
-                            explicitMove = new ChessProperty.ExplicitMove(
-                                new ChessProperty.SquareLocation(squareLocationTo.FileName, 2),
-                                squareLocationTo);
-                        }
-                        else
-                        {
-                            throw new ArgumentException("No pawn to move: "+moveNotation);
-                        }
 
+                            if (blackPawnLocations.Contains(new ChessProperty.SquareLocation(destinationSquare.FileName, 6)))
+                            {
+                                explicitMove = new ChessProperty.ExplicitMove(
+                                    new ChessProperty.SquareLocation(destinationSquare.FileName, 6),
+                                    destinationSquare);
+                            }
+                            else if (blackPawnLocations.Contains(new ChessProperty.SquareLocation(destinationSquare.FileName, 7)))
+                            {
+                                explicitMove = new ChessProperty.ExplicitMove(
+                                    new ChessProperty.SquareLocation(destinationSquare.FileName, 7),
+                                    destinationSquare);
+                            }
+                            else
+                            {
+                                throw new ArgumentException("No pawn to move: " + moveNotation);
+                            }
+                        }
                     }
                 }
-                else if (colorToMove == ChessProperty.PieceColor.black)
+                
+                else if (piecesToMove[0].PieceName == ChessProperty.PieceName.knight)
                 {
-                    ChessProperty.ChessPiece blackPawn = new ChessProperty.ChessPiece(ChessProperty.PieceColor.black, ChessProperty.PieceName.pawn);
-                    if (squareLocationTo.RankNumber == 5)
-                    {
-                        List<ChessProperty.SquareLocation> blackPawnLocations = piecesLocations[blackPawn];
 
-
-                        if (blackPawnLocations.Contains(new ChessProperty.SquareLocation(squareLocationTo.FileName, 6)))
-                        {
-                            explicitMove = new ChessProperty.ExplicitMove(
-                                new ChessProperty.SquareLocation(squareLocationTo.FileName, 6),
-                                squareLocationTo);
-                        }
-                        else if (blackPawnLocations.Contains(new ChessProperty.SquareLocation(squareLocationTo.FileName, 7)))
-                        {
-                            explicitMove = new ChessProperty.ExplicitMove(
-                                new ChessProperty.SquareLocation(squareLocationTo.FileName, 7),
-                                squareLocationTo);
-                        }
-                        else
-                        {
-                            throw new ArgumentException("No pawn to move: " + moveNotation);
-                        }
-                    }
                 }
             }
+            //castle
+            else if (piecesToMove.Count == 2)
+            {
+
+            }
+           
 
 
 
