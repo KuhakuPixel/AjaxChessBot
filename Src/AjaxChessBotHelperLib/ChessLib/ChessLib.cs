@@ -50,7 +50,125 @@ namespace AjaxChessBotHelperLib
 
 
         }
-        
+
+        public static List<ChessProperty.SquareLocation> GetAvailablePieceToMove(
+             Dictionary<ChessProperty.ChessPiece, List<ChessProperty.SquareLocation>> everyPiecesLocations,
+             ChessProperty.SquareLocation destinationSquare,
+             ChessProperty.ChessPiece pieceToMove
+             )
+        {
+            var validPieceToMoveLocation = new List<ChessProperty.SquareLocation>();
+
+            if (everyPiecesLocations.ContainsKey(pieceToMove))
+            {
+                List<ChessProperty.SquareLocation> pieceToMoveLocations = everyPiecesLocations[pieceToMove];
+
+                for (int i = 0; i < pieceToMoveLocations.Count; i++)
+                {
+
+                    //validating location
+                    int dx = destinationSquare.FileName - pieceToMoveLocations[i].FileName;
+                    int dy = destinationSquare.RankNumber - pieceToMoveLocations[i].RankNumber;
+                    int absolute_dx = Math.Abs(dx);
+                    int absolute_dy = Math.Abs(dy);
+                    switch (pieceToMove.PieceName)
+                    {
+                        case ChessProperty.PieceName.rook:
+                            //horizontal or vertical
+                            if (dx == 0 && absolute_dy > 0 || dy == 0 && absolute_dx > 0)
+                            {
+                                validPieceToMoveLocation.Add(pieceToMoveLocations[i]);
+                            }
+                            break;
+                        case ChessProperty.PieceName.knight:
+                            //L movement
+                            if ((absolute_dx == 1 && absolute_dy == 2) || (absolute_dx == 2 && absolute_dy == 1))
+                            {
+                                validPieceToMoveLocation.Add(pieceToMoveLocations[i]);
+                            }
+                            break;
+                        case ChessProperty.PieceName.bishop:
+                            //dioganlly
+                            if (dx == dy && absolute_dx > 0 && absolute_dy > 0)
+                            {
+                                validPieceToMoveLocation.Add(pieceToMoveLocations[i]);
+                            }
+                            break;
+
+                        case ChessProperty.PieceName.queen:
+                            //dioganlly
+                            if (
+                                //move like rook
+                                (dx == 0 && absolute_dy > 0 || dy == 0 && absolute_dx > 0) ||
+                                 //move like bishop
+                                 (dx == dy && absolute_dx > 0 && absolute_dy > 0)
+                                )
+                            {
+                                validPieceToMoveLocation.Add(pieceToMoveLocations[i]);
+                            }
+
+                            break;
+                        case ChessProperty.PieceName.pawn:
+
+                            if (absolute_dx == 0)
+                            {
+                                //priotize the pawn in front first rather than the pawn in the back 
+                                //for example in the starting position pawn can go forward 2 squares
+                                //problem arises if there is white pawn on e2 and e3 ,if a pawn need to go to e4 then it must be the pawn on e3
+
+                                if (pieceToMove.PieceColor == ChessProperty.PieceColor.white)
+                                {
+                                    if (dy == 1)
+                                    {
+                                        //priotize the pawn on the front rather than on the back
+                                        if (pieceToMoveLocations.Count > 0)
+                                            pieceToMoveLocations.Clear();
+                                        pieceToMoveLocations.Add(pieceToMoveLocations[i]);
+
+                                    }
+                                    else if (dy == 2)
+                                    {
+                                        //dont overwrite if already found a pawn in front
+                                        if (pieceToMoveLocations.Count == 0)
+                                            pieceToMoveLocations.Add(pieceToMoveLocations[i]);
+
+                                    }
+                                }
+                                else if (pieceToMove.PieceColor == ChessProperty.PieceColor.black)
+                                {
+                                    if (dy == -1)
+                                    {
+                                        //priotize the pawn on the front rather than on the back
+                                        if (pieceToMoveLocations.Count > 0)
+                                            pieceToMoveLocations.Clear();
+                                        pieceToMoveLocations.Add(pieceToMoveLocations[i]);
+
+                                    }
+                                    else if (dy == -2)
+                                    {
+                                        //dont overwrite if already found a pawn in front
+                                        if (pieceToMoveLocations.Count == 0)
+                                            pieceToMoveLocations.Add(pieceToMoveLocations[i]);
+
+                                    }
+                                }
+
+
+                            }
+
+
+
+                            break;
+
+                    }
+
+                }
+
+            }
+
+
+            return validPieceToMoveLocation;
+        }
         private static bool IsKingSideCastling(string moveNotation)
         {
             return (moveNotation.CountOccurance("0") == 2 && moveNotation.CountOccurance("-") == 1 ||
@@ -138,7 +256,7 @@ namespace AjaxChessBotHelperLib
             return pieceName;
         }
 
-        public static List<ChessProperty.ChessPiece> GetPieceToMove(string moveNotation,ChessProperty.PieceColor colorToMove)
+        public static List<ChessProperty.ChessPiece> GetPieceToMove(string moveNotation, ChessProperty.PieceColor colorToMove)
         {
             List<ChessProperty.ChessPiece> piecesToMove = new List<ChessProperty.ChessPiece>();
 
@@ -147,44 +265,44 @@ namespace AjaxChessBotHelperLib
             //when there is capture notation it is actually not important to determine the moving piece
             if (moveNotation.Contains("x"))
             {
-                if (moveNotation.Split('x').Length>=1)
+                if (moveNotation.Split('x').Length >= 1)
                 {
                     moveNotation = moveNotation.Split('x')[0];
                 }
                 else
                 {
-                    throw new ArgumentException("invalid move notation :" +moveNotation);
+                    throw new ArgumentException("invalid move notation :" + moveNotation);
                 }
-             
-                
+
+
             }
             //check if pieces move except castling and moveNotation that doesnt have 'P'
-            
+
             for (int i = 0; i < piecesLetters.Length; i++)
             {
                 if (moveNotation.Contains(piecesLetters[i].ToString()))
                 {
                     ChessProperty.PieceName pieceName = GetPieceNameFromAbbreviation(piecesLetters[i]);
-                    piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove,pieceName));
+                    piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove, pieceName));
                     break;
                 }
             }
             //check if a castle or a pawnMove that omit p from its notation(usual convention)
             if (piecesToMove.Count == 0)
             {
-                
-                if (IsKingSideCastling(moveNotation)||IsQueenSideCastling(moveNotation))
+
+                if (IsKingSideCastling(moveNotation) || IsQueenSideCastling(moveNotation))
                 {
-                    piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove,ChessProperty.PieceName.king));
+                    piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove, ChessProperty.PieceName.king));
                     piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove, ChessProperty.PieceName.rook));
                 }
-                else if(moveNotation.Length==2)
+                else if (moveNotation.Length == 2)
                 {
                     if (char.IsLetter(moveNotation[0]) && char.IsNumber(moveNotation[1]))
                     {
                         piecesToMove.Add(new ChessProperty.ChessPiece(colorToMove, ChessProperty.PieceName.pawn));
                     }
-                  
+
                 }
                 else if (moveNotation.Length == 1)
                 {
@@ -203,25 +321,25 @@ namespace AjaxChessBotHelperLib
             {
                 throw new ArgumentException("Invalid move notation : " + moveNotation);
             }
-           
+
 
         }
 
         public static List<ChessProperty.SquareLocation> GetDestinationSquare(string moveNotation, ChessProperty.PieceColor colorToMove)
         {
-            moveNotation =moveNotation.RemoveChars(specialNotationSymbol);
-            
+            moveNotation = moveNotation.RemoveChars(specialNotationSymbol);
+
             List<ChessProperty.SquareLocation> destinationSquares = new List<ChessProperty.SquareLocation>();
-            if (moveNotation.Length>=2)
+            if (moveNotation.Length >= 2)
             {
 
-                if (char.IsLetter(moveNotation[moveNotation.Length-2])
-                    &&char.IsNumber(moveNotation[moveNotation.Length -1]))
+                if (char.IsLetter(moveNotation[moveNotation.Length - 2])
+                    && char.IsNumber(moveNotation[moveNotation.Length - 1]))
                 {
                     //for all notation except castling the last 2 notation will always be the destination square
                     destinationSquares.Add(
                         new ChessProperty.SquareLocation(
-                            moveNotation[moveNotation.Length - 2], 
+                            moveNotation[moveNotation.Length - 2],
                             moveNotation[moveNotation.Length - 1]));
                 }
                 else if (IsKingSideCastling(moveNotation))
@@ -230,11 +348,11 @@ namespace AjaxChessBotHelperLib
                     {
                         case ChessProperty.PieceColor.white:
                             {
-                                destinationSquares.Add(new ChessProperty.SquareLocation('g',1));
+                                destinationSquares.Add(new ChessProperty.SquareLocation('g', 1));
                                 destinationSquares.Add(new ChessProperty.SquareLocation('f', 1));
                                 break;
                             }
-                          
+
                         case ChessProperty.PieceColor.black:
                             destinationSquares.Add(new ChessProperty.SquareLocation('g', 8));
                             destinationSquares.Add(new ChessProperty.SquareLocation('f', 8));

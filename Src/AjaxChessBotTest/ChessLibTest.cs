@@ -25,35 +25,7 @@ namespace AjaxChessBotTest
             bool hasPawnOnE7 = blackPawnLocations.Contains(e7);
         }
         */
-        [Fact]
-        public void TestGetExplicitMoveWhitePawn()
-        {
-
-            FenBoard fenBoard = new FenBoard();
-            ChessProperty.ExplicitMove expected = new ChessProperty.ExplicitMove(
-                    new ChessProperty.SquareLocation('e', 2),
-                    new ChessProperty.SquareLocation('e', 4)
-                    );
-
-            ChessProperty.ExplicitMove actual = fenBoard.ConvertMoveToExplicitAlgebraicNotation("e4", ChessProperty.PieceColor.white);
-
-            Xunit.Assert.Equal(JsonConvert.SerializeObject(actual), JsonConvert.SerializeObject(expected));
-        }
-        [Fact]
-        public void TestGetExplicitMoveBlackPawn()
-        {
-
-            FenBoard fenBoard = new FenBoard();
-            ChessProperty.ExplicitMove expected = new ChessProperty.ExplicitMove(
-                    new ChessProperty.SquareLocation('e', 7),
-                    new ChessProperty.SquareLocation('e', 5)
-                    );
-
-            ChessProperty.ExplicitMove actual = fenBoard.ConvertMoveToExplicitAlgebraicNotation("e5", ChessProperty.PieceColor.black);
-
-            Xunit.Assert.Equal(JsonConvert.SerializeObject(actual), JsonConvert.SerializeObject(expected));
-        }
-
+      
 
 
 
