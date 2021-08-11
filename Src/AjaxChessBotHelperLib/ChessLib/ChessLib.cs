@@ -7,8 +7,8 @@ namespace AjaxChessBotHelperLib
 {
     public class ChessLib
     {
-        static readonly char[] piecesLetters = new char[] { 'K', 'Q', 'B', 'R', 'N', 'P' };
-        static readonly char[] specialNotationSymbol = new char[] { '+', '#', '!' };
+        public static readonly char[] piecesLetters = new char[] { 'K', 'Q', 'B', 'R', 'N', 'P' };
+        public static readonly char[] specialNotationSymbol = new char[] { '+', '#', '!' };
 
         ///note:if chess board class != board flipped then it is white
         public static string MoveListToFEN(List<string> moveList)
@@ -51,7 +51,14 @@ namespace AjaxChessBotHelperLib
 
         }
 
-        public static List<ChessProperty.SquareLocation> GetAvailablePieceToMove(
+        /// <summary>
+        /// Get the original square of valid pieces that can move to [destinationSquare] ,may return more than 1 if available
+        /// </summary>
+        /// <param name="everyPiecesLocations"></param>
+        /// <param name="destinationSquare"></param>
+        /// <param name="pieceToMove"></param>
+        /// <returns></returns>
+        public static List<ChessProperty.SquareLocation> GetValidPiecesToMoveOriginalSquare(
              Dictionary<ChessProperty.ChessPiece, List<ChessProperty.SquareLocation>> everyPiecesLocations,
              ChessProperty.SquareLocation destinationSquare,
              ChessProperty.ChessPiece pieceToMove
@@ -256,7 +263,13 @@ namespace AjaxChessBotHelperLib
             return pieceName;
         }
 
-        public static List<ChessProperty.ChessPiece> GetPieceToMove(string moveNotation, ChessProperty.PieceColor colorToMove)
+        /// <summary>
+        /// Will return 2 pieces if [moveNotation] is castle and will return 1 piece if other move
+        /// </summary>
+        /// <param name="moveNotation"></param>
+        /// <param name="colorToMove"></param>
+        /// <returns></returns>
+        public static List<ChessProperty.ChessPiece> GetPiecesToMove(string moveNotation, ChessProperty.PieceColor colorToMove)
         {
             List<ChessProperty.ChessPiece> piecesToMove = new List<ChessProperty.ChessPiece>();
 
@@ -324,8 +337,14 @@ namespace AjaxChessBotHelperLib
 
 
         }
-
-        public static List<ChessProperty.SquareLocation> GetDestinationSquare(string moveNotation, ChessProperty.PieceColor colorToMove)
+        /// <summary>
+        /// Will return 2 destination squares if [moveNotation] is castle
+        /// the first destination square will be the king 's and the second one will be the rook's
+        /// </summary>
+        /// <param name="moveNotation"></param>
+        /// <param name="colorToMove"></param>
+        /// <returns></returns>
+        public static List<ChessProperty.SquareLocation> GetDestinationSquares(string moveNotation, ChessProperty.PieceColor colorToMove)
         {
             moveNotation = moveNotation.RemoveChars(specialNotationSymbol);
 
@@ -378,6 +397,32 @@ namespace AjaxChessBotHelperLib
                 }
             }
             return destinationSquares;
+        }
+        
+        
+        public static Dictionary<ChessProperty.ChessPiece, ChessProperty.SquareLocation> GetPiecesToMoveAndDestinationSquare(
+            string moveNotation, ChessProperty.PieceColor colorToMove)
+        {
+
+            var piecesToMoveAndDestinationSquare = new Dictionary<ChessProperty.ChessPiece, ChessProperty.SquareLocation>();
+            List<ChessProperty.ChessPiece> piecesToMove = GetPiecesToMove(moveNotation, colorToMove);
+            List<ChessProperty.SquareLocation> destinationSquares = GetDestinationSquares(moveNotation, colorToMove);
+
+
+            if (piecesToMove.Count == 1 && destinationSquares.Count == 1)
+            {
+          
+               piecesToMoveAndDestinationSquare.Add(piecesToMove[0], destinationSquares[0]);
+                 
+            }
+            //castling moves
+            else if (piecesToMove.Count == 2 && destinationSquares.Count == 2)
+            {
+                piecesToMoveAndDestinationSquare.Add(piecesToMove[0], destinationSquares[0]);
+                piecesToMoveAndDestinationSquare.Add(piecesToMove[1], destinationSquares[1]);
+            }
+
+            return piecesToMoveAndDestinationSquare;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace AjaxChessBotTest
             bool hasPawnOnE7 = blackPawnLocations.Contains(e7);
         }
         */
-      
+        
 
 
 
@@ -36,7 +36,7 @@ namespace AjaxChessBotTest
             List<ChessProperty.ChessPiece> expected = new List<ChessProperty.ChessPiece> {
               new ChessProperty.ChessPiece(ChessProperty.PieceColor.white,ChessProperty.PieceName.pawn)
             };
-            List<ChessProperty.ChessPiece> actual = ChessLib.GetPieceToMove("e4", ChessProperty.PieceColor.white);
+            List<ChessProperty.ChessPiece> actual = ChessLib.GetPiecesToMove("e4", ChessProperty.PieceColor.white);
             CollectionAssert.AreEquivalent(expected, actual);
 
         }
@@ -46,7 +46,7 @@ namespace AjaxChessBotTest
             List<ChessProperty.ChessPiece> expected = new List<ChessProperty.ChessPiece> {
               new ChessProperty.ChessPiece(ChessProperty.PieceColor.black,ChessProperty.PieceName.knight)
             };
-            List<ChessProperty.ChessPiece> actual = ChessLib.GetPieceToMove("Nc6", ChessProperty.PieceColor.black);
+            List<ChessProperty.ChessPiece> actual = ChessLib.GetPiecesToMove("Nc6", ChessProperty.PieceColor.black);
             CollectionAssert.AreEquivalent(expected, actual);
 
         }
@@ -56,7 +56,7 @@ namespace AjaxChessBotTest
             List<ChessProperty.ChessPiece> expected = new List<ChessProperty.ChessPiece> {
               new ChessProperty.ChessPiece(ChessProperty.PieceColor.black,ChessProperty.PieceName.queen)
             };
-            List<ChessProperty.ChessPiece> actual = ChessLib.GetPieceToMove("Qxe6", ChessProperty.PieceColor.black);
+            List<ChessProperty.ChessPiece> actual = ChessLib.GetPiecesToMove("Qxe6", ChessProperty.PieceColor.black);
             CollectionAssert.AreEquivalent(expected, actual);
 
         }
@@ -68,7 +68,7 @@ namespace AjaxChessBotTest
                    new ChessProperty.ChessPiece(ChessProperty.PieceColor.white,ChessProperty.PieceName.king),
               new ChessProperty.ChessPiece(ChessProperty.PieceColor.white,ChessProperty.PieceName.rook),
             };
-            List<ChessProperty.ChessPiece> actual = ChessLib.GetPieceToMove("O-O-O", ChessProperty.PieceColor.white);
+            List<ChessProperty.ChessPiece> actual = ChessLib.GetPiecesToMove("O-O-O", ChessProperty.PieceColor.white);
             CollectionAssert.AreEquivalent(expected, actual);
         }
         [Fact]
@@ -78,7 +78,7 @@ namespace AjaxChessBotTest
                  
               new ChessProperty.ChessPiece(ChessProperty.PieceColor.white,ChessProperty.PieceName.knight),
             };
-            List<ChessProperty.ChessPiece> actual = ChessLib.GetPieceToMove("Nge2", ChessProperty.PieceColor.white);
+            List<ChessProperty.ChessPiece> actual = ChessLib.GetPiecesToMove("Nge2", ChessProperty.PieceColor.white);
             CollectionAssert.AreEquivalent(expected, actual);
 
         }
@@ -93,7 +93,7 @@ namespace AjaxChessBotTest
             {
                 new ChessProperty.SquareLocation('e',4),
             };
-            List<ChessProperty.SquareLocation> actual=ChessLib.GetDestinationSquare("e4",ChessProperty.PieceColor.white);
+            List<ChessProperty.SquareLocation> actual=ChessLib.GetDestinationSquares("e4",ChessProperty.PieceColor.white);
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -105,7 +105,7 @@ namespace AjaxChessBotTest
             {
                 new ChessProperty.SquareLocation('c',3),
             };
-            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquare("Nc3", ChessProperty.PieceColor.white);
+            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquares("Nc3", ChessProperty.PieceColor.white);
             CollectionAssert.AreEqual(expected, actual);
         }
         [Fact]
@@ -116,7 +116,7 @@ namespace AjaxChessBotTest
                  new ChessProperty.SquareLocation('g',1),
                  new ChessProperty.SquareLocation('f',1),
             };
-            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquare("O-O", ChessProperty.PieceColor.white);
+            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquares("O-O", ChessProperty.PieceColor.white);
             CollectionAssert.AreEqual(expected, actual);
         }
         [Fact]
@@ -127,7 +127,7 @@ namespace AjaxChessBotTest
                  new ChessProperty.SquareLocation('g',8),
                  new ChessProperty.SquareLocation('f',8),
             };
-            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquare("O-O", ChessProperty.PieceColor.black);
+            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquares("O-O", ChessProperty.PieceColor.black);
             CollectionAssert.AreEqual(expected, actual);
         }
         [Fact]
@@ -138,7 +138,7 @@ namespace AjaxChessBotTest
                  new ChessProperty.SquareLocation('c',1),
                  new ChessProperty.SquareLocation('d',1),
             };
-            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquare("O-O-O", ChessProperty.PieceColor.white);
+            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquares("O-O-O", ChessProperty.PieceColor.white);
             CollectionAssert.AreEqual(expected, actual);
         }
         [Fact]
@@ -149,7 +149,7 @@ namespace AjaxChessBotTest
                  new ChessProperty.SquareLocation('c',8),
                  new ChessProperty.SquareLocation('d',8),
             };
-            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquare("O-O-O", ChessProperty.PieceColor.black);
+            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquares("O-O-O", ChessProperty.PieceColor.black);
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -161,7 +161,7 @@ namespace AjaxChessBotTest
                  new ChessProperty.SquareLocation('f',4),
                  
             };
-            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquare("Qxf4", ChessProperty.PieceColor.black);
+            List<ChessProperty.SquareLocation> actual = ChessLib.GetDestinationSquares("Qxf4", ChessProperty.PieceColor.black);
             CollectionAssert.AreEqual(expected, actual);
         }
         #endregion
