@@ -9,22 +9,15 @@ namespace AjaxChessBotTest
 {
     public class ChessLibTest
     {
-        /*
+        
         [Fact]
-        public void TestGetPositions()
+        public void TestConvertToExplicitNotation()
         {
             FenBoard fenBoard = new FenBoard();
-            Dictionary<ChessProperty.ChessPiece, List<ChessProperty.SquareLocation>> piecesLocations = fenBoard.GetPiecesLocation();
-
-            ChessProperty.ChessPiece pieceToFind = new ChessProperty.ChessPiece(ChessProperty.PieceColor.black, ChessProperty.PieceName.pawn);
-
-
-
-            List<ChessProperty.SquareLocation> blackPawnLocations = piecesLocations[pieceToFind];
-            ChessProperty.SquareLocation e7 = new ChessProperty.SquareLocation('e', 7);
-            bool hasPawnOnE7 = blackPawnLocations.Contains(e7);
+            List<ChessProperty.ExplicitMove> moves=fenBoard.ConvertMoveToExplicitAlgebraicNotation("Nc3", ChessProperty.PieceColor.white);
+            Console.WriteLine(JsonConvert.SerializeObject(moves));
         }
-        */
+        
         
 
 

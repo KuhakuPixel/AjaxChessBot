@@ -64,18 +64,18 @@ namespace AjaxChessBotHelperLib
              ChessProperty.ChessPiece pieceToMove
              )
         {
-            var validPieceToMoveLocation = new List<ChessProperty.SquareLocation>();
+            var validPieceLocation = new List<ChessProperty.SquareLocation>();
 
             if (everyPiecesLocations.ContainsKey(pieceToMove))
             {
-                List<ChessProperty.SquareLocation> pieceToMoveLocations = everyPiecesLocations[pieceToMove];
+                List<ChessProperty.SquareLocation> pieceLocations = everyPiecesLocations[pieceToMove];
 
-                for (int i = 0; i < pieceToMoveLocations.Count; i++)
+                for (int i = 0; i < pieceLocations.Count; i++)
                 {
 
                     //validating location
-                    int dx = destinationSquare.FileName - pieceToMoveLocations[i].FileName;
-                    int dy = destinationSquare.RankNumber - pieceToMoveLocations[i].RankNumber;
+                    int dx = destinationSquare.FileName - pieceLocations[i].FileName;
+                    int dy = destinationSquare.RankNumber - pieceLocations[i].RankNumber;
                     int absolute_dx = Math.Abs(dx);
                     int absolute_dy = Math.Abs(dy);
                     switch (pieceToMove.PieceName)
@@ -84,21 +84,21 @@ namespace AjaxChessBotHelperLib
                             //horizontal or vertical
                             if (dx == 0 && absolute_dy > 0 || dy == 0 && absolute_dx > 0)
                             {
-                                validPieceToMoveLocation.Add(pieceToMoveLocations[i]);
+                                validPieceLocation.Add(pieceLocations[i]);
                             }
                             break;
                         case ChessProperty.PieceName.knight:
                             //L movement
                             if ((absolute_dx == 1 && absolute_dy == 2) || (absolute_dx == 2 && absolute_dy == 1))
                             {
-                                validPieceToMoveLocation.Add(pieceToMoveLocations[i]);
+                                validPieceLocation.Add(pieceLocations[i]);
                             }
                             break;
                         case ChessProperty.PieceName.bishop:
                             //dioganlly
                             if (dx == dy && absolute_dx > 0 && absolute_dy > 0)
                             {
-                                validPieceToMoveLocation.Add(pieceToMoveLocations[i]);
+                                validPieceLocation.Add(pieceLocations[i]);
                             }
                             break;
 
@@ -111,7 +111,7 @@ namespace AjaxChessBotHelperLib
                                  (dx == dy && absolute_dx > 0 && absolute_dy > 0)
                                 )
                             {
-                                validPieceToMoveLocation.Add(pieceToMoveLocations[i]);
+                                validPieceLocation.Add(pieceLocations[i]);
                             }
 
                             break;
@@ -128,16 +128,17 @@ namespace AjaxChessBotHelperLib
                                     if (dy == 1)
                                     {
                                         //priotize the pawn on the front rather than on the back
-                                        if (pieceToMoveLocations.Count > 0)
-                                            pieceToMoveLocations.Clear();
-                                        pieceToMoveLocations.Add(pieceToMoveLocations[i]);
+                                        if (validPieceLocation.Count > 0)
+                                            validPieceLocation.Clear();
+
+                                        validPieceLocation.Add(pieceLocations[i]);
 
                                     }
                                     else if (dy == 2)
                                     {
                                         //dont overwrite if already found a pawn in front
-                                        if (pieceToMoveLocations.Count == 0)
-                                            pieceToMoveLocations.Add(pieceToMoveLocations[i]);
+                                        if (validPieceLocation.Count == 0)
+                                            validPieceLocation.Add(pieceLocations[i]);
 
                                     }
                                 }
@@ -146,16 +147,16 @@ namespace AjaxChessBotHelperLib
                                     if (dy == -1)
                                     {
                                         //priotize the pawn on the front rather than on the back
-                                        if (pieceToMoveLocations.Count > 0)
-                                            pieceToMoveLocations.Clear();
-                                        pieceToMoveLocations.Add(pieceToMoveLocations[i]);
+                                        if (validPieceLocation.Count > 0)
+                                            validPieceLocation.Clear();
+                                        validPieceLocation.Add(pieceLocations[i]);
 
                                     }
                                     else if (dy == -2)
                                     {
                                         //dont overwrite if already found a pawn in front
-                                        if (pieceToMoveLocations.Count == 0)
-                                            pieceToMoveLocations.Add(pieceToMoveLocations[i]);
+                                        if (validPieceLocation.Count == 0)
+                                            validPieceLocation.Add(pieceLocations[i]);
 
                                     }
                                 }
@@ -174,7 +175,7 @@ namespace AjaxChessBotHelperLib
             }
 
 
-            return validPieceToMoveLocation;
+            return validPieceLocation;
         }
         private static bool IsKingSideCastling(string moveNotation)
         {
