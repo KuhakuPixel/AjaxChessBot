@@ -32,7 +32,10 @@ Want to contribute? Great!
 - Add Gui for easier setups (ex : open engine list of choice from gui)
 - Add support for chess.com
 - Use browser automation project such as selenium to make it easier to monitor the state of the game
-- Fix slow performance because of inefficient usage of REGEX
+- Fix slow performance because of 
+  - inefficient usage of REGEX
+  - Starting and killing the process after sending a move to the engine 
+    (which really impacts the performance because setting up the engine again after it has been killed takes time)
 ## License
 
 [GNU GPLv3](https://github.com/KuhakuPixel/AjaxChessBot/blob/master/LICENSE)
