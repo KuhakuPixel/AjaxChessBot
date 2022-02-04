@@ -27,7 +27,12 @@ Want to contribute? Great!
 ## Supported online chess website
  - lichess.org ✔
  - chess.com ❌
- 
+
+## Future enhancements
+- Add Gui for easier setups (ex : open engine list of choice from gui)
+- Add support for chess.com
+- Use browser automation project such as selenium to make it easier to monitor the state of the game
+- Fix slow performance because of inefficient usage of REGEX
 ## License
 
 [GNU GPLv3](https://github.com/KuhakuPixel/AjaxChessBot/blob/master/LICENSE)
