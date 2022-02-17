@@ -332,7 +332,7 @@ namespace AjaxChessBot
         {
 
             //note the center is at top left and y is max at bottom and 0 at top
-
+            //
             Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinates =
                 new Dictionary<string, MouseOperation.MousePoint>();
 
