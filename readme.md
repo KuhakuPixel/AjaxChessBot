@@ -1,4 +1,5 @@
 # Ajax Chess Bot
+[![Github All Releases](https://img.shields.io/github/downloads/KuhakuPixel/AjaxChessBot/total.svg)]()
 ## A chess bot for online chess game
 ![ScreenShot](docs/MainScreenShot.png)
 
