@@ -6,7 +6,14 @@
 ![ScreenShot](docs/Turtorial/Help11.png)
 Ajax Chess Bot is free ,open source and light weight Check [Turtorial](https://github.com/KuhakuPixel/AjaxChessBot/tree/master/docs/Turtorial) or [Video Turtorial](https://www.youtube.com/watch?v=0B-lAP5APhU&ab_channel=Hakuku) to learn how to use the program
 
+## Faq
 
+### The exe automatically closes?
+This may be caused by an antivirus blocking the `exe`, since 
+this programs uses `win api` to click and perform its actions
+so it may be seen as dangerous by the antivirus
+
+turn off the antivirus and it may work :D
 ## Features
 
 - Play an online chess game automatically with an engine of choice
