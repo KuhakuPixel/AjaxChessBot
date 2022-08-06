@@ -65,6 +65,61 @@ namespace AjaxChessBot
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
         }
+        static void run_chess_bot(ChessGameState chessGameState)
+        {
+
+            string lastMoves = "";
+
+            string currentMoves = chessGameState.GetCurrentMovesFen();
+            ChessProperty.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
+            //move 
+            if (currentTurn == chessGameState.PlayerColor && currentMoves != lastMoves)
+            {
+
+
+                string bestMove = "";
+                if (ajaxConfigFile.randomizeThinkingTime)
+                {
+                    int randomizedThinkingTime = random.Next(ajaxConfigFile.randomThinkTimeMin, ajaxConfigFile.randomThinkTimeMax);
+                    bestMove = uciChessEngineProcess.GetBestMove(currentMoves, randomizedThinkingTime);
+                }
+                else
+                {
+                    bestMove = uciChessEngineProcess.GetBestMove(currentMoves, ajaxConfigFile.normalThinkTime);
+                }
+
+                //split moves like e2e4 or h7h8q to separate moves
+                List<string> bestMoveSplitted = AjaxStringHelper.SplitStringToChunk(bestMove, 2, true);
+
+                //move  the piece
+                switch (chessGameState.PlayerColor)
+                {
+                    case ChessProperty.PieceColor.white:
+                        {
+                            MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[0]];
+                            MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[1]];
+
+                            MouseOperation.DragMouseAcross(fromPoint, toPoint);
+                            break;
+                        }
+
+
+                    case ChessProperty.PieceColor.black:
+                        {
+                            MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[0]];
+                            MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[1]];
+                            MouseOperation.DragMouseAcross(fromPoint, toPoint);
+                            break;
+                        }
+
+
+
+                }
+                //MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+                Console.WriteLine(currentTurn + "'s turn: " + bestMove);
+            }
+            lastMoves = currentMoves;
+        }
         static void on_play_func()
         {
             if (uciChessEngineProcess == null)
@@ -88,60 +143,11 @@ namespace AjaxChessBot
                 Console.WriteLine("the bot will now play the Game, press esc key to stop");
                 Console.ForegroundColor = ConsoleColor.White;
 
-                string lastMoves = "";
                 do
                 {
                     while (!Console.KeyAvailable)
                     {
-                        string currentMoves = chessGameState.GetCurrentMovesFen();
-                        ChessProperty.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
-                        //move 
-                        if (currentTurn == chessGameState.PlayerColor && currentMoves != lastMoves)
-                        {
-
-
-                            string bestMove = "";
-                            if (ajaxConfigFile.randomizeThinkingTime)
-                            {
-                                int randomizedThinkingTime = random.Next(ajaxConfigFile.randomThinkTimeMin, ajaxConfigFile.randomThinkTimeMax);
-                                bestMove = uciChessEngineProcess.GetBestMove(currentMoves, randomizedThinkingTime);
-                            }
-                            else
-                            {
-                                bestMove = uciChessEngineProcess.GetBestMove(currentMoves, ajaxConfigFile.normalThinkTime);
-                            }
-
-                            //split moves like e2e4 or h7h8q to separate moves
-                            List<string> bestMoveSplitted = AjaxStringHelper.SplitStringToChunk(bestMove, 2, true);
-
-                            //move  the piece
-                            switch (chessGameState.PlayerColor)
-                            {
-                                case ChessProperty.PieceColor.white:
-                                    {
-                                        MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[0]];
-                                        MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[1]];
-
-                                        MouseOperation.DragMouseAcross(fromPoint, toPoint);
-                                        break;
-                                    }
-
-
-                                case ChessProperty.PieceColor.black:
-                                    {
-                                        MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[0]];
-                                        MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[1]];
-                                        MouseOperation.DragMouseAcross(fromPoint, toPoint);
-                                        break;
-                                    }
-
-
-
-                            }
-                            //MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
-                            Console.WriteLine(currentTurn + "'s turn: " + bestMove);
-                        }
-                        lastMoves = currentMoves;
+                        run_chess_bot(chessGameState);
                     }
                 }
                 while (Console.ReadKey(true).Key != ConsoleKey.Escape);
