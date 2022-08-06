@@ -19,6 +19,8 @@ this programs uses `win api` to click and perform its actions
 so it may be seen as dangerous by the antivirus
 
 turn off the antivirus and it may work :D
+
+If none of that work, discuss it [here](https://github.com/KuhakuPixel/AjaxChessBot/issues/3) 
 ## Features
 
 - Play an online chess game automatically with an engine of choice
