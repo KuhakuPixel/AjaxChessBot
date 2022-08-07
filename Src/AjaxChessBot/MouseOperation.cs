@@ -4,6 +4,12 @@ using System.Threading;
 
 namespace AjaxChessBot
 {
+    /// <summary>
+    /// Use win32 api 'mouse_event' to make a click like left and right
+    /// 
+    /// mouse_event 's doc :   https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event 
+    /// usage :                https://stackoverflow.com/questions/52679676/c-sharp-mouseclick-event-doesnt-fire-on-middle-click-or-right-click 
+    /// </summary>
     class MouseOperation
     {
         [Flags]
@@ -88,6 +94,9 @@ namespace AjaxChessBot
 
             MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.RightDown);
             MouseOperation.SetCursorPosition(to);
+            // add delay between down click and upclick
+            // because without it, it seems to be too fast and might not be registered
+            // on some program, but its kinda weird that left click works just fine, but not right click
             Thread.Sleep(500);
             MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.RightUp);
 
