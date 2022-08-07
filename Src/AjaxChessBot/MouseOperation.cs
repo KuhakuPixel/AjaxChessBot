@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Threading;
+
 namespace AjaxChessBot
 {
     class MouseOperation
@@ -7,14 +9,14 @@ namespace AjaxChessBot
         [Flags]
         public enum MouseEventFlags
         {
-            LeftDown = 0x00000002,
-            LeftUp = 0x00000004,
+            LeftDown = 0x0002,
+            LeftUp = 0x0004,
             MiddleDown = 0x00000020,
             MiddleUp = 0x00000040,
             Move = 0x00000001,
             Absolute = 0x00008000,
-            RightDown = 0x00000008,
-            RightUp = 0x00000010
+            RightDown = 0x0008,
+            RightUp = 0x0010, 
         }
 
         [DllImport("user32.dll", EntryPoint = "SetCursorPos")]
@@ -61,7 +63,9 @@ namespace AjaxChessBot
                 ;
         }
 
-        public static void DragMouseAcross(MousePoint from ,MousePoint to)
+        //TODO : dont hardcode this plz, only temporary solution
+
+        public static void DragMouseLeftClick(MousePoint from ,MousePoint to)
         {
             MouseOperation.SetCursorPosition(from);
 
@@ -75,6 +79,28 @@ namespace AjaxChessBot
 
             MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftDown);
             MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
+
+        }
+
+        public static void DragMouseRightClick(MousePoint from ,MousePoint to)
+        {
+            MouseOperation.SetCursorPosition(from);
+
+            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.RightDown);
+            MouseOperation.SetCursorPosition(to);
+            Thread.Sleep(500);
+            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.RightUp);
+
+
+        }
+        public static void MouseRightClick(MousePoint from )
+        {
+            MouseOperation.SetCursorPosition(from);
+
+            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.RightDown);
+            Thread.Sleep(1000);
+            MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.RightUp);
+
 
         }
         [StructLayout(LayoutKind.Sequential)]

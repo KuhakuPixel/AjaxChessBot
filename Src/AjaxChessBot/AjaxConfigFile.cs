@@ -13,6 +13,7 @@ namespace AjaxChessBot
         public int randomThinkTimeMax = 3000;
         public string pathToEngine;
         public bool randomizeThinkingTime = false;
+        public bool advisorMode = false;
         public Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingWhite = new Dictionary<string, MouseOperation.MousePoint>();
         public Dictionary<string, MouseOperation.MousePoint> chessBoardCoordinatePlayingBlack = new Dictionary<string, MouseOperation.MousePoint>();
         public AjaxConfigFile(
@@ -49,6 +50,7 @@ namespace AjaxChessBot
         {
             string json= File.ReadAllText("AjaxConfig.json");
             AjaxConfigFile loadedConfig = JsonConvert.DeserializeObject<AjaxConfigFile>(json);
+            // load
             this.pathToEngine = loadedConfig.pathToEngine;
             this.chessBoardCoordinatePlayingBlack = loadedConfig.chessBoardCoordinatePlayingBlack;
             this.chessBoardCoordinatePlayingWhite = loadedConfig.chessBoardCoordinatePlayingWhite;
@@ -56,6 +58,7 @@ namespace AjaxChessBot
             this.randomThinkTimeMin = loadedConfig.randomThinkTimeMin;
             this.randomThinkTimeMax = loadedConfig.randomThinkTimeMax;
             this.randomizeThinkingTime = loadedConfig.randomizeThinkingTime;
+            this.advisorMode = loadedConfig.advisorMode;
         }
     }
 }

@@ -9,6 +9,9 @@ namespace AjaxChessBot
         static private AjaxConfigFile ajaxConfigFile = new AjaxConfigFile();
         static private Random random = new Random();
 
+        // TODO: don't make this a global var, it will be error prone and its ugly
+        static private string previousChessMove = "";
+
         static void Main(string[] args)
         {
             RunProgram();
@@ -68,12 +71,9 @@ namespace AjaxChessBot
         static void run_chess_bot(ChessGameState chessGameState)
         {
 
-            string lastMoves = "";
-
             string currentMoves = chessGameState.GetCurrentMovesFen();
             ChessProperty.PieceColor currentTurn = chessGameState.GetCurrentTurn(currentMoves);
-            //move 
-            if (currentTurn == chessGameState.PlayerColor && currentMoves != lastMoves)
+            if (currentTurn == chessGameState.PlayerColor && currentMoves != previousChessMove)
             {
 
 
@@ -92,33 +92,39 @@ namespace AjaxChessBot
                 List<string> bestMoveSplitted = AjaxStringHelper.SplitStringToChunk(bestMove, 2, true);
 
                 //move  the piece
-                switch (chessGameState.PlayerColor)
+                MouseOperation.MousePoint fromPoint = new MouseOperation.MousePoint(0, 0);
+                MouseOperation.MousePoint toPoint = new MouseOperation.MousePoint(0, 0);
+                if (chessGameState.PlayerColor == ChessProperty.PieceColor.white)
                 {
-                    case ChessProperty.PieceColor.white:
-                        {
-                            MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[0]];
-                            MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[1]];
 
-                            MouseOperation.DragMouseAcross(fromPoint, toPoint);
-                            break;
-                        }
+                    fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[0]];
+                    toPoint = ajaxConfigFile.chessBoardCoordinatePlayingWhite[bestMoveSplitted[1]];
 
+                }
+                else if (chessGameState.PlayerColor == ChessProperty.PieceColor.black)
+                {
 
-                    case ChessProperty.PieceColor.black:
-                        {
-                            MouseOperation.MousePoint fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[0]];
-                            MouseOperation.MousePoint toPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[1]];
-                            MouseOperation.DragMouseAcross(fromPoint, toPoint);
-                            break;
-                        }
+                    fromPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[0]];
+                    toPoint = ajaxConfigFile.chessBoardCoordinatePlayingBlack[bestMoveSplitted[1]];
+                }
 
-
-
+                        
+                // in most chess websites. like lichess.org and chess.com
+                // right click is used to draw arrow like left clicking e2 and e4 wil draw arrow betwee the two
+                // left click is used to make a move between 2 square
+                // this is hardcoded, but good enough for now
+                if (ajaxConfigFile.advisorMode)
+                {
+                    MouseOperation.DragMouseRightClick(fromPoint, toPoint);
+                }
+                else
+                {
+                    MouseOperation.DragMouseLeftClick(fromPoint, toPoint);
                 }
                 //MouseOperation.MouseEvent(MouseOperation.MouseEventFlags.LeftUp);
                 Console.WriteLine(currentTurn + "'s turn: " + bestMove);
             }
-            lastMoves = currentMoves;
+            previousChessMove = currentMoves;
         }
         static void on_play_func()
         {
@@ -168,6 +174,8 @@ namespace AjaxChessBot
             Console.WriteLine("                  if set to 'n' then it will have a fixed thinking time that can be changed by the user ");
             Console.WriteLine("set_time_normal   set Consistent time move in milisecond (min time:250 ms)        ");
             Console.WriteLine("set_time_random   Choose Time to make a move between a range of time in milisecond   ");
+            Console.WriteLine("toggle_advisor    enable/disable advisor mode (showing best move without moving them");
+            Console.WriteLine("                  (EXPERIMENTAL FEAUTURES, MAY NOT WORK CORRECTLY)");
 
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -281,6 +289,27 @@ namespace AjaxChessBot
 
         }
 
+        static void on_toggle_advisor_func()
+        {
+            if (ajaxConfigFile.advisorMode)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Advisor mode is turned off");
+                Console.ForegroundColor = ConsoleColor.White;
+
+            }
+            else
+            {
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Advisor mode is turned on");
+                Console.ForegroundColor = ConsoleColor.White;
+
+            }
+            ajaxConfigFile.advisorMode = !ajaxConfigFile.advisorMode;
+
+        }
+
         static void on_unknown_command_func(string command)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -341,6 +370,11 @@ namespace AjaxChessBot
 
                 {
                     on_test_click_func();
+                }
+                else if (command == "toggle_advisor")
+
+                {
+                    on_toggle_advisor_func();
                 }
                 else
                 {
